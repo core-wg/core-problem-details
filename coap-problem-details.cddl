@@ -1,0 +1,16 @@
+coap-problem-details = {
+  ns => int,
+  type => uint,
+  ? title => text,
+  ? response-code => uint .size 1,
+  ? detail => text,
+  ? instance => uri,
+  * $$coap-problem-details-extension,
+}
+
+ns = 0
+type = 1
+title = 2
+response-code = 3
+detail = 4
+instance = 5
