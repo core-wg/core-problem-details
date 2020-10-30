@@ -41,20 +41,7 @@ This document defines a "problem detail" as a way to carry machine-readable deta
 CoAP {{!RFC7252}} response codes are sometimes not sufficient to convey enough information about an error to be helpful.  This specification defines a simple and extensible CoRAL {{!I-D.ietf-core-coral}} vocabulary to suit this purpose.  It is designed to be reused by CoAP APIs, which can identify distinct "problem types" specific to their needs.  Thus, API clients can be informed of both the high-level error class (using the response code) and the finer-grained details of the problem (using this vocabulary), as shown in {{fig-problem-details}}.
 
 ~~~
-+--------+          +--------+
-|  CoAP  |          |  CoAP  |
-| Client |          | Server |
-+--------+          +--------+
-     |                  |
-     | Request          |
-     |----------------->|
-     |                  |
-     |<-----------------|
-     |   Error Response |
-     |     with a CoRAL |
-     |  Document giving |
-     |  Problem Details |
-     |                  |
+{::include problem-details.ascii-art}
 ~~~
 {: #fig-problem-details artwork-align="center" title="Problem Details"}
 
@@ -66,7 +53,7 @@ The vocabulary presented is largely inspired by the Problem Details for HTTP API
 
 # Basic Problem Details
 
-A CoAP Problem Details is a CoRAL document with the following elements:
+A CoRE Problem Details is a CoRAL document with the following elements:
 
 * "type" (id) - The problem type.  This is a mandatory element.
 * "title" (text) - A short, human-readable summary of the problem type.  It SHOULD NOT change from occurrence to occurrence of the problem.
@@ -108,6 +95,64 @@ pd:detail       "Key with id 0x01020304 not registered"
 pd:instance     <https://private-api.example/errors/5>
 ~~~
 {: #fig-example-full-fledged title="Full-Fledged"}
+
+# Additional Features
+
+In the following sections we introduce specific (albeit "common enough") use
+cases, and define the extensions to the basic format needed to support them.
+
+## Tracing and Extended Diagnostic
+
+Consumers of Problem Details might be located at the far end of a logging and
+analytics pipeline.  For example, this might be the case when a CoAP server or
+CoAP API gateway is located in an edge gateway node and forwards its logs to a
+cloud collector, which in turn aggregates a potentially huge number of
+different servers and transactions (see {{fig-log-pipeline}}).
+
+~~~
+{::include log-pipeline.ascii-art}
+~~~
+{: #fig-log-pipeline title="Logging Pipeline"}
+
+It is quite common in a situation like the above that an already deployed
+server is temporarily put in "tracing mode" to diagnose a failure.  In this
+case having a separate channel for the tracing info provides a superior
+solution (in terms of ease of ingesting and processing) to overloading the
+`detail` field and having to write ad-hoc filtering logics to extract the
+relevant information from it.  Cost-wise, the producer would not incur any
+added overhead while, from the transport perspective, the slight increase in
+bandwidth to support the extra structuring is typically dwarfed by the
+(verbose) content of the diagnostic payload.  The same mechanism would also be
+useful during the development and test of a new application, giving the
+developer insight into the internal state of the application.
+
+The additional protocol element is:
+
+* "diag" (text) - a string.  It may contain anything of user's choice: extra
+  information complementing the what already present in `detail`, a stack
+  trace, a distributed trace span ending in an error condition, etc.
+
+Leaking private or sensitive data SHOULD be avoided.
+
+### Examples
+
+The example in {{fig-example-diag-stack}} has a `diag` element with a stack
+trace associated with the error condition.
+
+~~~
+#using pd = <http://example.org/vocabulary/problem-details#>
+#using ex = <http://vocabulary.private-api.example/#>
+
+pd:type         pd:server-error
+pd:title        "internal server error"
+pd:detail       "handler exception"
+pd:instance     <https://private-api.example/errors/2>
+pd:diag         "File \"example.py\", line 7, in \<module\>\n
+                 caller()\nFile \"example.py\", line 5, in caller\n
+                 callee()\nFile \"example.py\", line 2, in callee\n
+                 raise Exception(\"Yikes\")\n"
+~~~
+{: #fig-example-diag-stack title="Diagnostic message containing a stack trace"}
 
 # Additional Problem Details
 {: #sec-new-attributes}
