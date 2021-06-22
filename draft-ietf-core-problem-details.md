@@ -141,7 +141,6 @@ trace associated with the error condition.
 
 ~~~
 #using pd = <http://example.org/vocabulary/problem-details#>
-#using ex = <http://vocabulary.private-api.example/#>
 
 pd:type         pd:server-error
 pd:title        "internal server error"
