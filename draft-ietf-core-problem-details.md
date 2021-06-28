@@ -60,7 +60,7 @@ A CoRE Problem Details is a CoRAL document with the following elements:
 * "detail" (text) - A human-readable explanation specific to this occurrence of the problem.
 * "instance" (uri) - A URI reference that identifies the specific occurrence of the problem.  It may or may not yield further information if dereferenced.
 
-Consumers MUST use "type" as primary identifiers for the problem type; the "title" string is advisory and included only for consumers who are not aware of the semantics of the "type" value.
+Consumers MUST use "type" as primary identifiers for the problem type; the "title" string is advisory and included only for consumers who are not aware of the semantics of the "type" value.  An initial set of "type"s and corresponding "title"s is defined in {{sec-response-code-types}}.
 
 The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers SHOULD NOT parse the "detail" member for information; extensions (see {{sec-new-attributes}}) are more suitable and less error-prone ways to obtain such information.
 
@@ -95,6 +95,47 @@ pd:detail       "Key with id 0x01020304 not registered"
 pd:instance     <https://private-api.example/errors/5>
 ~~~
 {: #fig-example-full-fledged title="Full-Fledged"}
+
+# Response Code Problem Detail Types
+{: #sec-response-code-types }
+
+This document defines an initial set of Problem Detail types that match the
+corresponding CoAP response codes in the 4.xx (client error) and 5.xx (server
+error) space.  See {{tbl-response-code-types}}.
+
+When using one such problem type, an application MUST make sure that the type
+matches the CoAP response code in the underlying CoAP transaction.
+
+If a title element is used in the Problem Details payload, it SHOULD be
+populated with the title corresponding to the type.
+
+The types defined in this document reflect the state of the relevant portion of
+the "CoAP Codes" registry at the time of writing.
+
+| Type | Title |
+| --- | ----------- |
+| pd:4.00 | "Bad Request" |
+| pd:4.01 | "Unauthorized" |
+| pd:4.02 | "Bad Option" |
+| pd:4.03 | "Forbidden" |
+| pd:4.04 | "Not Found" |
+| pd:4.05 | "Method Not Allowed" |
+| pd:4.06 | "Not Acceptable" |
+| pd:4.08 | "Request Entity Incomplete" |
+| pd:4.09 | "Conflict" |
+| pd:4.12 | "Precondition Failed" |
+| pd:4.13 | "Request Entity Too Large" |
+| pd:4.15 | "Unsupported Content-Format" |
+| pd:4.22 | "Unprocessable Entity" |
+| pd:4.29 | "Too Many Requests" |
+| pd:5.00 | "Internal Server Error" |
+| pd:5.01 | "Not Implemented" |
+| pd:5.02 | "Bad Gateway" |
+| pd:5.03 | "Service Unavailable" |
+| pd:5.04 | "Gateway Timeout" |
+| pd:5.05 | "Proxying Not Supported" |
+| pd:5.08 | "Hop Limit Reached" |
+{: #tbl-response-code-types }
 
 # Additional Features
 
@@ -142,8 +183,8 @@ trace associated with the error condition.
 ~~~
 #using pd = <http://example.org/vocabulary/problem-details#>
 
-pd:type         pd:server-error
-pd:title        "internal server error"
+pd:type         pd:5.00
+pd:title        "Internal Server Error"
 pd:detail       "handler exception"
 pd:instance     <https://private-api.example/errors/2>
 pd:diag         "File \"example.py\", line 7, in \<module\>\n
