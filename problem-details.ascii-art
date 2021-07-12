@@ -1,0 +1,15 @@
+.--------.          .--------.
+|  CoAP  |          |  CoAP  |
+| Client |          | Server |
+'----+---'          '---+----'
+     |                  |
+     | Request          |
+     o----------------->|
+     |                  | (failure)
+     |<-----------------o
+     |   Error Response |
+     |     with a CoRAL |
+     |  Document giving |
+     |  Problem Details |
+     |                  |
+
