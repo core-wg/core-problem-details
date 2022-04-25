@@ -93,13 +93,13 @@ be defined for the type of problem details):
 
 ~~~ CDDL
 problem-details = #6.65535(problem-details-map)
-problem-details-map = {
+problem-details-map = non-empty<{
   ? &(title: -1) => text
   ? &(detail: -2) => text
   ? &(instance: -3) => ~uri
   standard-problem-detail-entries
   custom-problem-detail-entries
-}
+}>
 standard-problem-detail-entries = (
   * nint => any
 )
@@ -107,6 +107,7 @@ custom-problem-detail-entries = (
   * (uint/detail-label) => any
 )
 detail-label = text .regexp "[^:]+" / ~uri
+non-empty<M> = (M) .and ({ + any => any })
 ~~~
 {: #cddl title="Problem Detail Data Item"}
 
