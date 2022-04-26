@@ -1,7 +1,7 @@
 ---
 v: 3
 
-title: Problem Details For CoAP APIs
+title: Concise Problem Details For CoAP APIs
 abbrev: CoRE Problem Details
 docname: draft-ietf-core-problem-details-latest
 category: std
@@ -22,7 +22,6 @@ author:
     email: thomas.fossati@arm.com
  -  name: Carsten Bormann
     org: Universität Bremen TZI
-    orgascii: Universitaet Bremen TZI
     street: Postfach 330440
     city: Bremen
     code: D-28359
@@ -34,8 +33,11 @@ normative:
   STD94:
     -: bis
     =: RFC8949
+  STD66:
+    -: uri
+    =: RFC3986
   RFC7252: coap
-  RFC7807:
+  RFC7807: http-problem
 
 --- abstract
 
@@ -111,64 +113,121 @@ non-empty<M> = (M) .and ({ + any => any })
 ~~~
 {: #cddl title="Problem Detail Data Item"}
 
-The problem type is expressed in the tag number shown here as 65535.
-A tag has been registered as a generic problem type (see {{iana-tag}}),
-further tags for problem types can be registered (see {{sec-new-attributes}}).
+Due to a limitation of the CDDL notation for tags, the problem type
+cannot be expressed under this name in CDDL.
+It is represented in the tag number, which is shown here as 65535.
 
-A number of problem details are predefined (more predefined details
-can be registered, see {{iana-spdk}}):
+One tag has been registered as a generic problem type by this
+specification (see {{iana-tag}}).
+Further problem types can be defined by registering additional tags (see {{sec-new-attributes}}).
+
+A number of problem detail entries, the Standard Problem Detail
+entries, are predefined (more predefined details can be registered,
+see {{new-spdk}}):
 
 {:vspace}
 The title (key -1):
-: A short, human-readable summary of the problem type.  It SHOULD NOT change from occurrence to occurrence of the problem.
+: A short, human-readable summary of the problem type.
+  It SHOULD NOT change from occurrence to occurrence of the problem.
 
 The detail (key -2):
 : A human-readable explanation specific to this occurrence of the problem.
 
 The instance (key -3):
-: A URI reference that identifies the specific occurrence of the problem.  It may or may not yield further information if dereferenced.
+: A URI reference that identifies the specific occurrence of the problem.
+  It may or may not yield further information if dereferenced.
 
-Consumers MUST use the type (tag number) as primary identifiers for the problem type; the "title" string is advisory and included only for consumers who are not aware of the semantics of the "type" value.
+Consumers MUST use the type (tag number) as primary identifiers for
+the problem type; the "title" string is advisory and included only for
+consumers who are not aware of the semantics of the CBOR tag number
+used to indicate the specific problem type.
 
 The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers SHOULD NOT parse the "detail" member for information; extensions (see {{sec-new-attributes}}) are more suitable and less error-prone ways to obtain such information.
 
-Note that the "instance" URI reference may be relative; this means that it must be resolved relative to the document's base URI, as per {{!RFC3986}}.
+Note that the "instance" URI reference may be relative; this means
+that it must be resolved relative to the document's base URI, as per
+{{-uri}}.
+
+Note that the response code information that may be available together
+with a problem report is *not* replicated into a problem detail entry;
+compare this with "status" in {{-http-problem}}.
+
+{:aside}
+> (**Issue**: Do we still want to define a SPDK for status, so
+implementations can easily stash away the response code available from
+context into the problem details?)
 
 # Additional Problem Details
 {: #sec-new-attributes}
 
-To establish a custom problem type, A CBOR Tag number needs to be
+This specification defines a single problem type, the Generic Problem
+Details problem type (represented by CBOR tag TBD400, {{iana-tag}}).
+
+## Additional Problem Types
+
+To establish a new problem type, different from the Generic Problem
+Details problem type, a CBOR Tag number needs to be
 registered in the {{cbor-tags (CBOR Tags)<IANA.cbor-tags}} of {{!IANA.cbor-tags}}.
 Note that this registry allows the registration of new tags under the
 First Come First Served policy {{?RFC8126}}, making new registrations
 available in a simple interaction (e.g., via web or email) with IANA,
-having filled in the small template provided in {{Section 9.2 of
+after having filled in the small template provided in {{Section 9.2 of
 STD94}}.
+Such a registration SHOULD provide a documentation reference and also
+SHOULD reference the present specification.
+
+## Custom Problem Detail Entries
 
 Problem type definitions MAY extend the Problem Details document with
-additional entries to convey additional, problem-specific information.
-These receive a custom problem detail entry map key (unsigned integer
-or text)
-and SHOULD be described in a specification that goes along with such a
-registration.  Such a specification SHOULD also reference the present
-specification.
+additional entries to convey additional, problem-type-specific information,
+*custom problem details*.
+These receive a map key (custom problem detail entry map key, unsigned
+integer or text) and SHOULD be described in the documentation that goes
+along with the registration of a CBOR Tag for the problem type.
+
 For text detail-labels, a name without an embedded colon can be chosen
 instead of an integer custom label, or a detail-label that is a URI.
 This URI is for identification purposes only and MUST NOT be
 dereferenced in the normal course of handling problem details (i.e.,
 outside diagnostic/debugging procedures involving humans).
 
+In summary, the keys for Custom Problem Detail entries are in a
+namespace specific to the Problem Type the documentation of which
+defines these entries.
+Consumers of a Problem Type instance MUST ignore any Custom Problem
+Detail entries that they
+do not recognize; this allows problem types to evolve and include
+additional information in the future.
+If, in the evolution of a problem type, a new problem detail is added
+that needs to be understood by all consumers, a new problem type needs
+to be defined (i.e., problem detail entries are always elective, never
+critical, in the terminology of {{Section 5.4.1 of -coap}}).
+
+## Standard Problem Detail Entries {#new-spdk}
+
 Beyond the Standard Problem Detail keys defined in {{cddl}}, additional
 Standard Problem Detail keys can be registered (see {{iana-spdk}}).
-This is intended to be use for problem details that cover an area of
-application that includes multiple registered problem types.
+Standard Problem Detail keys are not specific to a particular problem
+type; they are intended to be used for problem details that cover an
+area of application that includes multiple registered problem types.
 
-Clients consuming problem details may be able to consume unknown
+Standard Problem Detail keys are negative integers, so they never can
+conflict with Custom Problem Detail keys defined for a problem type
+(which are unsigned integers or text strings).
+
+In summary, the keys for Standard Problem Detail entries are in a
+global namespace that applies to all Problem Types.
+The documentation of a Problem Type MAY provide additional guidance on
+how a Standard Problem Detail entry applies to this Problem Type, but
+cannot redefine its generic semantics.
+
+Therefore, clients consuming problem details may be able to consume unknown
 Problem types (i.e., with unknown CBOR Tag numbers), if the general
 context (e.g., a media type known from the context such as that
 defined in {{media-type}}) indicates that the present specification is used.
-Such consumers MUST ignore any entries that they do not recognize;
-this allows problem types to evolve and include additional information in the future.
+Such consumers MUST ignore any Standard Problem Detail entries that
+they do not recognize (which, for an unknown tag, by definition also
+applies to all Custom Problem Details entries).
 
 # Security Considerations {#seccons}
 
@@ -197,7 +256,7 @@ IANA is requested to allocate the tag defined in {{tab-tag-values}}.
 <!-- {{content-formats (CoAP Content-Formats)<IANA.core-parameters}} -->
 
 This specification defines a new sub-registry for Standard Problem
-Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}}),
+Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}},
 with the policy "specification required" {{!RFC8126}}.
 
 Each entry in the registry must include:
@@ -229,10 +288,11 @@ Initial entries in this sub-registry are as follows:
 
 ## Media Type
 
-IANA is requested to add the following Media-Type to the "Media Types" registry.
+IANA is requested to add the following Media-Type to the "Media Types"
+registry {{!IANA.media-types}}.
 
 | Name                         | Template                                 | Reference              |
-| concise-problem-details+cbor | application/concise-problem-details+cbor | RFC XXXX, {{media-type}} |
+| concise-problem-details+cbor | application/concise-problem-details+cbor | RFCXXXX, {{media-type}} |
 {: #new-media-type align="left" title="New Media Type application/concise-problem-details+cbor"}
 
 {:compact}
@@ -291,8 +351,6 @@ IANA is requested to register a Content-Format number in the
 sub-registry, within the "Constrained RESTful Environments (CoRE)
 Parameters" Registry {{IANA.core-parameters}}, as follows:
 
-{{content-formats ("CoAP Content-Formats")<IANA.cbor-tags}} 
-
 | Content-Type                             | Content Coding | ID   | Reference |
 | application/concise-problem-details+cbor | -              | TBD1 | RFC XXXX  |
 {: align="left" title="New Content-Format"}
@@ -311,4 +369,4 @@ column "Content Coding" is called "Encoding".
 {{{Mark Nottingham}}} and {{{Erik Wilde}}}, authors of RFC 7807.
 {{{Klaus Hartke}}} and {{{Jaime Jiménez}}}, co-authors of an earlier generation of
 this specification.
-{{{Christian Amsüss}}} for review and comments on this document.
+{{{Christian Amsüss}}} and {{{Marco Tiloca}}} for review and comments on this document.
