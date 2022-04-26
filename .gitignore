@@ -1,3 +1,5 @@
+.Guardfile
+.config.ru
 *.html
 *.pdf
 *.redxml
