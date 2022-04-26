@@ -1,4 +1,7 @@
 <note title="Discussion Venues" removeInRFC="true">
+<t>Discussion of this document takes place on the
+  CORE Working Group mailing list (core@ietf.org),
+  which is archived at <eref target="https://mailarchive.ietf.org/arch/browse/core/"/>.</t>
 <t>Source for this draft and an issue tracker can be found at
-  <eref target="https://github.com/core-wg/core-problem-details">https://github.com/core-wg/core-problem-details</eref>.</t>
+  <eref target="https://github.com/core-wg/core-problem-details"/>.</t>
 </note>

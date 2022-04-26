@@ -1,5 +1,3 @@
-.Guardfile
-.config.ru
 *.html
 *.pdf
 *.redxml
@@ -7,11 +5,15 @@
 *.txt
 *.upload
 *~
+.Guardfile
+.config.ru
 .refcache
 .tags
 .targets.mk
 /*-[0-9][0-9].xml
 archive.json
+draft-ietf-core-problem-details.xml
+lib
 report.xml
 venv/
 lib
