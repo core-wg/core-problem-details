@@ -181,8 +181,9 @@ SHOULD reference the present specification.
 Problem type definitions MAY extend the Problem Details document with
 additional entries to convey additional, problem-type-specific information,
 *custom problem details*.
-These receive a map key (custom problem detail entry map key, unsigned
-integer or text) and SHOULD be described in the documentation that goes
+In the definition of a problem type, each custom problem detail
+receives a map key specific to this problem type (custom problem detail entry map key, unsigned
+integer or text); this SHOULD be described in the documentation that goes
 along with the registration of a CBOR Tag for the problem type.
 
 For text detail-labels, a name without an embedded colon can be chosen
