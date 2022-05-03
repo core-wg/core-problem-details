@@ -90,36 +90,28 @@ The framework presented is largely inspired by the Problem Details for HTTP APIs
 # Basic Problem Details
 
 A Concise Problem Details data item is a CBOR data item with the following
-structure (notated in CDDL {{!RFC8610}}, using 65535 in place of a tag number to
-be defined for the type of problem details):
+structure (notated in CDDL {{!RFC8610}}):
 
 ~~~ CDDL
-problem-details = #6.65535(problem-details-map)
-problem-details-map = non-empty<{
+problem-details = non-empty<{
   ? &(title: -1) => text
   ? &(detail: -2) => text
   ? &(instance: -3) => ~uri
   standard-problem-detail-entries
   custom-problem-detail-entries
 }>
+
 standard-problem-detail-entries = (
   * nint => any
 )
+
 custom-problem-detail-entries = (
-  * (uint/detail-label) => any
+  * (uint/~uri) => { + any => any }
 )
-detail-label = text .regexp "[^:]+" / ~uri
+
 non-empty<M> = (M) .and ({ + any => any })
 ~~~
 {: #cddl title="Problem Detail Data Item"}
-
-Due to a limitation of the CDDL notation for tags, the problem type
-cannot be expressed under this name in CDDL.
-It is represented in the tag number, which is shown here as 65535.
-
-One tag has been registered as a generic problem type by this
-specification (see {{iana-tag}}).
-Further problem types can be defined by registering additional tags (see {{sec-new-attributes}}).
 
 A number of problem detail entries, the Standard Problem Detail
 entries, are predefined (more predefined details can be registered,
@@ -137,10 +129,11 @@ The instance (key -3):
 : A URI reference that identifies the specific occurrence of the problem.
   It may or may not yield further information if dereferenced.
 
-Consumers MUST use the type (tag number) as primary identifiers for
-the problem type; the "title" string is advisory and included only for
-consumers who are not aware of the semantics of the CBOR tag number
-used to indicate the specific problem type.
+Note that unlike {{RFC7807}} Concise Problem Details data items have no
+explicit type.
+
+The "title" string is advisory and included to give
+consumers a shorthand for the category of the error encountered.
 
 The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers SHOULD NOT parse the "detail" member for information; extensions (see {{sec-new-attributes}}) are more suitable and less error-prone ways to obtain such information.
 
@@ -157,78 +150,122 @@ compare this with "status" in {{-http-problem}}.
 implementations can easily stash away the response code available from
 context into the problem details?)
 
-# Additional Problem Details
+# Extending Concise Problem Details
 {: #sec-new-attributes}
 
-This specification defines a single problem type, the Generic Problem
-Details problem type (represented by CBOR tag TBD400, {{iana-tag}}).
+This specification defines a generic problem type container with only a
+minimal set of attributes to makes it usable.
 
-## Additional Problem Types
+It is expected that applications will extend the base format by defining new
+attributes.
 
-To establish a new problem type, different from the Generic Problem
-Details problem type, a CBOR Tag number needs to be
-registered in the {{cbor-tags (CBOR Tags)<IANA.cbor-tags}} of {{!IANA.cbor-tags}}.
-Note that this registry allows the registration of new tags under the
-First Come First Served policy {{?RFC8126}}, making new registrations
-available in a simple interaction (e.g., via web or email) with IANA,
-after having filled in the small template provided in {{Section 9.2 of
-STD94}}.
-Such a registration SHOULD provide a documentation reference and also
-SHOULD reference the present specification.
+These new attributes fall into two categories: generic and application
+specific.
 
-## Custom Problem Detail Entries
+Generic attributes will be allocated in the `standard-problem-detail-entries`
+slot according to the registration procedure defined in {{new-spdk}}.
 
-Problem type definitions MAY extend the Problem Details document with
-additional entries to convey additional, problem-type-specific information,
-*custom problem details*.
-In the definition of a problem type, each custom problem detail
-receives a map key specific to this problem type (custom problem detail entry map key, unsigned
-integer or text); this SHOULD be described in the documentation that goes
-along with the registration of a CBOR Tag for the problem type.
+Application-specific attributes will be allocated in the
+`custom-problem-detail-entries` slot according to the procedure described in
+{{new-cpdk}}.
 
-For text detail-labels, a name without an embedded colon can be chosen
-instead of an integer custom label, or a detail-label that is a URI.
-This URI is for identification purposes only and MUST NOT be
-dereferenced in the normal course of handling problem details (i.e.,
-outside diagnostic/debugging procedures involving humans).
+## Custom Problem Detail Entries {#new-cpdk}
 
-In summary, the keys for Custom Problem Detail entries are in a
-namespace specific to the Problem Type the documentation of which
+Applications may extend the Problem Details document with
+additional entries to convey additional, application-specific information.
+
+Such new entries are allocated in the `custom-problem-detail-entries` slot, and
+are nested into a map specific to that application.  The map key can either be
+a URI (controlled by the entity defining this extension), or an unsigned int.
+Only the latter needs to be registered ({{iana-cpdk}}).  Within the nested map
+any number of attributes can exist.  When the extension is registered (i.e.,
+unsigned int) the semantics of each custom attribute MUST be described in the
+documentation that goes along with the registration.
+
+Note that the URI form is for identification purposes only and MUST NOT be
+dereferenced in the normal course of handling problem details (i.e., outside
+diagnostic/debugging procedures involving humans).
+
+An example of a custom extension using a URI as `custom-problem-detail-entries`
+key is shown in {{fig-example-custom-with-uri}}.
+
+~~~
+{
+  / title /       -1: "title of the error",
+  / detail /      -2: "detailed information about the error",
+  / instance /    -3: "coaps://pd.example/FA317434-4D10-436F-97C8-A0ADAC996493",
+
+  "tag:3gpp.org,2022-03:TS29112": {
+    / cause /  0: "machine readable error cause",
+    / invalidParams / 1: [
+      [
+        / param / "first parameter name",
+        / reason / "must be a positive integer"
+      ],
+      [
+        / param / "second parameter name"
+      ]
+    ],
+    / supportedFeatures / 2: "d34db33f"
+  }
+}
+~~~
+{: #fig-example-custom-with-uri artwork-align="center"
+   title="Example Extension with URI key"}
+
+The same example but using a registered unsigned int as
+`custom-problem-detail-entries` key is shown in
+{{fig-example-custom-with-uint}}.
+
+~~~
+{
+  / title /       -1: "title of the error",
+  / detail /      -2: "detailed information about the error",
+  / instance /    -3: "coaps://pd.example/FA317434-4D10-436F-97C8-A0ADAC996493",
+
+  10: {
+    / cause /  0: "machine readable error cause",
+    / invalidParams / 1: [
+      [
+        / param / "first parameter name",
+        / reason / "must be a positive integer"
+      ],
+      [
+        / param / "second parameter name"
+      ]
+    ],
+    / supportedFeatures / 2: "d34db33f"
+  }
+}
+~~~
+{: #fig-example-custom-with-uint artwork-align="center"
+   title="Example Extension with unsigned int (registered) key"}
+
+In summary, the keys for Custom Problem Detail entries are grouped in
+namespaces specific to a given application domain, the documentation of which
 defines these entries.
-Consumers of a Problem Type instance MUST ignore any Custom Problem
+Consumers of a Concise Problem Deatails instance MUST ignore any Custom Problem
 Detail entries that they
 do not recognize; this allows problem types to evolve and include
 additional information in the future.
-If, in the evolution of a problem type, a new problem detail is added
-that needs to be understood by all consumers, a new problem type needs
-to be defined (i.e., problem detail entries are always elective, never
-critical, in the terminology of {{Section 5.4.1 of -coap}}).
+Problem detail entries are always elective, never
+critical, in the terminology of {{Section 5.4.1 of -coap}}.
 
 ## Standard Problem Detail Entries {#new-spdk}
 
 Beyond the Standard Problem Detail keys defined in {{cddl}}, additional
-Standard Problem Detail keys can be registered (see {{iana-spdk}}).
-Standard Problem Detail keys are not specific to a particular problem
-type; they are intended to be used for problem details that cover an
-area of application that includes multiple registered problem types.
+Standard Problem Detail keys can be registered in the
+`standard-problem-detail-entries` slot (see {{iana-spdk}}).
 
 Standard Problem Detail keys are negative integers, so they never can
 conflict with Custom Problem Detail keys defined for a problem type
-(which are unsigned integers or text strings).
+(which are unsigned integers or URIs.)
 
 In summary, the keys for Standard Problem Detail entries are in a
-global namespace that applies to all Problem Types.
-The documentation of a Problem Type MAY provide additional guidance on
-how a Standard Problem Detail entry applies to this Problem Type, but
-cannot redefine its generic semantics.
+global namespace that not specific to a particular application domain.
 
-Therefore, clients consuming problem details may be able to consume unknown
-Problem types (i.e., with unknown CBOR Tag numbers), if the general
-context (e.g., a media type known from the context such as that
-defined in {{media-type}}) indicates that the present specification is used.
-Such consumers MUST ignore any Standard Problem Detail entries that
-they do not recognize (which, for an unknown tag, by definition also
-applies to all Custom Problem Details entries).
+Consumers of a Concise Problem Deatails instance MUST ignore any Standard Problem
+Detail entries that they do not recognize; this allows problem types to evolve.
 
 # Security Considerations {#seccons}
 
@@ -240,17 +277,35 @@ The security and privacy considerations outlined in Section 5 of {{RFC7807}} app
 
 [^to-be-removed]: RFC Editor: please replace RFC XXXX with this RFC number and remove this note.
 
-## CBOR Tag {#iana-tag}
+## Custom Problem Detail Key registry {#iana-cpdk}
 
-As per {{STD94}}, IANA has created a "{{cbor-tags (CBOR
-Tags)<IANA.cbor-tags}}" registry {{IANA.cbor-tags}},
-which serves as the registry for problem details types (see {{sec-new-attributes}}).
-For use as a predefined, generic problem details type,
-IANA is requested to allocate the tag defined in {{tab-tag-values}}.
+This specification defines a new sub-registry for Custom Problem
+Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}},
+with the policy "first come first served" {{!RFC8126}}.
 
-| Tag    | Data Item | Semantics               | Reference |
-| TBD400 | map       | Generic Problem Details | RFCXXXX   |
-{: #tab-tag-values align='left'  title="Generic Problem Details tag"}
+Each entry in the registry must include:
+
+{:vspace}
+key value:
+: a positive integer to be used as the value of the key
+
+name:
+: a name that could be used in implementations for the key
+
+uri:
+: an optional URI that is an alias for the integer key
+
+type:
+: type of the data associated with the key; preferably in CDDL
+  notation
+
+brief description:
+: a brief description
+
+reference:
+: optionally a reference document
+
+The sub-registry is initially empty.
 
 ## Standard Problem Detail Key registry {#iana-spdk}
 
@@ -348,7 +403,7 @@ Provisional registration:
 ## Content-Format
 
 IANA is requested to register a Content-Format number in the
-{{content-formats ("CoAP Content-Formats")<IANA.cbor-tags}}
+{{content-formats ("CoAP Content-Formats")<IANA.core-parameters}}
 sub-registry, within the "Constrained RESTful Environments (CoRE)
 Parameters" Registry {{IANA.core-parameters}}, as follows:
 
