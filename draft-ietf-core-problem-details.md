@@ -54,8 +54,8 @@ Details for HTTP APIs defined in RFC 7807.
 
 REST response status information such as CoAP {{-coap}} response
 codes is sometimes not sufficient to convey enough information about
-an error to be helpful.  This specification defines a simple and
-extensible framework to define CBOR tags to suit this purpose.
+an error to be helpful.  This specification defines a simple and extensible
+framework to define CBOR data items to suit this purpose.
 It is designed to be reused by REST APIs, which can identify distinct
 "problem types" specific to their needs.
 Thus, API clients can be informed of both the high-level error class
@@ -169,6 +169,22 @@ Application-specific attributes will be allocated in the
 `custom-problem-detail-entries` slot according to the procedure described in
 {{new-cpdk}}.
 
+## Standard Problem Detail Entries {#new-spdk}
+
+Beyond the Standard Problem Detail keys defined in {{cddl}}, additional
+Standard Problem Detail keys can be registered in the
+`standard-problem-detail-entries` slot (see {{iana-spdk}}).
+
+Standard Problem Detail keys are negative integers, so they never can
+conflict with Custom Problem Detail keys defined for a problem type
+(which are unsigned integers or URIs.)
+
+In summary, the keys for Standard Problem Detail entries are in a
+global namespace that is not specific to a particular application domain.
+
+Consumers of a Concise Problem Details instance MUST ignore any Standard Problem
+Detail entries that they do not recognize; this allows problem types to evolve.
+
 ## Custom Problem Detail Entries {#new-cpdk}
 
 Applications may extend the Problem Details document with
@@ -193,7 +209,7 @@ key is shown in {{fig-example-custom-with-uri}}.
 {
   / title /       -1: "title of the error",
   / detail /      -2: "detailed information about the error",
-  / instance /    -3: "coaps://pd.example/FA317434-4D10-436F-97C8-A0ADAC996493",
+  / instance /    -3: "coaps://pd.example/FA317434",
 
   "tag:3gpp.org,2022-03:TS29112": {
     / cause /  0: "machine readable error cause",
@@ -221,7 +237,7 @@ The same example but using a registered unsigned int as
 {
   / title /       -1: "title of the error",
   / detail /      -2: "detailed information about the error",
-  / instance /    -3: "coaps://pd.example/FA317434-4D10-436F-97C8-A0ADAC996493",
+  / instance /    -3: "coaps://pd.example/FA317434",
 
   10: {
     / cause /  0: "machine readable error cause",
@@ -244,28 +260,10 @@ The same example but using a registered unsigned int as
 In summary, the keys for Custom Problem Detail entries are grouped in
 namespaces specific to a given application domain, the documentation of which
 defines these entries.
-Consumers of a Concise Problem Deatails instance MUST ignore any Custom Problem
+Consumers of a Concise Problem Details instance MUST ignore any Custom Problem
 Detail entries that they
 do not recognize; this allows problem types to evolve and include
 additional information in the future.
-Problem detail entries are always elective, never
-critical, in the terminology of {{Section 5.4.1 of -coap}}.
-
-## Standard Problem Detail Entries {#new-spdk}
-
-Beyond the Standard Problem Detail keys defined in {{cddl}}, additional
-Standard Problem Detail keys can be registered in the
-`standard-problem-detail-entries` slot (see {{iana-spdk}}).
-
-Standard Problem Detail keys are negative integers, so they never can
-conflict with Custom Problem Detail keys defined for a problem type
-(which are unsigned integers or URIs.)
-
-In summary, the keys for Standard Problem Detail entries are in a
-global namespace that not specific to a particular application domain.
-
-Consumers of a Concise Problem Deatails instance MUST ignore any Standard Problem
-Detail entries that they do not recognize; this allows problem types to evolve.
 
 # Security Considerations {#seccons}
 
@@ -276,36 +274,6 @@ The security and privacy considerations outlined in Section 5 of {{RFC7807}} app
 [^to-be-removed]
 
 [^to-be-removed]: RFC Editor: please replace RFC XXXX with this RFC number and remove this note.
-
-## Custom Problem Detail Key registry {#iana-cpdk}
-
-This specification defines a new sub-registry for Custom Problem
-Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}},
-with the policy "first come first served" {{!RFC8126}}.
-
-Each entry in the registry must include:
-
-{:vspace}
-key value:
-: a positive integer to be used as the value of the key
-
-name:
-: a name that could be used in implementations for the key
-
-uri:
-: an optional URI that is an alias for the integer key
-
-type:
-: type of the data associated with the key; preferably in CDDL
-  notation
-
-brief description:
-: a brief description
-
-reference:
-: optionally a reference document
-
-The sub-registry is initially empty.
 
 ## Standard Problem Detail Key registry {#iana-spdk}
 
@@ -341,6 +309,32 @@ Initial entries in this sub-registry are as follows:
 |        -2 | detail   | text | human-readable explanation specific to this occurrence of the problem | RFCXXXX   |
 |        -3 | instance | ~uri | URI reference identifying specific occurrence of the problem          | RFCXXXX   |
 {: #spdk title="Initial Entries in Standard Problem Detail Key registry"}
+
+## Custom Problem Detail Key registry {#iana-cpdk}
+
+This specification defines a new sub-registry for Custom Problem
+Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}},
+with the policy "first come first served" {{!RFC8126}}.
+
+Each entry in the registry must include:
+
+{:vspace}
+key value:
+: a positive integer to be used as the value of the key
+
+name:
+: a name that could be used in implementations for the key
+
+uri:
+: an optional URI that is an alias for the integer key
+
+brief description:
+: a brief description
+
+reference:
+: a reference document that provides a CDDL description of the map
+
+The sub-registry is initially empty.
 
 ## Media Type
 
