@@ -52,8 +52,8 @@ Details for HTTP APIs defined in RFC 7807.
 
 # Introduction
 
-REST response status information such as CoAP {{-coap}} response
-codes is sometimes not sufficient to convey enough information about
+REST response status information such as CoAP response
+codes ({{Section 5.9 of -coap}}) is sometimes not sufficient to convey enough information about
 an error to be helpful.  This specification defines a simple and extensible
 framework to define CBOR {{-cbor}} data items to suit this purpose.
 It is designed to be reused by REST APIs, which can identify distinct
@@ -143,8 +143,9 @@ consumers a shorthand for the category of the error encountered.
 The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers SHOULD NOT parse the "detail" member for information; extensions (see {{sec-new-attributes}}) are more suitable and less error-prone ways to obtain such information.
 
 Note that the "instance" URI reference may be relative; this means
-that it must be resolved relative to the document's base URI, as per
-{{-uri}}.
+that it must be resolved relative to the representation's base URI, as
+per {{Section 5 of -uri}}.
+
 Note that the "response code" value is a numeric representation of the
 actual code, so it does not take the usual form that resembles an
 HTTP status code — `4.04 Not found` is represented by the number 132.
@@ -186,7 +187,7 @@ Detail entries that they do not recognize; this allows problem types to evolve.
 
 ## Custom Problem Detail Entries {#new-cpdk}
 
-Applications may extend the Problem Details document with
+Applications may extend the Problem Details data item with
 additional entries to convey additional, application-specific information.
 
 Such new entries are allocated in the `custom-problem-detail-entries` slot, and
