@@ -30,6 +30,9 @@ author:
     email: cabo@tzi.org
 
 normative:
+  STD96:
+    -: cbor
+    =: RFC8949
   STD66:
     -: uri
     =: RFC3986
@@ -52,7 +55,7 @@ Details for HTTP APIs defined in RFC 7807.
 REST response status information such as CoAP {{-coap}} response
 codes is sometimes not sufficient to convey enough information about
 an error to be helpful.  This specification defines a simple and extensible
-framework to define CBOR data items to suit this purpose.
+framework to define CBOR {{-cbor}} data items to suit this purpose.
 It is designed to be reused by REST APIs, which can identify distinct
 "problem types" specific to their needs.
 Thus, API clients can be informed of both the high-level error class
