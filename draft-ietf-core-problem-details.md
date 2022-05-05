@@ -247,7 +247,8 @@ The same example but using a registered unsigned int as
   / instance /      -3: "coaps://pd.example/FA317434",
   / response-code / -4: 128, / 4.00 /
 
-  10: {
+  /example value 4711 not actually registered like this:/
+  4711: {
     / cause /  0: "machine readable error cause",
     / invalidParams / 1: [
       [
