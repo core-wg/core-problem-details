@@ -150,7 +150,7 @@ that it must be resolved relative to the document's base URI, as per
 {: #sec-new-attributes}
 
 This specification defines a generic problem type container with only a
-minimal set of attributes to makes it usable.
+minimal set of attributes to make it usable.
 
 It is expected that applications will extend the base format by defining new
 attributes.
