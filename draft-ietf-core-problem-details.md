@@ -30,7 +30,7 @@ author:
     email: cabo@tzi.org
 
 normative:
-  STD96:
+  STD94:
     -: cbor
     =: RFC8949
   STD66:
