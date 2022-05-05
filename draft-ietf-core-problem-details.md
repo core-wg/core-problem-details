@@ -145,6 +145,9 @@ The "detail" member, if present, ought to focus on helping the client correct th
 Note that the "instance" URI reference may be relative; this means
 that it must be resolved relative to the document's base URI, as per
 {{-uri}}.
+Note that the "response code" value is a numeric representation of the
+actual code, so it does not take the usual form that resembles an
+HTTP status code — `4.04 Not found` is represented by the number 132.
 
 # Extending Concise Problem Details
 {: #sec-new-attributes}
