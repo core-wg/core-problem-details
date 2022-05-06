@@ -211,7 +211,7 @@ In comparison, the URI form is less space-efficient but requires no
 registration.  It is therefore useful for experimenting during the development
 cycle and for applications deployed in environments where producers and
 consumers of Concise Problem Details are more tightly integrated.
-The URI form thus serves a similar function as "private use" numbers would serve if such a range were registered for the unsigned integers.
+(The URI form thus covers the potential need we might otherwise have for a "private use" range for the unsigned integers.)
 
 Note that the URI given for the extension is for identification
 purposes only and, even if dereferenceable in principle, MUST NOT be
