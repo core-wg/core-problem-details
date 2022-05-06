@@ -100,20 +100,20 @@ Thus, API clients can be informed of both the high-level error class
 (using this vocabulary), as shown in {{fig-problem-details}}.
 
 ~~~ aasvg
-+--------+           +--------+
-|  CoAP  |           |  CoAP  |
-| Client |           | Server |
-+----+---+           +----+---+
-     |                    |
-     | Request            |
-     |------------------> |
-     |                    |
-     | <----------------- |
-     | Error Response     |
-     | with a CBOR Data   |
-     | Item giving        |
-     | Problem Details    |
-     |                    |
+.--------.          .--------.
+|  CoAP  |          |  CoAP  |
+| Client |          | Server |
+'----+---'          '---+----'
+     |                  |
+     | Request          |
+     o----------------->|
+     |                  | (failure)
+     |<-----------------o
+     |   Error Response |
+     |      with a CBOR |
+     | data item giving |
+     |  Problem Details |
+     |                  |
 ~~~
 {: #fig-problem-details artwork-align="center"
    title="Problem Details: Example with CoAP"}
