@@ -28,9 +28,11 @@ author:
     country: Germany
     phone: +49-421-218-63921
     email: cabo@tzi.org
+contributor:
  -  name: Peter Occil
     email: poccil14 at gmail dot com
     uri: http://peteroupc.github.io/CBOR/
+    contribution: Peter defined CBOR tag 38, basis of {{tag38}}
 
 normative:
   STD94:
