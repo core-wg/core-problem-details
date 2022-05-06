@@ -32,7 +32,7 @@ contributor:
  -  name: Peter Occil
     email: poccil14 at gmail dot com
     uri: http://peteroupc.github.io/CBOR/
-    contribution: Peter defined CBOR tag 38, basis of {{tag38}}
+    contribution: Peter defined CBOR tag 38, basis of {{tag38}}.
 
 normative:
   STD94:
