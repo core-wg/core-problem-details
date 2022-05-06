@@ -17,7 +17,7 @@ stand_alone: yes
 pi: [toc, sortrefs, symrefs]
 
 author:
- -  name: "Thomas Fossati"
+ -  name: Thomas Fossati
     organization: "arm"
     email: thomas.fossati@arm.com
  -  name: Carsten Bormann
@@ -28,6 +28,9 @@ author:
     country: Germany
     phone: +49-421-218-63921
     email: cabo@tzi.org
+ -  name: Peter Occil
+    email: poccil14 at gmail dot com
+    uri: http://peteroupc.github.io/CBOR/
 
 normative:
   STD94:
@@ -38,6 +41,36 @@ normative:
     =: RFC3986
   RFC7252: coap
   RFC7807: http-problem
+  IANA.cbor-tags: tags
+  RFC5646: bcp-47-3
+  RFC4647: bcp-47-4
+informative:
+#  W3C.REC-rdf-concepts-20040210: rdf
+  RDF: # 2
+    -: rdf
+    target: http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/
+    author:
+      - name: Richard Cyganiak
+      - name: David Wood
+      - name: Markus Lanthaler
+    title: RDF 1.1 Concepts and Abstract Syntax
+    rc: W3C Recommendation
+    date: 2014-02-25
+  Unicode-14.0.0:
+    -: unicode
+    target: https://www.unicode.org/versions/Unicode14.0.0/
+    title: The Unicode Standard, Version 14.0.0
+    author:
+    - org: The Unicode Consortium
+    date: 2021-09
+    seriesinfo:
+      ISBN: 978-1-936213-29-0
+    refcontent:
+    - 'Mountain View: The Unicode Consortium'
+    ann: >
+      Note that while this document references a version that was recent
+      at the time of writing, the statements made based on this
+      version are expected to remain valid for future versions.
 
 --- abstract
 
@@ -92,7 +125,7 @@ The framework presented is largely inspired by the Problem Details for HTTP APIs
 A Concise Problem Details data item is a CBOR data item with the following
 structure (notated in CDDL {{!RFC8610}}):
 
-~~~ CDDL
+~~~ cddl
 problem-details = non-empty<{
   ? &(title: -1) => text
   ? &(detail: -2) => text
@@ -221,7 +254,7 @@ diagnostic/debugging procedures involving humans).
 An example of a custom extension using a URI as `custom-problem-detail-entries`
 key is shown in {{fig-example-custom-with-uri}}.
 
-~~~
+~~~ cbor-diag
 {
   / title /         -1: "title of the error",
   / detail /        -2: "detailed information about the error",
@@ -252,7 +285,7 @@ the same example but using a registered unsigned int as
 `custom-problem-detail-entries` key is shown in
 {{fig-example-custom-with-uint}}.
 
-~~~
+~~~ cbor-diag
 {
   / title /         -1: "title of the error",
   / detail /        -2: "detailed information about the error",
@@ -434,7 +467,117 @@ column "Content Coding" is called "Encoding". [^remove]
 
 [^remove]: This paragraph to be removed by RFC editor.
 
+## CBOR Tag 38 {#iana-tag38}
+
+In the registry "{{cbor-tags (CBOR Tags)<IANA.cbor-tags}}" {{IANA.cbor-tags}},
+IANA has registered CBOR Tag 38.
+IANA is requested to replace the reference for this registration with
+{{tag38}}, RFC XXXX.
+
 --- back
+
+Language-Tagged Strings {#tag38}
+=======================
+
+This appendix serves as the archival documentation for CBOR Tag 38, a
+tag for serializing language-tagged text strings in CBOR.
+The text of this appendix is adapted from the specification text
+supplied for its initial registration.
+It has been extended to allow supplementing the language tag by a
+direction indication.
+
+Introduction
+------------
+
+In some cases it is useful to specify the natural language of a text
+string.  This specification defines a tag that does just that.  One
+technology that supports language-tagged strings is the Resource
+Description Framework (RDF) {{-rdf}}.
+
+Detailed Semantics
+------------------
+
+A language-tagged string in CBOR has the tag 38 and consists of an array
+with a length of 2 or 3.
+
+The first element is a well-formed language tag under Best Current
+Practice 47 ({{-bcp-47-3}} and {{-bcp-47-4}}), represented as a UTF-8 text
+string (major type 3).
+
+The second element is an arbitrary UTF-8 text string (major type
+3). Both the language tag and the arbitrary string can optionally be
+annotated with CBOR tags; this is not shown in the CDDL below.
+
+The optional third element, if present, is a Boolean value that
+indicates a direction: `false` for "ltr" direction, `true` for "rtl"
+direction.  If the third element is absent, no indication is made
+about the direction.
+
+In CDDL:
+
+~~~ cddl
+{::include tag38.cddl}
+~~~
+
+<!-- RUBY_THREAD_VM_STACK_SIZE=5000000 cddl ... -->
+
+NOTE: Language tags of any combination of case are allowed. But
+section 2.1.1 of {{-bcp-47-3}}, part of Best Current Practice 47,
+recommends a case combination for language tags, that encoders that
+support tag 38 may wish to follow when generating language tags.
+
+Data items with tag 38 that do not meet the criteria above are invalid
+(see {{Section 5.3.2 of -cbor}}).
+
+NOTE: The Unicode Standard {{-unicode}} includes a set of characters
+designed for tagging text (including language tagging), in the range
+U+E0000 to U+E007F. Although many applications, including RDF,
+do not disallow these characters in text strings, the Unicode Consortium
+has deprecated these characters and recommends annotating language via a
+higher-level protocol instead. See the section "Deprecated Tag
+Characters" in  Section 23.9 of {{-unicode}}.
+
+Examples
+--------
+
+Examples in this section are given in CBOR diagnostic mode, and then
+as a pretty-printed hexadecimal representation of the encoded item
+
+The following example shows how the English-language string "Hello" is
+encoded.
+
+~~~ cbor-diag
+38(["en", "Hello"])
+~~~
+
+~~~ cbor-pretty
+D8 26               # tag(38)
+   82               # array(2)
+      62            # text(2)
+         656E       # "en"
+      65            # text(5)
+         48656C6C6F # "Hello"
+~~~
+
+
+The following example shows how the French-language string "Bonjour" is
+encoded.
+
+~~~ cbor-diag
+38(["fr", "Bonjour"])
+~~~
+
+~~~ cbor-pretty
+D8 26                   # tag(38)
+   82                   # array(2)
+      62                # text(2)
+         6672           # "fr"
+      67                # text(7)
+         426F6E6A6F7572 # "Bonjour"
+~~~
+
+(TODO: Add example with direction)
+
 
 # Acknowledgments
 {:unnumbered}
@@ -443,3 +586,8 @@ column "Content Coding" is called "Encoding". [^remove]
 {{{Klaus Hartke}}} and {{{Jaime Jiménez}}}, co-authors of an earlier generation of
 this specification.
 {{{Christian Amsüss}}} and {{{Marco Tiloca}}} for review and comments on this document.
+
+For {{tag38}}, John Cowan and Doug Ewell are also to be acknowledged.
+The content of an earlier version of this appendix was also discussed
+in the "apps-discuss at ietf.org" and "ltru at ietf.org" mailing
+lists.
