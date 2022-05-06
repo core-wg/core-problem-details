@@ -593,7 +593,21 @@ D8 26                   # tag(38)
          426F6E6A6F7572 # "Bonjour"
 ~~~
 
-(TODO: Add example with direction)
+The following example shows how the Hebrew-language string "שלום" is encoded. Note the "rtl" direction expressed by setting the third element in the array to "true".
+
+~~~ cbor-diag
+38(["he", "שלום", true])
+~~~
+
+~~~ cbor-pretty
+d8 26                     # tag(38)
+   83                     # array(3)
+      62                  # text(2)
+         6865             # "he"
+      68                  # text(8)
+         d7a9d79cd795d79d # "\xD7\xA9\xD7\x9C\xD7\x95\xD7\x9D"
+      f5                  # primitive(21)
+~~~
 
 # Interworking with RFC 7807 {#comp7807}
 
