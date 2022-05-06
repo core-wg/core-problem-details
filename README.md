@@ -1,6 +1,6 @@
-# Problem Details For CoAP APIs
+# Concise Problem Details For CoAP APIs
 
-This is the working area for the IETF [CORE Working Group](https://datatracker.ietf.org/wg/core/documents/) Internet-Draft, "Problem Details For CoAP APIs".
+This is the working area for the IETF [CORE Working Group](https://datatracker.ietf.org/wg/core/documents/) Internet-Draft, "Concise Problem Details For CoAP APIs".
 
 * [Editor's Copy](https://core-wg.github.io/core-problem-details/#go.draft-ietf-core-problem-details.html)
 * [Working Group Draft](https://tools.ietf.org/html/draft-ietf-core-problem-details)
