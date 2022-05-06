@@ -558,10 +558,10 @@ Examples
 --------
 
 Examples in this section are given in CBOR diagnostic mode, and then
-as a pretty-printed hexadecimal representation of the encoded item
+as a pretty-printed hexadecimal representation of the encoded item.
 
 The following example shows how the English-language string "Hello" is
-encoded.
+represented.
 
 ~~~ cbor-diag
 38(["en", "Hello"])
@@ -578,7 +578,7 @@ D8 26               # tag(38)
 
 
 The following example shows how the French-language string "Bonjour" is
-encoded.
+represented.
 
 ~~~ cbor-diag
 38(["fr", "Bonjour"])
@@ -593,20 +593,22 @@ D8 26                   # tag(38)
          426F6E6A6F7572 # "Bonjour"
 ~~~
 
-The following example shows how the Hebrew-language string "שלום" is encoded. Note the "rtl" direction expressed by setting the third element in the array to "true".
+The following example shows how the Hebrew-language string
+<u>שלום</u> is represented.
+Note the `rtl` direction expressed by setting the third element in the array to "true".
 
 ~~~ cbor-diag
 38(["he", "שלום", true])
 ~~~
 
 ~~~ cbor-pretty
-d8 26                     # tag(38)
+D8 26                     # tag(38)
    83                     # array(3)
       62                  # text(2)
          6865             # "he"
       68                  # text(8)
-         d7a9d79cd795d79d # "\xD7\xA9\xD7\x9C\xD7\x95\xD7\x9D"
-      f5                  # primitive(21)
+         D7A9D79CD795D79D # "שלום"
+      F5                  # primitive(21)
 ~~~
 
 # Interworking with RFC 7807 {#comp7807}
