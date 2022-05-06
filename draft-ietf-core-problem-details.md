@@ -129,8 +129,8 @@ structure (notated in CDDL {{!RFC8610}}):
 
 ~~~ cddl
 problem-details = non-empty<{
-  ? &(title: -1) => text
-  ? &(detail: -2) => text
+  ? &(title: -1) => oltext
+  ? &(detail: -2) => oltext
   ? &(instance: -3) => ~uri
   ? &(response-code: -4) => uint .size 1
   standard-problem-detail-entries
@@ -146,6 +146,9 @@ custom-problem-detail-entries = (
 )
 
 non-empty<M> = (M) .and ({ + any => any })
+
+oltext = text / tag38 ; see Appendix A for tag38
+
 ~~~
 {: #cddl title="Problem Detail Data Item"}
 
@@ -171,6 +174,10 @@ The response-code (key -4)
 
 Note that, unlike {{RFC7807}}, Concise Problem Details data items have no
 explicit type.
+
+Both "title" and "detail" can use either an unadorned CBOR text string
+(`text`) or a language-tagged text string (`tag38`); see {{tag38}} for
+the definition of the latter.
 
 The "title" string is advisory and included to give
 consumers a shorthand for the category of the error encountered.
