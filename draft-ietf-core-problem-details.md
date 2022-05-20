@@ -339,10 +339,22 @@ In summary, the keys for the maps used inside Custom Problem Detail
 entries are defined specifically to the identifier of that Custom Problem Detail
 entry, the documentation of which defines these internal entries,
 typically chosen to address a given application domain.
+
 Consumers of a Concise Problem Details data item MUST ignore any Custom
 Problem Detail entries, or keys inside the Custom Problem Detail
 entries, that they do not recognize; this allows Custom Problem Detail
 entries to evolve and include additional information in the future.
+The assumption is that this is done in a backward and forward
+compatible way.
+
+Sometimes, Custom Problem Detail entries can evolve in a way where
+forward compatibility by "ignore unknown" would not be appropriate:
+e.g., when needing to add a "must-understand" member, which can only
+be ignored at the peril of misunderstanding the Concise Problem
+Details data item ("false interoperability").
+In this case, a new Custom Problem Detail key can simply be
+registered for this case, keeping the old key backward and
+forward-compatible.
 
 # Security Considerations {#seccons}
 
