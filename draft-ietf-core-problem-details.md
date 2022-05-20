@@ -239,7 +239,7 @@ application domain
 In summary, the keys for Standard Problem Detail entries are in a
 global namespace that is not specific to a particular application domain.
 
-Consumers of a Concise Problem Details instance MUST ignore any Standard Problem
+Consumers of a Concise Problem Details data item MUST ignore any Standard Problem
 Detail entries that they do not recognize; this allows problem details to evolve.
 
 ## Custom Problem Detail Entries {#new-cpdk}
@@ -338,7 +338,7 @@ In summary, the keys for the maps used inside Custom Problem Detail
 entries are defined specifically to the identifier of that Custom Problem Detail
 entry, the documentation of which defines these internal entries,
 typically chosen to address a given application domain.
-Consumers of a Concise Problem Details instance MUST ignore any Custom
+Consumers of a Concise Problem Details data item MUST ignore any Custom
 Problem Detail entries, or keys inside the Custom Problem Detail
 entries, that they do not recognize; this allows Custom Problem Detail
 entries to evolve and include additional information in the future.
@@ -625,7 +625,7 @@ D8 26                     # tag(38)
 # Interworking with RFC 7807 {#comp7807}
 
 On certain occasions, it will be necessary to carry ("tunnel")
-{{RFC7807}} problem details in a Concise Problem Details item.
+{{RFC7807}} problem details in a Concise Problem Details data item.
 
 This appendix defines a Custom Problem Details entry for that purpose.
 This is assigned Custom Problem Detail key 7807 in {{iana-cpdk}}.
@@ -640,7 +640,7 @@ tunnel-7807 = {
 ~~~
 
 To carry an {{RFC7807}} problem details JSON object in a Concise Problem
-Details item, first convert the JSON object to CBOR as per {{Section
+Details data item, first convert the JSON object to CBOR as per {{Section
 6.2 of -cbor}}.  Create an empty Concise Problem Details data item.
 
 Move the values for "title", "detail", and "instance", if present,
@@ -659,7 +659,7 @@ Details JSON object requires the additional support provided by
 Registry.  A Problem Type can then be registered that extracts
 top-level items from the Concise Problem Details item in a similar way
 to the conversion described above, and which carries the rest of the
-Concise Problem Details item in an additional member via base64url
+Concise Problem Details data item in an additional member via base64url
 encoding without padding ({{Section 5 of -base}}).  Details can be defined
 in a separate document when the work on {{-7807bis}} is completed.
 
