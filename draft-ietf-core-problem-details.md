@@ -231,7 +231,7 @@ Beyond the Standard Problem Detail keys defined in {{cddl}}, additional
 Standard Problem Detail keys can be registered for use in the
 `standard-problem-detail-entries` slot (see {{iana-spdk}}).
 
-Standard Problem Detail keys are negative integers, so they never can
+Standard Problem Detail keys are negative integers, so they can never
 conflict with Custom Problem Detail keys defined for a specific
 application domain
 (which are unsigned integers or URIs.)
@@ -253,14 +253,15 @@ an (absolute!) URI (controlled by the entity defining this extension),
 or an unsigned integer.
 Only the latter needs to be registered ({{iana-cpdk}}).
 
-Within the nested map any number of attributes can be given for a
+Within the nested map, any number of attributes can be given for a
 single extension.
 The semantics of each custom attribute MUST be described in the
-documentation for the extension; for extension that are registered
+documentation for the extension; for extensions that are registered
 (i.e., are identified by an unsigned int) that documentation goes
 along with the registration.
 
-The unsigned integer form allows a more compact representation, in
+The unsigned integer form allows a more compact representation.
+In
 exchange, authors are expected to comply with the required
 registration and documentation process.
 In comparison, the URI form is less space-efficient but requires no
@@ -270,7 +271,7 @@ consumers of Concise Problem Details are more tightly integrated.
 (The URI form thus covers the potential need we might otherwise have for a "private use" range for the unsigned integers.)
 
 Note that the URI given for the extension is for identification
-purposes only and, even if dereferenceable in principle, MUST NOT be
+purposes only and, even if dereferenceable in principle, it MUST NOT be
 dereferenced in the normal course of handling problem details (i.e., outside
 diagnostic/debugging procedures involving humans).
 
@@ -382,11 +383,11 @@ reference:
 Initial entries in this sub-registry are as follows:
 
 | Key value | Name | CDDL Type | Brief description | Reference |
-| -1 | title | text | short, human-readable summary of the problem shape | RFCXXXX |
-| -2 | detail | text | human-readable explanation specific to this occurrence of the problem | RFCXXXX |
-| -3 | instance | ~uri | URI reference identifying specific occurrence of the problem | RFCXXXX |
-| -4 | response-code | uint .size 1 | CoAP response code | RFCXXXX |
-{: #spdk title="Initial Entries in Standard Problem Detail Key registry"}
+| -1 | title | text | short, human-readable summary of the problem shape | RFC XXXX |
+| -2 | detail | text | human-readable explanation specific to this occurrence of the problem | RFC XXXX |
+| -3 | instance | ~uri | URI reference identifying specific occurrence of the problem | RFC XXXX |
+| -4 | response-code | uint .size 1 | CoAP response code | RFC XXXX |
+{: #spdk title="Initial Entries in the Standard Problem Detail Key registry"}
 
 ## Custom Problem Detail Key registry {#iana-cpdk}
 
@@ -414,7 +415,7 @@ Reference:
 Initial entries in this sub-registry are as follows:
 
 | Key value | Name          |  Brief description                                                     | Reference |
-|      7807 | tunnel-7807   |  Carry RFC 7807 problem details in a Concise Problem Details data item | RFCXXXX   |
+|      7807 | tunnel-7807   |  Carry RFC 7807 problem details in a Concise Problem Details data item | RFC XXXX   |
 {: #cpdk title="Initial Entries in Custom Problem Detail Key registry"}
 
 
@@ -424,7 +425,7 @@ IANA is requested to add the following Media-Type to the "Media Types"
 registry {{!IANA.media-types}}.
 
 | Name                         | Template                                 | Reference              |
-| concise-problem-details+cbor | application/concise-problem-details+cbor | RFCXXXX, {{media-type}} |
+| concise-problem-details+cbor | application/concise-problem-details+cbor | RFC XXXX, {{media-type}} |
 {: #new-media-type align="left" title="New Media Type application/concise-problem-details+cbor"}
 
 {:compact}
@@ -646,9 +647,9 @@ Details data item, first convert the JSON object to CBOR as per {{Section
 Move the values for "title", "detail", and "instance", if present,
 from the {{RFC7807}} problem details to the equivalent Standard Problem
 Detail entries.
-Create a Custom Problem Detail entry with key 7807.
+Create a Custom Problem Details entry with key 7807.
 Move the values for "type" and "status", if present, to the equivalent
-keys 0 and 1 of the Custom Problem Detail entry.
+keys 0 and 1 of the Custom Problem Details entry.
 Move all remaining key/value pairs (additional members as per {{Section
 3.2 of RFC7807}}) in the converted {{RFC7807}} problem
 details object to the Custom Problem Details map unchanged.
@@ -656,8 +657,8 @@ details object to the Custom Problem Details map unchanged.
 The inverse direction, carrying Concise Problem Details in a Problem
 Details JSON object requires the additional support provided by
 {{-7807bis}}, which is planned to create the HTTP Problem Types
-Registry.  A Problem Type can then be registered that extracts
-top-level items from the Concise Problem Details item in a similar way
+Registry.  An HTTP Problem Type can then be registered that extracts
+top-level items from the Concise Problem Details data item in a similar way
 to the conversion described above, and which carries the rest of the
 Concise Problem Details data item in an additional member via base64url
 encoding without padding ({{Section 5 of -base}}).  Details can be defined
