@@ -400,8 +400,8 @@ reference:
 Initial entries in this sub-registry are as follows:
 
 | Key value | Name | CDDL Type | Brief description | Reference |
-| -1 | title | text | short, human-readable summary of the problem shape | RFC XXXX |
-| -2 | detail | text | human-readable explanation specific to this occurrence of the problem | RFC XXXX |
+| -1 | title | text or tag 38 | short, human-readable summary of the problem shape | RFC XXXX |
+| -2 | detail | text or tag 38 | human-readable explanation specific to this occurrence of the problem | RFC XXXX |
 | -3 | instance | ~uri | URI reference identifying specific occurrence of the problem | RFC XXXX |
 | -4 | response-code | uint .size 1 | CoAP response code | RFC XXXX |
 {: #spdk title="Initial Entries in the Standard Problem Detail Key registry"}
