@@ -46,6 +46,8 @@ normative:
   IANA.cbor-tags: tags
   RFC5646: bcp-47-3
   RFC4647: bcp-47-4
+  RFC8610: cddl
+  RFC9165: cddlplus
 informative:
 #  W3C.REC-rdf-concepts-20040210: rdf
   RFC4648: base
@@ -121,14 +123,19 @@ Thus, API clients can be informed of both the high-level error class
 The framework presented is largely inspired by the Problem Details for HTTP APIs defined in {{RFC7807}}.
 {{comp7807}} discusses applications where interworking with {{RFC7807}} is required.
 
-## Requirements Language
+## Terminology and Requirements Language
+
+The terminology from {{-coap}} and {{-cbor}} applies.
+Readers are also expected to be familiar with the terminology from {{-http-problem}}.
+
+In this document, the structure of data is specified in CDDL {{-cddl}} {{-cddlplus}}.
 
 {::boilerplate bcp14-tagged}
 
 # Basic Problem Details
 
 A Concise Problem Details data item is a CBOR data item with the following
-structure (notated in CDDL {{!RFC8610}}):
+structure:
 
 ~~~ cddl
 problem-details = non-empty<{
