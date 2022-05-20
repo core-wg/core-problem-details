@@ -34,6 +34,11 @@ contributor:
     uri: http://peteroupc.github.io/CBOR/
     contribution: Peter defined CBOR tag 38, basis of {{tag38}}.
 
+venue:
+  group: Constrained RESTful Environments
+  mail: core@ietf.org
+  github: core-wg/core-problem-details
+
 normative:
   STD94:
     -: cbor
