@@ -105,7 +105,7 @@ It is designed to be reused by REST APIs, which can identify distinct
 shapes of these data items specific to their needs.
 Thus, API clients can be informed of both the high-level error class
 (using the response code) and the finer-grained details of the problem
-(using this vocabulary), as shown in {{fig-problem-details}}.
+(using the vocabulary defined here), as shown in {{fig-problem-details}}.
 
 ~~~ aasvg
 .--------.          .--------.
@@ -175,7 +175,7 @@ see {{new-spdk}}).
 Note that, unlike {{RFC7807}}, Concise Problem Details data items have
 no explicit "problem type".
 Instead, the category (or, one could say, Gestalt) of the problem can
-be understood from the shape of the problem details offered, we talk of
+be understood from the shape of the problem details offered. We talk of
 a "problem shape" for short.
 
 {:vspace}
