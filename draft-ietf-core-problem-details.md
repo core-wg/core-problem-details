@@ -703,10 +703,10 @@ in a separate document when the work on {{-7807bis}} is completed.
 # Acknowledgments
 {:unnumbered}
 
-{{{Mark Nottingham}}} and {{{Erik Wilde}}}, authors of RFC 7807.
-{{{Klaus Hartke}}} and {{{Jaime Jiménez}}}, co-authors of an earlier generation of
-this specification.
-{{{Christian Amsüss}}} and {{{Marco Tiloca}}} for review and comments on this document.
+{{{Mark Nottingham}}} and {{{Erik Wilde}}}, authors of RFC 7807.  {{{Klaus
+Hartke}}} and {{{Jaime Jiménez}}}, co-authors of an earlier generation of this
+specification.  {{{Christian Amsüss}}}, {{{Marco Tiloca}}}, {{{Ari Keränen}}}
+and {{{Michael Richardson}}} for review and comments on this document.
 
 For {{tag38}}, John Cowan and Doug Ewell are also to be acknowledged.
 The content of an earlier version of this appendix was also discussed
