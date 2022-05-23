@@ -85,9 +85,10 @@ informative:
 
 --- abstract
 
-This document defines a "problem detail" as a way to carry
+This document defines a concise "problem detail" as a way to carry
 machine-readable details of errors in a REST response to avoid the
-need to define new error response formats for REST APIs.
+need to define new error response formats for REST APIs for
+constrained environments.
 The format
 is inspired by, but intended to be more concise than, the Problem
 Details for HTTP APIs defined in RFC 7807.
