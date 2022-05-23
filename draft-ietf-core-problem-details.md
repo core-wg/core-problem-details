@@ -273,7 +273,7 @@ additional entries to convey additional, application-specific information.
 
 Such new entries are allocated in the `custom-problem-detail-entries` slot, and
 carry a nested map specific to that application.  The map key can either be
-an (absolute!) URI (controlled by the entity defining this extension),
+an (absolute!) URI (under control of the entity defining this extension),
 or an unsigned integer.
 Only the latter needs to be registered ({{iana-cpdk}}).
 
