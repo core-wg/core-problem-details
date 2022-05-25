@@ -105,7 +105,8 @@ It is designed to be reused by REST APIs, which can identify distinct
 shapes of these data items specific to their needs.
 Thus, API clients can be informed of both the high-level error class
 (using the response code) and the finer-grained details of the problem
-(using the vocabulary defined here), as shown in {{fig-problem-details}}.
+(using the vocabulary defined here).
+This pattern of communication is illustrated in {{fig-problem-details}}.
 
 ~~~ aasvg
 .--------.          .--------.
