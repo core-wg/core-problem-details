@@ -1,6 +1,6 @@
 tag38 = #6.38([tag38-ltag, text, ?tag38-direction])
 tag38-ltag = text  .abnf ("Language-Tag" .det RFC5646)
-tag38-direction = &(ltr: false, rtl: true)
+tag38-direction = &(ltr: false, rtl: true, auto: null)
 
 RFC5646 = '
  Language-Tag  = langtag             ; normal language tags

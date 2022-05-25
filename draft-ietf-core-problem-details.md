@@ -576,7 +576,9 @@ annotated with CBOR tags; this is not shown in the CDDL below.
 The optional third element, if present, is a Boolean value that
 indicates a direction: `false` for "ltr" direction, `true` for "rtl"
 direction.  If the third element is absent, no indication is made
-about the direction.
+about the direction; it can be explicitly given as `null` to express
+the same while overriding any context that might be considered
+applying to this element.
 
 In CDDL:
 
@@ -600,7 +602,7 @@ U+E0000 to U+E007F. Although many applications, including RDF,
 do not disallow these characters in text strings, the Unicode Consortium
 has deprecated these characters and recommends annotating language via a
 higher-level protocol instead. See the section "Deprecated Tag
-Characters" in  Section 23.9 of {{-unicode}}.
+Characters" in Section 23.9 of {{-unicode}}.
 
 Examples
 --------
