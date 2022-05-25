@@ -67,6 +67,12 @@ informative:
     title: RDF 1.1 Concepts and Abstract Syntax
     rc: W3C Recommendation
     date: 2014-02-25
+  STRING-META:
+    title: >
+      Strings on the Web: Language and Direction Metadata
+    target: https://www.w3.org/TR/string-meta/
+    rc: W3C group draft note
+    date: false
   Unicode-14.0.0:
     -: unicode
     target: https://www.unicode.org/versions/Unicode14.0.0/
@@ -580,6 +586,10 @@ direction.  If the third element is absent, no indication is made
 about the direction; it can be explicitly given as `null` to express
 the same while overriding any context that might be considered
 applying to this element.
+Note that the proper processing of Language and Direction Metadata is
+an active area of investigation; the reader is advised to consult
+ongoing standardization activities such as {{STRING-META}} when
+processing the information represented in this tag.
 
 In CDDL:
 
