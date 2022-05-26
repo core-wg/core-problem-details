@@ -1,0 +1,1820 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2022-05-26T01:27:05.163421+00:00",
+  "repo": "core-wg/core-problem-details",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    },
+    {
+      "name": "WGLC",
+      "description": "working group last call reviews",
+      "color": "006b75"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "MDU6SXNzdWU2MTgzNzAyNjk=",
+      "title": "Add a pointer to RFC 7807 in the abstract",
+      "url": "https://github.com/core-wg/core-problem-details/issues/1",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The abstract should also point to RFC 7807 so that people who understand that problem set will also be able to find this one.",
+      "createdAt": "2020-05-14T16:31:21Z",
+      "updatedAt": "2022-05-06T13:33:40Z",
+      "closedAt": "2022-05-06T13:33:40Z",
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "MDU6SXNzdWU2MTgzNzIyMDU=",
+      "title": "The \"x dash\" problem",
+      "url": "https://github.com/core-wg/core-problem-details/issues/2",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Context: RFC 6648, in particular the analysis in [Appendix B](https://tools.ietf.org/html/rfc6648#appendix-B)\r\n\r\nThe problem is if the producer never updates to the public format, consumers \u2013 not just CoAP clients but the whole logging pipeline \u2013 need to cope for an indefinite amount of time.\r\n\r\nUnfortunately, consumers don\u2019t seem to have much leverage.\r\n\r\nWe define a private-to-public migration plan from the onset, but to what extent is that effective in preventing the problem?\r\n\r\nWe need to provide discussion on strategies for minimising the risk of \u201ceternal pollution\u201d (e.g., use an automated software update mechanism.)\u2028",
+      "createdAt": "2020-05-14T16:34:20Z",
+      "updatedAt": "2020-05-14T16:34:20Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "MDU6SXNzdWU2MTgzNzYyNzE=",
+      "title": "Localisation of string fields",
+      "url": "https://github.com/core-wg/core-problem-details/issues/3",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "How do we handle localisation of text strings?\r\n\r\nSome options:\r\n* Force a language (en-us? inuktitut?)\r\n* Add language tags to strings (e.g., a la [CoRAL](https://www.ietf.org/id/draft-ietf-core-coral-03.html#section-6.5))\r\n* \"the windows logs\" way as suggested by Jim: _\"In some ways the method that is used by Windows to log events works out pretty well, but might be too weighty for this.  In that case a list of information with the title and a set of attributes are returned from the server (event) and these are then placed into a localized string.  It might be possible to provide a default string, a set of attributes and a method of getting a localized string if needed.\"_\r\n\r\n",
+      "createdAt": "2020-05-14T16:40:41Z",
+      "updatedAt": "2022-05-06T22:23:33Z",
+      "closedAt": "2022-05-06T22:23:33Z",
+      "comments": [
+        {
+          "author": "ektrah",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "See [Expressing Natural Language Texts in CoRAL](https://www.ietf.org/id/draft-ietf-core-coral-03.html#name-expressing-natural-language)",
+          "createdAt": "2020-05-20T09:48:53Z",
+          "updatedAt": "2020-05-20T09:48:53Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "This could be handled by CBOR tags, maybe an update of tag 38",
+          "createdAt": "2022-05-06T13:44:11Z",
+          "updatedAt": "2022-05-06T13:44:11Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> This could be handled by CBOR tags, maybe an update of tag 38\r\n\r\nhttp://peteroupc.github.io/CBOR/langtags.html",
+          "createdAt": "2022-05-06T13:45:19Z",
+          "updatedAt": "2022-05-06T13:45:19Z"
+        },
+        {
+          "author": "chrysn",
+          "authorAssociation": "MEMBER",
+          "body": "Anything we do for CoRAL that extends this to directions would apply directly here, whether it's in the form of a new tag or a compatible extension to the old one.",
+          "createdAt": "2022-05-06T13:45:57Z",
+          "updatedAt": "2022-05-06T13:45:57Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "or go our own way to avoid deps:\r\n\r\n```\r\ntext-string = text / intl-text\r\n\r\nintl-text = {\r\n  0: text                  ; text \r\n  1: text                  ; lang tag\r\n  ? 2: bool .default true. ; ltr or rtl\r\n}\r\n```",
+          "createdAt": "2022-05-06T14:37:08Z",
+          "updatedAt": "2022-05-06T14:37:08Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Dealt with in [e4d1dd2](https://github.com/core-wg/core-problem-details/pull/16/commits/e4d1dd27d66e6a310eddc0e86eeefb40fb9e2b7b) (#16)",
+          "createdAt": "2022-05-06T22:18:15Z",
+          "updatedAt": "2022-05-06T22:18:15Z"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "MDU6SXNzdWU2MTgzNzk0ODI=",
+      "title": "Feature: Tracing / diagnostics",
+      "url": "https://github.com/core-wg/core-problem-details/issues/4",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "enhancement"
+      ],
+      "body": "Jim suggested subsuming CoAP's diagnostic payload under the problem structure.  This would mean adding another optional diagnostic key to the base fields.\r\n\r\nChristian> [summary] _\"details and diagnostic are mutually exclusive; handle diagnostic as an extension\"_ -- see also the [original email.](https://mailarchive.ietf.org/arch/msg/core/aypkvGo5fnBGrWUTtAJAVBz5BBE/)\r\n\r\nI think the question is: is this going to be common enough that is worth factoring it out proactively?  Needs discussion.\r\n",
+      "createdAt": "2020-05-14T16:45:51Z",
+      "updatedAt": "2021-07-12T15:42:12Z",
+      "closedAt": "2021-07-12T15:42:12Z",
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "One thing that needs to be factored in this specific feature, and more generally in the PD discussion, is that there exist not only one but potentially two different PD consumers.  On one side it\u2019s the obvious CoAP client, on the other \u2014 especially when the CoAP server or CoAP API gateway is found in an (edge) cloud \u2014 a logging and analytics pipeline that collects, filters, presents log messages coming from a potentially huge number of different servers and transactions.\r\n\r\nI think adding a separate \u201ctracing/diagnostic\u201c instead of making a more verbose \u201cdetails\u201d (which, might be a perfectly valid alternative in many cases) is better understood from the latter angle.  The use case I have in mind is an already deployed server that is temporarily put in \"tracing mode\" to diagnose a failure.  There, having a separate channel for the tracing info instead of having to write an ad-hoc filter to extract the relevant information from the \u201cdetails\u201d field is a much better alternative (i.e., easier to ingest & process).  Cost-wise, from a PD producer perspective there would be no added overheads.\u00a0\u00a0From the PoV of the transport, there\u2019s a slight increase in bandwidth to support the extra structuring but I'd expect it to be dwarfed by the diagnostic payload anyway.",
+          "createdAt": "2020-05-20T09:31:03Z",
+          "updatedAt": "2020-05-21T08:28:23Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "MDU6SXNzdWU2MTkwMDIxMjA=",
+      "title": "Segregate extensions in a sub-map",
+      "url": "https://github.com/core-wg/core-problem-details/issues/5",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We don't want the following situation to arise:\r\n\r\n1. a private API defines its own extension code point 5\r\n2. in the meantime the same codepoint 5 has been registered in the \"global\" fields \r\n3 the API now goes public (i.e., it grabs a public namespace code point)\r\n4. the private codepoint and the global codepoint clash!\r\n\r\nCaveat implementor! Extension fields need to be segregated in a sub-map instead of sharing the same space as the base fields.",
+      "createdAt": "2020-05-15T14:20:48Z",
+      "updatedAt": "2020-05-20T09:59:11Z",
+      "closedAt": "2020-05-20T09:59:10Z",
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "CoRAL should fix this automatically.",
+          "createdAt": "2020-05-20T09:59:10Z",
+          "updatedAt": "2020-05-20T09:59:10Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "MDU6SXNzdWU2MTkwMDI2NzI=",
+      "title": "Ready-to-use Problem Detail types",
+      "url": "https://github.com/core-wg/core-problem-details/issues/6",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We should provide a default set of ready-to-use PD types associated with the existing CoAP status codes, intended for carrying (and enriching) the associated status code semantics.\r\n\r\nThe (rough) plan is to define an \u201cabout:coap\u201d namespace with one PD type for each registered [4.xx and 5.xx status code](https://www.iana.org/assignments/core-parameters/core-parameters.xhtml#response-codes).\r\n\r\nAn application could use such PDs without the need to register anything.  Just pick the \"right\" type and populate the relevant fields, job done.\r\n\r\nAs a nice side-effect, this would allow exercising the registration procedure, including the definition of the PD type's registry structure and providing a first set of registrations.\r\n",
+      "createdAt": "2020-05-15T14:21:36Z",
+      "updatedAt": "2021-07-12T15:42:11Z",
+      "closedAt": "2021-07-12T15:42:11Z",
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "MDU6SXNzdWU2MjE2MDU3Njc=",
+      "title": "Feature: Response codes",
+      "url": "https://github.com/core-wg/core-problem-details/issues/7",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "enhancement"
+      ],
+      "body": "CoAP Response Codes are an optional feature and should be discussed in a separate section.\r\n\r\n**Rationale for the feature**\r\nThe CoAP response-code is already carried by the CoAP header, so it doesn't make sense adding it to the PD payload that goes from Server to Client.\r\n\r\nIt does however make sense for a Client that is about to ingest the received PD into a log pipeline to \"enrich\" it with ancillary Information from the underlying CoAP transaction.\r\n\r\nIn this context, response-code is probably the most basic attribute that one wants to carry over as it is also commonly used as a high-level partition key for log visualisation.",
+      "createdAt": "2020-05-20T09:24:49Z",
+      "updatedAt": "2022-05-06T13:37:33Z",
+      "closedAt": "2022-05-06T13:37:33Z",
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "addressed by #16 ",
+          "createdAt": "2022-05-06T13:37:33Z",
+          "updatedAt": "2022-05-06T13:37:33Z"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "MDU6SXNzdWU2MjE2MDcwNzY=",
+      "title": "Feature: 3rd party error reporting",
+      "url": "https://github.com/core-wg/core-problem-details/issues/8",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "enhancement"
+      ],
+      "body": "We discussed the \"API gateway\" use case where one or more \"data centre\" backend errors needs to be reported to the client.\r\n\r\nIs this a popular enough use case to deserve its own field in the basic part of the map?\r\n\r\nDiscuss!",
+      "createdAt": "2020-05-20T09:26:39Z",
+      "updatedAt": "2022-05-06T13:40:07Z",
+      "closedAt": "2022-05-06T13:40:02Z",
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "When designing this, a (partial) list of things to consider:\r\n* Privacy implications;\r\n* (D)DoS potential (response inflation).\r\n",
+          "createdAt": "2020-06-12T11:12:08Z",
+          "updatedAt": "2020-06-12T11:12:08Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "On the solution side, composability in the unbundled model (#16) goes a long way, here.",
+          "createdAt": "2022-05-06T13:39:22Z",
+          "updatedAt": "2022-05-06T13:40:07Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "no need to treat this as a separate use case.\r\n\r\n> Composability in the unbundled model goes a long way, here.\r\n\r\nno need to treat this as a separate use case.\r\n",
+          "createdAt": "2022-05-06T13:40:02Z",
+          "updatedAt": "2022-05-06T13:40:02Z"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "MDU6SXNzdWU2MjE2NDgxMTY=",
+      "title": "Design goals for protocol elements identification",
+      "url": "https://github.com/core-wg/core-problem-details/issues/9",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The variables that needs optimising are:\r\n- size/compactness of IDs\r\n- low barrier to entry\r\n- stability\r\n- private-public transitions\r\n- popularity/familiarity to REST API developers\r\nwe don't consider any existing solution that doesn't prevent collisions\r\n",
+      "createdAt": "2020-05-20T10:26:47Z",
+      "updatedAt": "2022-05-06T13:42:06Z",
+      "closedAt": "2022-05-06T13:42:05Z",
+      "comments": [
+        {
+          "author": "chrysn",
+          "authorAssociation": "MEMBER",
+          "body": "Hooking into the request for suggestions in today's presentation (not all points mine but from the meeting):\r\n* Registration at IANA might in future be as easy as a GitHub PR\r\n* Still, we can't expect developers to register every single exception they create.\r\n  * Something hierarchical would solve this. If identifiers (in their expanded form) are URI based, registering a shortcut for a base might allow developers to register their application base and then use codes below that.\r\n* What if a registrant goes away?\r\n  * What if a registrant does updates in incompatible ways?\r\n  * When URI based, same problem as with uncompressed references that are based on DNS. Registrants may prefer to use other URI schemes (eg. URNs without DNS names).",
+          "createdAt": "2020-07-28T15:04:27Z",
+          "updatedAt": "2020-07-28T15:04:27Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "all of the stated design goals are addressed by the design in #16.  The only leftover is \"private-public transition\" which is tracked by #2",
+          "createdAt": "2022-05-06T13:42:05Z",
+          "updatedAt": "2022-05-06T13:42:05Z"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "MDU6SXNzdWU2MjIzNDM3NDI=",
+      "title": "Localisation of the \"title\" field",
+      "url": "https://github.com/core-wg/core-problem-details/issues/10",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We currently say that a value for \"title\" needs to be specified when registering a new \u201ctype\".\r\n\r\nThis requires the registering party to make an upfront decision with regards to the language to use.  \r\n\r\n(Note that the more general question about localisation of text fields is tracked by #3)",
+      "createdAt": "2020-05-21T08:36:22Z",
+      "updatedAt": "2022-05-06T13:36:46Z",
+      "closedAt": "2022-05-06T13:36:46Z",
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This is an instance of #3 ",
+          "createdAt": "2022-05-06T13:36:46Z",
+          "updatedAt": "2022-05-06T13:36:46Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "MDU6SXNzdWU4OTAyNzM2MTU=",
+      "title": "alignment with rfc7807bis",
+      "url": "https://github.com/core-wg/core-problem-details/issues/13",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The HTTPAPI WG has very recently adopted the rfc7807bis document.  We should monitor what happens there and make sure we  any \"lesson learned\" in the HTTP world is picked up and digested.\r\n\r\nMore context:\r\n* [IETF 110 presentation](https://datatracker.ietf.org/meeting/110/materials/slides-110-httpapi-rfc-8707bis-problem-details-00.pdf)\r\n* [RFC7807-bis editor's copy](https://github.com/ietf-wg-httpapi/rfc7807bis)  ",
+      "createdAt": "2021-05-12T16:28:25Z",
+      "updatedAt": "2022-05-06T22:26:43Z",
+      "closedAt": "2022-05-06T22:26:43Z",
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "IETF110 presentation: Dead link",
+          "createdAt": "2022-04-26T18:47:15Z",
+          "updatedAt": "2022-04-26T18:47:15Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "https://datatracker.ietf.org/meeting/110/materials/slides-110-httpapi-rfc-7807bis-problem-details-00.pdf",
+          "createdAt": "2022-04-26T18:48:44Z",
+          "updatedAt": "2022-04-26T18:48:44Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The \"tunnelling\" aspects regarding the 7807->CPD direction have been dealt with in [74cdbf1](https://github.com/core-wg/core-problem-details/pull/16/commits/74cdbf1854d392321ff20a0d5765108a60c20778) (#16)\r\n\r\nUntil 7807bis is finalised we won't be able to assemble the whole toolkit that is needed to handle the CPD->7807 direction.  This has been noted in the text.",
+          "createdAt": "2022-05-06T22:17:23Z",
+          "updatedAt": "2022-05-06T22:26:29Z"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOD7eoo85Ju_8Z",
+      "title": "Marco's review",
+      "url": "https://github.com/core-wg/core-problem-details/issues/17",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "WGLC"
+      ],
+      "body": "https://mailarchive.ietf.org/arch/msg/core/7_Oqt82j4tl69IG6--FrSoRN8uQ/\r\n\r\n```\r\n[Section 1.1]\r\n\r\n* Please add the usual remark \"Readers are expected to be familiar with ...\"\r\n\r\n\r\n[Section 2]\r\n\r\n* The caption of Figure 2 can better say \"Concise Problem Details Data \r\nItem\".\r\n\r\n* The definition of the 'title' entry says: \"It SHOULD NOT change from \r\noccurrence to occurrence of the problem.\"\r\n\r\n    Do you mean \"of the same problem\" ?\r\n\r\n* The definition of 'response-code' can be expanded to also point to \r\nSection 3 of RFC 7252, and explicitly say that the response code here is \r\nexactly the value of the 'Code' field in the header of the CoAP \r\nresponse. This would complement the statement and example in the last \r\nparagraph of the section.\r\n\r\n* When defining the entry 'response-code', it is good to have a pointer \r\nalso to Section 3.2 of RFC 8132, thus covering also 4.09 and 4.22.\r\n\r\n* \"Note that, unlike [RFC7807], Concise Problem Details data items have \r\nno explicit type.\"\r\n\r\nConsistently, please consider the following changes to avoid possible \r\nconfusion:\r\n\r\n    - In Section 1, use \"problem classes\" rather than \"problem types\".\r\n\r\n    - In Section 2, use \"summary of the problem class\" rather than \r\n\"summary of the problem type\" when defining the 'title' entry. A few \r\nparagraphs below, \"shorthand for the category of the error\" can also \r\nbecome \"shorthand for the class of the error\".\r\n\r\n    - In Section 3, use \"generic problem class container\" rather than \r\n\"generic problem type container\".\r\n\r\n    - In Section 5.1, as to the \"Brief description\" for 'title' in Table \r\n1, use \"problem class\" rather than \"problem type\".\r\n\r\n\r\n[Section 3.1]\r\n\r\n* \"Consumers of a Concise Problem Details instance MUST ignore ...\"\r\n\r\n    I think it is better to use \"data item\" rather than \"instance\". That \r\nwould be consistent with the text in other sections and would avoid \r\nconfusion with the 'instance' entry.\r\n\r\n\r\n[Section 3.2]\r\n\r\n* \"Consumers of a Concise Problem Details instance MUST ignore ...\"\r\n\r\n    See the comment above about using \"data item\" rather than \"instance\".\r\n\r\n* Is it admitted to change the definition of an already existing Custom \r\nProblem Details entry, by updating the related documentation? Or is it \r\nsomething to discourage or even forbid, rather preferring a new entry to \r\nbe defined altogether?\r\n\r\n\r\n[Section 5.1]\r\n\r\n* For 'title' and 'detail', shouldn't the CDDL Type be \"text/array\", \r\nrather than \"text\"? If tag 38 is used, that applies to an array, as per \r\nAppendix A.2.\r\n\r\n\r\n[Nits]\r\n\r\n* Section 3.1, s/so they never can/so they can never\r\n\r\n* Section 3.2, s/the nested map any/the nested map, any\r\n\r\n* Section 3.2, s/for extension that/for extensions that\r\n\r\n* Section 3.2, s/compact representation, in/compact representation. In\r\n\r\n* Section 3.2, s/principle, MUST NOT be/principle, it MUST NOT be\r\n\r\n* Section 5.1, s/Entries in Standard/Entries in the Standard\r\n\r\n* Section 5.2, s/Entries in Custom/Entries in the Custom\r\n\r\n* Table 1/2/3, s/RFCXXXX/RFC XXXX\r\n\r\n* Appendix B (2 instances), s/Concise Problem Details item/Concise \r\nProblem Details data item\r\n\r\n* Appendix B (2 instances), s/Custom Problem Detail entry/Custom Problem \r\nDetails entry\r\n```",
+      "createdAt": "2022-05-16T12:08:05Z",
+      "updatedAt": "2022-05-16T12:08:13Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 11,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDQ3ODg1MjEx",
+      "title": "Do it with CoRAL",
+      "url": "https://github.com/core-wg/core-problem-details/pull/11",
+      "state": "MERGED",
+      "author": "ektrah",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "...as described in the former Appendix B",
+      "createdAt": "2020-07-12T11:12:33Z",
+      "updatedAt": "2020-07-13T13:11:57Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "282ce9125dd3749f08beeb5b49914c887bbb51af",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "coralized",
+      "headRefOid": "d4b8e5896149ed9ebc35caf9b993a49d8d089cf3",
+      "closedAt": "2020-07-13T13:11:57Z",
+      "mergedAt": "2020-07-13T13:11:57Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "8be99435a2779501d17d41fe26548c2dff1e32c9"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ2OTA5NjA1",
+          "commit": {
+            "abbreviatedOid": "d4b8e58"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM!",
+          "createdAt": "2020-07-12T21:02:48Z",
+          "updatedAt": "2020-07-12T21:02:48Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTEzMzMxMjIw",
+      "title": "trace and diagnostic feature",
+      "url": "https://github.com/core-wg/core-problem-details/pull/12",
+      "state": "MERGED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #4 ",
+      "createdAt": "2020-10-30T23:36:08Z",
+      "updatedAt": "2021-07-12T15:42:12Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "8be99435a2779501d17d41fe26548c2dff1e32c9",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "feature-tracing-and-diagnostic",
+      "headRefOid": "f80150126a3f8739f82721452a979d72a434e987",
+      "closedAt": "2021-07-12T15:42:12Z",
+      "mergedAt": "2021-07-12T15:42:12Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "f80150126a3f8739f82721452a979d72a434e987"
+      },
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This PR addresses Issue #4 ",
+          "createdAt": "2021-05-11T10:53:51Z",
+          "updatedAt": "2021-05-11T10:53:51Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@ektrah @jaimejim could you please have a look at the PR?",
+          "createdAt": "2021-06-22T13:53:12Z",
+          "updatedAt": "2021-06-22T13:53:12Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NjU2NTYxNjg2",
+          "commit": {
+            "abbreviatedOid": "dd9093a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-05-11T10:52:46Z",
+          "updatedAt": "2021-05-11T10:52:46Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "unneeded?\r\n```suggestion\r\n```",
+              "createdAt": "2021-05-11T10:52:46Z",
+              "updatedAt": "2021-05-11T10:52:46Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3Njg5NTM3NzI0",
+          "commit": {
+            "abbreviatedOid": "f801501"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-06-22T13:52:38Z",
+          "updatedAt": "2021-06-22T13:52:38Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "done in f801501",
+              "createdAt": "2021-06-22T13:52:38Z",
+              "updatedAt": "2021-06-22T13:52:38Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "MDExOlB1bGxSZXF1ZXN0Njc4OTE2MTM2",
+      "title": "Feature status codes",
+      "url": "https://github.com/core-wg/core-problem-details/pull/14",
+      "state": "MERGED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Note that this PR sits on top of #12",
+      "createdAt": "2021-06-28T10:24:44Z",
+      "updatedAt": "2021-07-12T15:42:14Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "8be99435a2779501d17d41fe26548c2dff1e32c9",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "feature-status-codes",
+      "headRefOid": "dcb97389fdbb93429af472d9781480e029898b6a",
+      "closedAt": "2021-07-12T15:42:11Z",
+      "mergedAt": "2021-07-12T15:42:11Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "659bdf42194ec481df1ee1a4d49efecd3e27ed5d"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOD7eoo842sKLc",
+      "title": "3GPP stop-gap version",
+      "url": "https://github.com/core-wg/core-problem-details/pull/15",
+      "state": "CLOSED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "The problem-details specification has been parked for a while waiting\r\nfor CoRAL to complete.\r\nIn the meantime, 3GPP has written the problem-details specification\r\ninto their client-server specifications and is expecting to cut a\r\nrelease in June 2022.\r\nIt is unlikely that the CoRAL is complete by then, which would cause\r\nproblem-details to be written out of the specification (and probably\r\nbe replaced by an ad-hoc mechanism).\r\n\r\nThis PR proposes to define a concise problem details structure that\r\nis simple enough so it can be completed within a couple of months.\r\nThis would keep the problem details approach within the 3GPP system\r\nand will allow us to add a more complete CoRAL version later.",
+      "createdAt": "2022-04-24T22:48:17Z",
+      "updatedAt": "2022-05-06T22:20:12Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "659bdf42194ec481df1ee1a4d49efecd3e27ed5d",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "3gpp-stopgap",
+      "headRefOid": "78b39d3ffc28417b63e950b3a62cf7bd9d6af8bf",
+      "closedAt": "2022-05-06T22:20:12Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "Subsumed (and replaced) by #16 ",
+          "createdAt": "2022-05-06T22:20:11Z",
+          "updatedAt": "2022-05-06T22:20:11Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo844t15M",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T08:50:49Z",
+          "updatedAt": "2022-04-25T09:10:45Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "We should probably make it explicit in the type it's URI reference rather than a generic string.\r\n\r\nBesides, there should be a default value -- RFC7808 has `about:blank` -- that can be assumed by consumers if not present.",
+              "createdAt": "2022-04-25T08:50:49Z",
+              "updatedAt": "2022-04-25T09:10:45Z"
+            },
+            {
+              "originalPosition": 116,
+              "body": "Since everything is optional but we don't want this to be an empty bag, we could wrap this is a `non-empty<M> = (M) .and ({ + any => any })`",
+              "createdAt": "2022-04-25T08:53:32Z",
+              "updatedAt": "2022-04-25T09:10:45Z"
+            },
+            {
+              "originalPosition": 147,
+              "body": "Ditto, URI reference.",
+              "createdAt": "2022-04-25T08:57:51Z",
+              "updatedAt": "2022-04-25T09:10:45Z"
+            },
+            {
+              "originalPosition": 155,
+              "body": "Not sure about this strategy, it seems to lead to a proliferation of tag registrations.  I think sub-typing should be done by the `title` attribute.  We could register a certain URI to be the base for standard extensions that go through the IANA path, and leave the rest of the URI space open to custom extensions.",
+              "createdAt": "2022-04-25T09:00:29Z",
+              "updatedAt": "2022-04-25T09:10:45Z"
+            },
+            {
+              "originalPosition": 160,
+              "body": "Ditto for the `title`.",
+              "createdAt": "2022-04-25T09:01:05Z",
+              "updatedAt": "2022-04-25T09:10:45Z"
+            },
+            {
+              "originalPosition": 164,
+              "body": "See my comment above about an alternative to handle extensibility.",
+              "createdAt": "2022-04-25T09:10:34Z",
+              "updatedAt": "2022-04-25T09:10:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844t-je",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:20:21Z",
+          "updatedAt": "2022-04-25T09:20:21Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "Hi Thomas,\r\n\r\nin the current draft, `title` is not a URI, but human-readable text, so I don't understand several of your comments.  In the PR, there actually is no way to put in a URI for the problem type (\u2260 title).",
+              "createdAt": "2022-04-25T09:20:21Z",
+              "updatedAt": "2022-04-25T09:20:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844t-4m",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:21:31Z",
+          "updatedAt": "2022-04-25T09:21:32Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "Arg, sorry, I need more powerful reading glasses apparently.  I merged \"type\" and \"title\" into one thing.  Please re-interpret all my comments as \"can we rather use an explicit URI `type` attribute instead of the CBOR tag to handle extensibility?\"",
+              "createdAt": "2022-04-25T09:21:31Z",
+              "updatedAt": "2022-04-25T09:21:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844t_LO",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:22:32Z",
+          "updatedAt": "2022-04-25T09:22:33Z",
+          "comments": [
+            {
+              "originalPosition": 147,
+              "body": "scratch this.",
+              "createdAt": "2022-04-25T09:22:33Z",
+              "updatedAt": "2022-04-25T09:22:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844t_P5",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:22:48Z",
+          "updatedAt": "2022-04-25T09:22:48Z",
+          "comments": [
+            {
+              "originalPosition": 155,
+              "body": "s/title/type/",
+              "createdAt": "2022-04-25T09:22:48Z",
+              "updatedAt": "2022-04-25T09:22:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844t_Uc",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:23:02Z",
+          "updatedAt": "2022-04-25T09:23:03Z",
+          "comments": [
+            {
+              "originalPosition": 160,
+              "body": "scratch this.",
+              "createdAt": "2022-04-25T09:23:02Z",
+              "updatedAt": "2022-04-25T09:23:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844t_YX",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:23:14Z",
+          "updatedAt": "2022-04-25T09:23:14Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "Of course we could.  The idea with the PR was that many of these types work better if registered, and we have a nice registry that we can use for that.",
+              "createdAt": "2022-04-25T09:23:14Z",
+              "updatedAt": "2022-04-25T09:23:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844uAsL",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:27:47Z",
+          "updatedAt": "2022-04-25T09:27:47Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "UX question: are we saying that *all* extensions (including `custom-problem-detail-entries`) need to go through IANA, or does that apply to `standard-problem-detail-entries` only?",
+              "createdAt": "2022-04-25T09:27:47Z",
+              "updatedAt": "2022-04-25T09:27:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844uCLm",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:32:49Z",
+          "updatedAt": "2022-04-25T09:32:49Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "On standard problem details (which is what makes them different from custom ones), not custom ones (these are defined by the type).\r\nWe should say this more explicitly.",
+              "createdAt": "2022-04-25T09:32:49Z",
+              "updatedAt": "2022-04-25T09:32:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844uDCP",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:35:50Z",
+          "updatedAt": "2022-04-25T09:35:51Z",
+          "comments": [
+            {
+              "originalPosition": 116,
+              "body": "Yep: a3dd0fe\r\n",
+              "createdAt": "2022-04-25T09:35:50Z",
+              "updatedAt": "2022-04-25T09:35:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844uJqe",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T09:59:17Z",
+          "updatedAt": "2022-04-25T09:59:18Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "> We should say this more explicitly.\r\n\r\nIn sec-new-attributes we say _\"To establish a *custom* problem type, A CBOR Tag number needs to be registered\"_, which is confusing given we are referring to `standard-problem-detail-entries` rather than `custom-problem-detail-entries`",
+              "createdAt": "2022-04-25T09:59:18Z",
+              "updatedAt": "2022-04-25T09:59:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844uOB-",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T10:15:15Z",
+          "updatedAt": "2022-04-25T10:15:16Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "Regarding handling `custom-problem-detail-entries`: it is not clear to me how a receiver is supposed to distinguish between custom map entry \"A\" (e.g., w/ key 10) from custom map entry \"B\" (again w/ key 10) without an explicit type/sub-type/namespacing indication.",
+              "createdAt": "2022-04-25T10:15:16Z",
+              "updatedAt": "2022-04-25T10:15:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844wg2L",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T17:49:01Z",
+          "updatedAt": "2022-04-25T17:49:01Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "> In sec-new-attributes we say \"To establish a custom problem type, A CBOR Tag number needs to be registered\", which is confusing given we are referring to standard-problem-detail-entries rather than custom-problem-detail-entries\r\n\r\nI think \"custom problem type\" was intended to be in contrast with the predefined Generic Problem Details type. The sentence can be rephrased as \"To establish a new problem type different than the Generic Problem Details type defined in this specification, a CBOR Tag number needs to be registered\". ",
+              "createdAt": "2022-04-25T17:49:01Z",
+              "updatedAt": "2022-04-25T17:49:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844wlMI",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T18:03:40Z",
+          "updatedAt": "2022-04-25T18:03:40Z",
+          "comments": [
+            {
+              "originalPosition": 117,
+              "body": "> Regarding handling custom-problem-detail-entries: it is not clear to me how a receiver is supposed to distinguish between custom map entry \"A\" (e.g., w/ key 10) from custom map entry \"B\" (again w/ key 10) without an explicit type/sub-type/namespacing indication.\r\n\r\nAs I understand, the new tag comes with exactly one corresponding unique uint/tstr key, so there is no risk of collision as long as uniqueness is ensured (bottom line, when registering the new tag). As defined in sec-new-attributes:\r\n\r\n\"Problem type definitions MAY extend the Problem Details document with additional entries to convey additional, problem-specific information. These receive a custom problem detail entry map key (unsigned integer\r\nor text) and SHOULD be described in a specification that goes along with such a registration.  Such a specification SHOULD also reference the present specification.\"\r\n\r\nAbout the uniqueness of those map keys, this would mean that the review of a new tag registration has to also check that the new specification is indeed introducing a still available entry map key for the new custom problem detail. Is there a better way than checking all the documents that have registered a tag for custom problem details? Perhaps the map key can be mentioned in the \"Semantics\" column of the tag registry when registering the tag?\r\n",
+              "createdAt": "2022-04-25T18:03:40Z",
+              "updatedAt": "2022-04-25T18:03:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844wmpm",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T18:09:00Z",
+          "updatedAt": "2022-04-25T18:09:00Z",
+          "comments": [
+            {
+              "originalPosition": 155,
+              "body": "Well, not sub-typing but typing is done through `type`, only that the indication is now coming from a tag rather than a field.\r\n\r\nActually, applying multiple tags would allow to have a multi-type problem details item, including the custom-problem-detail entry corresponding to each tag different than the one for the predefined Generic Problem Details type.",
+              "createdAt": "2022-04-25T18:09:00Z",
+              "updatedAt": "2022-04-25T18:09:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844wm1b",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T18:09:44Z",
+          "updatedAt": "2022-04-25T18:09:44Z",
+          "comments": [
+            {
+              "originalPosition": 183,
+              "body": "See above about how to make it feasible to ensure uniqueness of map keys.",
+              "createdAt": "2022-04-25T18:09:44Z",
+              "updatedAt": "2022-04-25T18:09:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844wm9M",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T18:10:12Z",
+          "updatedAt": "2022-04-25T18:10:13Z",
+          "comments": [
+            {
+              "originalPosition": 193,
+              "body": "s/to be use/to be used",
+              "createdAt": "2022-04-25T18:10:13Z",
+              "updatedAt": "2022-04-25T18:10:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844woX4",
+          "commit": {
+            "abbreviatedOid": "a3dd0fe"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-25T18:15:52Z",
+          "updatedAt": "2022-04-25T18:15:53Z",
+          "comments": [
+            {
+              "originalPosition": 199,
+              "body": "To be sure, does this hold even for the three entries `title`, `detail` and `instance` defined in this document? Or are they expected to be always recognized as minimally supported standard keys?",
+              "createdAt": "2022-04-25T18:15:52Z",
+              "updatedAt": "2022-04-25T18:15:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8443X-J",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-26T21:47:27Z",
+          "updatedAt": "2022-04-26T21:47:27Z",
+          "comments": [
+            {
+              "originalPosition": 155,
+              "body": "I don't understand this idea.  Can you provide an example?  BTW, 7807bis is moving away from trying to handle multi-type problems: https://github.com/ietf-wg-httpapi/rfc7807bis/pull/37/files\r\n",
+              "createdAt": "2022-04-26T21:47:27Z",
+              "updatedAt": "2022-04-26T21:47:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8444zhC",
+          "commit": {
+            "abbreviatedOid": "b7755ba"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-27T07:06:06Z",
+          "updatedAt": "2022-04-27T07:06:06Z",
+          "comments": [
+            {
+              "originalPosition": 155,
+              "body": "TLDR: please scratch it.\r\n\r\nI was wondering how to possibly use multiple problem-type tags back to back to attain a multi type item, but I see that it's better to stick to one type only. Maybe it's better to mention explicitly that an item has a single problem-detail type, hence it comes with a single tag of that kind.\r\n\r\nAlso, my points above on ensuring uniqueness of keys become moot; even if the uint/tstr namespace of two different custom types overlap, the item will refer to only one of such namespace anyway (besides the single and global nint namespace for standard keys).",
+              "createdAt": "2022-04-27T07:06:06Z",
+              "updatedAt": "2022-04-27T07:06:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo84440Pj",
+          "commit": {
+            "abbreviatedOid": "e7d9e4b"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-27T07:09:03Z",
+          "updatedAt": "2022-04-27T07:09:04Z",
+          "comments": [
+            {
+              "originalPosition": 119,
+              "body": "> These receive a map key\r\n\r\nI suppose you don't mean exactly one, right? It should be fine that a custom type introduces multiple keys for its own namespace. Also the text two paragraphs below says\r\n\r\n> In summary, the keys for Custom Problem Detail entries\r\n\r\n",
+              "createdAt": "2022-04-27T07:09:03Z",
+              "updatedAt": "2022-04-27T07:09:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo844526f",
+          "commit": {
+            "abbreviatedOid": "e7d9e4b"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-04-27T10:44:57Z",
+          "updatedAt": "2022-04-27T10:44:57Z",
+          "comments": [
+            {
+              "originalPosition": 119,
+              "body": "Thanks, clarified this a bit now.",
+              "createdAt": "2022-04-27T10:44:57Z",
+              "updatedAt": "2022-04-27T10:44:57Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOD7eoo843NtW3",
+      "title": "3GPP stop-gap unbundled",
+      "url": "https://github.com/core-wg/core-problem-details/pull/16",
+      "state": "MERGED",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This PR provides the write-up of the [\"unbundled\" approach](https://datatracker.ietf.org/doc/slides-interim-2022-core-05-sessa-problem-details-3gpp-stopgap/) discussed at the interim.\r\n\r\nNote that it branches off Carsten's \"bundled\" PR (#15)",
+      "createdAt": "2022-05-03T08:47:27Z",
+      "updatedAt": "2022-05-06T22:37:05Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "659bdf42194ec481df1ee1a4d49efecd3e27ed5d",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "3gpp-stopgap-unbundled",
+      "headRefOid": "17128ca7e9d4a365f30a141cd0b309e5b8590de2",
+      "closedAt": "2022-05-06T22:28:06Z",
+      "mergedAt": "2022-05-06T22:28:06Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "637d4c8a5a2ccd32b5c5f2375187474c9f429ec8"
+      },
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "I did a little bit of editing.  Comments welcome...\r\n",
+          "createdAt": "2022-05-05T22:15:12Z",
+          "updatedAt": "2022-05-05T22:15:12Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo845UcXH",
+          "commit": {
+            "abbreviatedOid": "bf71b80"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-04T10:45:35Z",
+          "updatedAt": "2022-05-04T10:45:36Z",
+          "comments": [
+            {
+              "originalPosition": 153,
+              "body": "Is that alias thing explained anywhere?",
+              "createdAt": "2022-05-04T10:45:36Z",
+              "updatedAt": "2022-05-04T10:45:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845UcdU",
+          "commit": {
+            "abbreviatedOid": "bf71b80"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-04T10:45:58Z",
+          "updatedAt": "2022-05-04T10:45:58Z",
+          "comments": [
+            {
+              "originalPosition": 144,
+              "body": "unsigned?",
+              "createdAt": "2022-05-04T10:45:58Z",
+              "updatedAt": "2022-05-04T10:45:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845VMis",
+          "commit": {
+            "abbreviatedOid": "bf71b80"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-04T13:33:57Z",
+          "updatedAt": "2022-05-04T13:33:57Z",
+          "comments": [
+            {
+              "originalPosition": 153,
+              "body": "I wanted it to be a trace of the API past, but it's neither necessary nor universally interesting -- leaving alone the fact that the purpose was fully opaque to the reader :-)\r\n\r\nI've removed it.",
+              "createdAt": "2022-05-04T13:33:57Z",
+              "updatedAt": "2022-05-04T13:33:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845VMlj",
+          "commit": {
+            "abbreviatedOid": "bf71b80"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-04T13:34:04Z",
+          "updatedAt": "2022-05-04T13:34:04Z",
+          "comments": [
+            {
+              "originalPosition": 144,
+              "body": "\ud83d\udc4d ",
+              "createdAt": "2022-05-04T13:34:04Z",
+              "updatedAt": "2022-05-04T13:34:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845aEmG",
+          "commit": {
+            "abbreviatedOid": "6c50e63"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-05T10:08:11Z",
+          "updatedAt": "2022-05-05T10:08:12Z",
+          "comments": [
+            {
+              "originalPosition": 3,
+              "body": "Instead of removing STD94, we may want to use it at the right place.\r\n",
+              "createdAt": "2022-05-05T10:08:12Z",
+              "updatedAt": "2022-05-05T10:08:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845aFgs",
+          "commit": {
+            "abbreviatedOid": "6c50e63"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-05T10:11:46Z",
+          "updatedAt": "2022-05-05T10:11:46Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": "Although correct, that can be quite confusing.\r\n(We have h32 in EDN for byte strings, but no base32 for numbers.)\r\nHmm.",
+              "createdAt": "2022-05-05T10:11:46Z",
+              "updatedAt": "2022-05-05T10:12:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845aLYf",
+          "commit": {
+            "abbreviatedOid": "6c50e63"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-05T10:35:41Z",
+          "updatedAt": "2022-05-05T10:35:42Z",
+          "comments": [
+            {
+              "originalPosition": 3,
+              "body": "Done in [164b1d4](https://github.com/core-wg/core-problem-details/pull/16/commits/164b1d4c930eb3088cdaa257206bd207158cac4d)",
+              "createdAt": "2022-05-05T10:35:42Z",
+              "updatedAt": "2022-05-05T10:35:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845aMCT",
+          "commit": {
+            "abbreviatedOid": "6c50e63"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-05T10:38:31Z",
+          "updatedAt": "2022-05-05T10:38:31Z",
+          "comments": [
+            {
+              "originalPosition": 83,
+              "body": ":juggling_person:",
+              "createdAt": "2022-05-05T10:38:31Z",
+              "updatedAt": "2022-05-05T10:38:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845dKs_",
+          "commit": {
+            "abbreviatedOid": "bf71b80"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-05T20:56:29Z",
+          "updatedAt": "2022-05-05T20:56:30Z",
+          "comments": [
+            {
+              "originalPosition": 153,
+              "body": "Ah, you removed the \"alias\" thing, but not the URI.",
+              "createdAt": "2022-05-05T20:56:29Z",
+              "updatedAt": "2022-05-05T20:56:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845dLVh",
+          "commit": {
+            "abbreviatedOid": "cefc6ed"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-05T20:59:05Z",
+          "updatedAt": "2022-05-05T20:59:06Z",
+          "comments": [
+            {
+              "originalPosition": 173,
+              "body": "OK, we probably need to decide whether this thing is a document, or a data item, or a representation, or...",
+              "createdAt": "2022-05-05T20:59:06Z",
+              "updatedAt": "2022-05-05T20:59:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845dLj2",
+          "commit": {
+            "abbreviatedOid": "cefc6ed"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-05T21:00:04Z",
+          "updatedAt": "2022-05-05T21:00:05Z",
+          "comments": [
+            {
+              "originalPosition": 232,
+              "body": "Here \"document\" becomes deeply confusing.\r\n(Are you talking about the specification or the data item...)",
+              "createdAt": "2022-05-05T21:00:04Z",
+              "updatedAt": "2022-05-05T21:00:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845eO9s",
+          "commit": {
+            "abbreviatedOid": "941dae4"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T06:32:37Z",
+          "updatedAt": "2022-05-06T06:32:38Z",
+          "comments": [
+            {
+              "originalPosition": 86,
+              "body": "ISTM that this MUST is only enforceable for registered (uint) keys where the registration procedure imposes the check.",
+              "createdAt": "2022-05-06T06:32:37Z",
+              "updatedAt": "2022-05-06T06:32:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845eQ_7",
+          "commit": {
+            "abbreviatedOid": "941dae4"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T06:44:26Z",
+          "updatedAt": "2022-05-06T06:44:26Z",
+          "comments": [
+            {
+              "originalPosition": 86,
+              "body": "Indeed, but interoperability requirements don't need to be \"enforceable\"...",
+              "createdAt": "2022-05-06T06:44:26Z",
+              "updatedAt": "2022-05-06T06:44:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845el04",
+          "commit": {
+            "abbreviatedOid": "cefc6ed"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T08:15:47Z",
+          "updatedAt": "2022-05-06T08:15:47Z",
+          "comments": [
+            {
+              "originalPosition": 232,
+              "body": "Agree, and since you addressed this in [2eac975](https://github.com/core-wg/core-problem-details/pull/16/commits/2eac97594186e4cc158e840d093412b6dedcb84f) we can resolve this comment.",
+              "createdAt": "2022-05-06T08:15:47Z",
+              "updatedAt": "2022-05-06T08:15:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845emDJ",
+          "commit": {
+            "abbreviatedOid": "941dae4"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T08:16:38Z",
+          "updatedAt": "2022-05-06T08:16:38Z",
+          "comments": [
+            {
+              "originalPosition": 86,
+              "body": "Sometimes one needs to state the obvious \ud83e\udd23 ",
+              "createdAt": "2022-05-06T08:16:38Z",
+              "updatedAt": "2022-05-06T08:16:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845fU_G",
+          "commit": {
+            "abbreviatedOid": "941dae4"
+          },
+          "author": "chrysn",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T11:19:05Z",
+          "updatedAt": "2022-05-06T11:19:06Z",
+          "comments": [
+            {
+              "originalPosition": 131,
+              "body": "If we allow URIs in the key, I'm afraid we're back to where we can't easily paint a way toward CoRAL convertability (see also my comments during the last interim).",
+              "createdAt": "2022-05-06T11:19:05Z",
+              "updatedAt": "2022-05-06T11:19:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845fXXn",
+          "commit": {
+            "abbreviatedOid": "941dae4"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T11:29:56Z",
+          "updatedAt": "2022-05-06T11:29:56Z",
+          "comments": [
+            {
+              "originalPosition": 131,
+              "body": "The URI form is for allowing private use without risks of tainting the global/registered world in case of leakage.",
+              "createdAt": "2022-05-06T11:29:56Z",
+              "updatedAt": "2022-05-06T11:29:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845gAyF",
+          "commit": {
+            "abbreviatedOid": "941dae4"
+          },
+          "author": "chrysn",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T13:55:56Z",
+          "updatedAt": "2022-05-06T13:55:56Z",
+          "comments": [
+            {
+              "originalPosition": 131,
+              "body": "If that's just about replacing private-use uint numbers, that's fine with me (because there is no expectation of convertability with private-use numbers either); maybe I missed it or maybe it can be phrased more explicitly.",
+              "createdAt": "2022-05-06T13:55:56Z",
+              "updatedAt": "2022-05-06T13:55:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845gIzp",
+          "commit": {
+            "abbreviatedOid": "941dae4"
+          },
+          "author": "chrysn",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T14:19:51Z",
+          "updatedAt": "2022-05-06T14:19:52Z",
+          "comments": [
+            {
+              "originalPosition": 255,
+              "body": "```suggestion\r\nconsumers of Concise Problem Details are more tightly integrated.\r\nThe URI form thus serves a similar function as \"private use\" numbers would serve if such a range were registered for the unsigned integers.\r\n```",
+              "createdAt": "2022-05-06T14:19:51Z",
+              "updatedAt": "2022-05-06T14:19:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845h8F5",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T21:20:34Z",
+          "updatedAt": "2022-05-06T21:20:35Z",
+          "comments": [
+            {
+              "originalPosition": 745,
+              "body": "```suggestion\r\nThe following example shows how the Hebrew-language string \"\u05e9\u05dc\u05d5\u05dd\" is encoded. Note the \"rtl\" direction expressed by setting the third element in the array to \"true\".\r\n\r\n~~~ cbor-diag\r\n38([\"he\", \"\u05e9\u05dc\u05d5\u05dd\", true])\r\n~~~\r\n\r\n~~~ cbor-pretty\r\nd8 26                     # tag(38)\r\n   83                     # array(3)\r\n      62                  # text(2)\r\n         6865             # \"he\"\r\n      68                  # text(8)\r\n         d7a9d79cd795d79d # \"\\xD7\\xA9\\xD7\\x9C\\xD7\\x95\\xD7\\x9D\"\r\n      f5                  # primitive(21)\r\n~~~\r\n```",
+              "createdAt": "2022-05-06T21:20:34Z",
+              "updatedAt": "2022-05-06T21:53:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845h83M",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T21:25:56Z",
+          "updatedAt": "2022-05-06T21:25:56Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "This line does not work on my machine `\u00af\\_(\u30c4)_/\u00af`\r\n",
+              "createdAt": "2022-05-06T21:25:56Z",
+              "updatedAt": "2022-05-06T21:25:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845h-OL",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T21:34:41Z",
+          "updatedAt": "2022-05-06T21:34:41Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "ah, and on CircleCI too (the same way as chez moi):\r\n```\r\ncat draft-ietf-core-problem-details.md  | kramdown-rfc2629 --v3 | lib/add-note.py | xml2rfc -q -s 'Setting consensus=\"true\" for IETF STD document' --rfc-base-url https://www.rfc-editor.org/rfc/ --id-base-url https://datatracker.ietf.org/doc/html/ --cache=/home/idci/.cache/xml2rfc --v2v3 /dev/stdin -o /dev/stdout >draft-ietf-core-problem-details.xml\r\n*** attributes left {\"v\"=>3}!\r\n---\r\n- Invalid extension stop tag for 'nomarkdown'  found on line 1005 - ignoring it\r\n- No stop tag for extension 'nomarkdown' found on line 814 - ignoring it\r\n- Found invalidly used HTML closing tag for 'section' on line 815\r\n- Found invalidly used HTML closing tag for 'back' on line 817\r\n- Found invalidly used HTML closing tag for 'rfc' on line 1003\r\n- Invalid extension stop tag for 'nomarkdown'  found on line 1005 - ignoring it\r\nError: Unable to parse the XML document: /dev/stdin\r\n /dev/stdin: Line 1202: Premature end of data in tag section line 1000\r\nmake: *** [lib/main.mk:70: draft-ietf-core-problem-details.xml] Error 1\r\nmake: *** Deleting file 'draft-ietf-core-problem-details.xml'\r\n\r\nExited with code exit status 2\r\n```",
+              "createdAt": "2022-05-06T21:34:41Z",
+              "updatedAt": "2022-05-06T21:34:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845h-c8",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T21:36:24Z",
+          "updatedAt": "2022-05-06T21:36:25Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "Do not use circleci.\r\n\r\nDo update kramdown-rfc:\r\n\r\n`gem update kramdown-rfc`\r\n\r\n",
+              "createdAt": "2022-05-06T21:36:24Z",
+              "updatedAt": "2022-05-06T21:36:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845iAOU",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T21:48:48Z",
+          "updatedAt": "2022-05-06T21:48:49Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "uhm:\r\n```\r\n\u256d\u2500~/Documents/github.com/core-wg/core-problem-details on 3gpp-stopgap-unbundled\u2718\u2718\u2718\r\n\u2570\u2500\u00b1 gem update kramdown-rfc\r\nUpdating installed gems\r\nNothing to update\r\n```",
+              "createdAt": "2022-05-06T21:48:49Z",
+              "updatedAt": "2022-05-06T21:48:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845iCYd",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T22:05:53Z",
+          "updatedAt": "2022-05-06T22:05:53Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "kramdown-rfc --version should give you 1.6.8",
+              "createdAt": "2022-05-06T22:05:53Z",
+              "updatedAt": "2022-05-06T22:05:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845iCrW",
+          "commit": {
+            "abbreviatedOid": "71db5d1"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T22:08:27Z",
+          "updatedAt": "2022-05-06T22:08:30Z",
+          "comments": [
+            {
+              "originalPosition": 133,
+              "body": "more splendid ascii art\r\n\r\n```suggestion\r\n.--------.          .--------.\r\n|  CoAP  |          |  CoAP  |\r\n| Client |          | Server |\r\n'----+---'          '---+----'\r\n     |                  |\r\n     | Request          |\r\n     o----------------->|\r\n     |                  | (failure)\r\n     |<-----------------o\r\n     |   Error Response |\r\n     |      with a CBOR |\r\n     | data item giving |\r\n     |  Problem Details |\r\n     |                  |\r\n```",
+              "createdAt": "2022-05-06T22:08:28Z",
+              "updatedAt": "2022-05-06T22:08:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845iDWE",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T22:14:40Z",
+          "updatedAt": "2022-05-06T22:14:40Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "Any luck with that?",
+              "createdAt": "2022-05-06T22:14:40Z",
+              "updatedAt": "2022-05-06T22:14:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo845iDip",
+          "commit": {
+            "abbreviatedOid": "e4d1dd2"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-06T22:16:33Z",
+          "updatedAt": "2022-05-06T22:16:34Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "It was returning version 1.5.25, but gem update was happy with the status quo.  I have uninstalled and installed again and now I'm running 1.6.8 which works like a charm.",
+              "createdAt": "2022-05-06T22:16:33Z",
+              "updatedAt": "2022-05-06T22:16:34Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOD7eoo844MPW0",
+      "title": "Wglc processing",
+      "url": "https://github.com/core-wg/core-problem-details/pull/18",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-05-20T13:33:40Z",
+      "updatedAt": "2022-05-25T14:37:53Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "637d4c8a5a2ccd32b5c5f2375187474c9f429ec8",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "wglc-processing",
+      "headRefOid": "24091dfc3a981a376745f87fe22f5894164b39f8",
+      "closedAt": "2022-05-25T14:37:53Z",
+      "mergedAt": "2022-05-25T14:37:53Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "813f237f67bd0633b606d1e2c03be35870d42d10"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo846bVMv",
+          "commit": {
+            "abbreviatedOid": "fbb939f"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-20T14:49:21Z",
+          "updatedAt": "2022-05-20T14:58:14Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "\u2764\ufe0f ",
+              "createdAt": "2022-05-20T14:49:21Z",
+              "updatedAt": "2022-05-20T14:58:14Z"
+            },
+            {
+              "originalPosition": 197,
+              "body": "CDDL type should be text / tag38",
+              "createdAt": "2022-05-20T14:53:22Z",
+              "updatedAt": "2022-05-20T14:58:14Z"
+            },
+            {
+              "originalPosition": 196,
+              "body": "Just a note of colour.  What the HTTPbis WG has in its [style guide](https://httpwg.org/admin/editors/style-guide#self-references) about references to self is pretty cute.\r\n\r\nBTW, CoRE should have a similar document in the core-wg pages :-)",
+              "createdAt": "2022-05-20T14:56:02Z",
+              "updatedAt": "2022-05-20T15:31:50Z"
+            },
+            {
+              "originalPosition": 251,
+              "body": "Maybe we could stick a ref to 8075 here, noting that there may be some sort of URI mapping involved for the `instance` field to make it usable cross-proxy.",
+              "createdAt": "2022-05-20T14:58:08Z",
+              "updatedAt": "2022-05-23T10:02:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo846bbuO",
+          "commit": {
+            "abbreviatedOid": "fbb939f"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-20T15:06:14Z",
+          "updatedAt": "2022-05-20T15:06:15Z",
+          "comments": [
+            {
+              "originalPosition": 197,
+              "body": "Sorry, I was too slow...\r\n",
+              "createdAt": "2022-05-20T15:06:14Z",
+              "updatedAt": "2022-05-20T15:06:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo846f_zQ",
+          "commit": {
+            "abbreviatedOid": "9c08121"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-23T09:44:58Z",
+          "updatedAt": "2022-05-23T09:44:59Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "```suggestion\r\n{: #cpdk title=\"Initial Entries in the Custom Problem Detail Key registry\"}\r\n```",
+              "createdAt": "2022-05-23T09:44:59Z",
+              "updatedAt": "2022-05-23T09:44:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo846gAly",
+          "commit": {
+            "abbreviatedOid": "9c08121"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-05-23T09:47:05Z",
+          "updatedAt": "2022-05-23T09:47:05Z",
+          "comments": [
+            {
+              "originalPosition": 210,
+              "body": "Not an incorrect change, but makes we wonder: captions tend to be telegram style (not the app :-), so leaving out articles generally should be OK.",
+              "createdAt": "2022-05-23T09:47:05Z",
+              "updatedAt": "2022-05-23T09:47:05Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOD7eoo844UNgc",
+      "title": "Editorial suggestions",
+      "url": "https://github.com/core-wg/core-problem-details/pull/19",
+      "state": "MERGED",
+      "author": "akeranen",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Couple of editorial suggestions based on WGLC review",
+      "createdAt": "2022-05-23T19:21:11Z",
+      "updatedAt": "2022-05-23T19:49:52Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "wglc-processing",
+      "baseRefOid": "939184b3bb27dad8ef8eb7aa4fa53f036a0e6348",
+      "headRepository": "akeranen/core-problem-details",
+      "headRefName": "patch-1",
+      "headRefOid": "84beee4b7822a26bd7d5caf63f5954bfa548999b",
+      "closedAt": "2022-05-23T19:49:52Z",
+      "mergedAt": "2022-05-23T19:49:52Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "625632ac1795c74df1793a5c634e5c910ede611e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo846jDBY",
+          "commit": {
+            "abbreviatedOid": "84beee4"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-05-23T19:40:15Z",
+          "updatedAt": "2022-05-23T19:40:15Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
+}
