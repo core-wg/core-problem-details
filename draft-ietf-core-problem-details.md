@@ -474,7 +474,7 @@ Reference:
 Initial entries in this sub-registry are as follows:
 
 | Key value | Name          |  Brief description                                                     | Reference |
-|      7807 | tunnel-7807   |  Carry RFC 7807 problem details in a Concise Problem Details data item | RFC XXXX   |
+|      7807 | tunnel-7807   |  Carry RFC 7807 problem details in a Concise Problem Details data item | RFC XXXX, {{comp7807}} |
 {: #cpdk title="Initial Entries in the Custom Problem Detail Key registry"}
 
 
