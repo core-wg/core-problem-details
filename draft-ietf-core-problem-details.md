@@ -138,7 +138,9 @@ The framework presented is largely inspired by the Problem Details for HTTP APIs
 
 ## Terminology and Requirements Language
 
-The terminology from {{-coap}} and {{-cbor}} applies.
+The terminology from {{-coap}}, {{-cbor}}, and {{-cddl}} applies; in particular CBOR
+diagnostic notation is defined in {{Section 8 of -cbor}} and {{Section G
+of -cddl}}.
 Readers are also expected to be familiar with the terminology from {{-http-problem}}.
 
 In this document, the structure of data is specified in CDDL {{-cddl}} {{-cddlplus}}.
@@ -319,8 +321,8 @@ purposes only and, even if dereferenceable in principle, it MUST NOT be
 dereferenced in the normal course of handling problem details (i.e., outside
 diagnostic/debugging procedures involving humans).
 
-An example of a custom extension using a URI as `custom-problem-detail-entries`
-key is shown in {{fig-example-custom-with-uri}}.
+An example that contains a custom extension using a URI as `custom-problem-detail-entries`
+key is shown in {{fig-example-custom-with-uri}} (in CBOR diagnostic notation).
 
 ~~~ cbor-diag
 {
@@ -632,7 +634,7 @@ Characters" in Section 23.9 of {{-unicode}}.
 Examples
 --------
 
-Examples in this section are given in CBOR diagnostic mode, and then
+Examples in this section are given in CBOR diagnostic notation first and then
 as a pretty-printed hexadecimal representation of the encoded item.
 
 The following example shows how the English-language string "Hello" is
