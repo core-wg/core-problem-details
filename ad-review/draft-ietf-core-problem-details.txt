@@ -316,9 +316,8 @@ Table of Contents
    be dereferenced in the normal course of handling problem details
    (i.e., outside diagnostic/debugging procedures involving humans).
 
-   An example that contains a custom extension using a URI as custom-
-   problem-detail-entries key is shown in Figure 3 (in CBOR diagnostic
-   notation).
+   Figure 3 shows an example (in CBOR diagnostic notation) of a custom
+   extension using a URI as custom-problem-detail-entries key.
 
       {
         / title /         -1: "title of the error",
