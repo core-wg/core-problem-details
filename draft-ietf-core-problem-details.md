@@ -321,8 +321,8 @@ purposes only and, even if dereferenceable in principle, it MUST NOT be
 dereferenced in the normal course of handling problem details (i.e., outside
 diagnostic/debugging procedures involving humans).
 
-An example that contains a custom extension using a URI as `custom-problem-detail-entries`
-key is shown in {{fig-example-custom-with-uri}} (in CBOR diagnostic notation).
+{{fig-example-custom-with-uri}} shows an example (in CBOR diagnostic notation)
+of a custom extension using a URI as `custom-problem-detail-entries` key.
 
 ~~~ cbor-diag
 {
