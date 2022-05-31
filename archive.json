@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-05-26T01:27:05.163421+00:00",
+  "timestamp": "2022-05-31T01:26:57.465407+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -52,6 +52,31 @@
       "name": "WGLC",
       "description": "working group last call reviews",
       "color": "006b75"
+    },
+    {
+      "name": "review",
+      "description": null,
+      "color": "b6d7a8"
+    },
+    {
+      "name": "comment",
+      "description": null,
+      "color": "b6d7a8"
+    },
+    {
+      "name": "discuss",
+      "description": "",
+      "color": "D93F0B"
+    },
+    {
+      "name": "needs-discussion",
+      "description": "",
+      "color": "7C0675"
+    },
+    {
+      "name": "has-pr",
+      "description": "",
+      "color": "062A86"
     }
   ],
   "issues": [
@@ -76,16 +101,24 @@
       "id": "MDU6SXNzdWU2MTgzNzIyMDU=",
       "title": "The \"x dash\" problem",
       "url": "https://github.com/core-wg/core-problem-details/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "thomas-fossati",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Context: RFC 6648, in particular the analysis in [Appendix B](https://tools.ietf.org/html/rfc6648#appendix-B)\r\n\r\nThe problem is if the producer never updates to the public format, consumers \u2013 not just CoAP clients but the whole logging pipeline \u2013 need to cope for an indefinite amount of time.\r\n\r\nUnfortunately, consumers don\u2019t seem to have much leverage.\r\n\r\nWe define a private-to-public migration plan from the onset, but to what extent is that effective in preventing the problem?\r\n\r\nWe need to provide discussion on strategies for minimising the risk of \u201ceternal pollution\u201d (e.g., use an automated software update mechanism.)\u2028",
       "createdAt": "2020-05-14T16:34:20Z",
-      "updatedAt": "2020-05-14T16:34:20Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2022-05-30T09:24:42Z",
+      "closedAt": "2022-05-30T09:24:42Z",
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "-04 of course still has a form of the x-dash problem (for custom problem details entries), but it is minimized as far as we can by strictly separating the \"play as I like\" space (URIs) from the registered space (numbers).  It is not clear how this can be further improved.",
+          "createdAt": "2022-05-30T09:24:42Z",
+          "updatedAt": "2022-05-30T09:24:42Z"
+        }
+      ]
     },
     {
       "number": 3,
@@ -376,7 +409,7 @@
       "id": "I_kwDOD7eoo85Ju_8Z",
       "title": "Marco's review",
       "url": "https://github.com/core-wg/core-problem-details/issues/17",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "thomas-fossati",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -385,7 +418,174 @@
       ],
       "body": "https://mailarchive.ietf.org/arch/msg/core/7_Oqt82j4tl69IG6--FrSoRN8uQ/\r\n\r\n```\r\n[Section 1.1]\r\n\r\n* Please add the usual remark \"Readers are expected to be familiar with ...\"\r\n\r\n\r\n[Section 2]\r\n\r\n* The caption of Figure 2 can better say \"Concise Problem Details Data \r\nItem\".\r\n\r\n* The definition of the 'title' entry says: \"It SHOULD NOT change from \r\noccurrence to occurrence of the problem.\"\r\n\r\n    Do you mean \"of the same problem\" ?\r\n\r\n* The definition of 'response-code' can be expanded to also point to \r\nSection 3 of RFC 7252, and explicitly say that the response code here is \r\nexactly the value of the 'Code' field in the header of the CoAP \r\nresponse. This would complement the statement and example in the last \r\nparagraph of the section.\r\n\r\n* When defining the entry 'response-code', it is good to have a pointer \r\nalso to Section 3.2 of RFC 8132, thus covering also 4.09 and 4.22.\r\n\r\n* \"Note that, unlike [RFC7807], Concise Problem Details data items have \r\nno explicit type.\"\r\n\r\nConsistently, please consider the following changes to avoid possible \r\nconfusion:\r\n\r\n    - In Section 1, use \"problem classes\" rather than \"problem types\".\r\n\r\n    - In Section 2, use \"summary of the problem class\" rather than \r\n\"summary of the problem type\" when defining the 'title' entry. A few \r\nparagraphs below, \"shorthand for the category of the error\" can also \r\nbecome \"shorthand for the class of the error\".\r\n\r\n    - In Section 3, use \"generic problem class container\" rather than \r\n\"generic problem type container\".\r\n\r\n    - In Section 5.1, as to the \"Brief description\" for 'title' in Table \r\n1, use \"problem class\" rather than \"problem type\".\r\n\r\n\r\n[Section 3.1]\r\n\r\n* \"Consumers of a Concise Problem Details instance MUST ignore ...\"\r\n\r\n    I think it is better to use \"data item\" rather than \"instance\". That \r\nwould be consistent with the text in other sections and would avoid \r\nconfusion with the 'instance' entry.\r\n\r\n\r\n[Section 3.2]\r\n\r\n* \"Consumers of a Concise Problem Details instance MUST ignore ...\"\r\n\r\n    See the comment above about using \"data item\" rather than \"instance\".\r\n\r\n* Is it admitted to change the definition of an already existing Custom \r\nProblem Details entry, by updating the related documentation? Or is it \r\nsomething to discourage or even forbid, rather preferring a new entry to \r\nbe defined altogether?\r\n\r\n\r\n[Section 5.1]\r\n\r\n* For 'title' and 'detail', shouldn't the CDDL Type be \"text/array\", \r\nrather than \"text\"? If tag 38 is used, that applies to an array, as per \r\nAppendix A.2.\r\n\r\n\r\n[Nits]\r\n\r\n* Section 3.1, s/so they never can/so they can never\r\n\r\n* Section 3.2, s/the nested map any/the nested map, any\r\n\r\n* Section 3.2, s/for extension that/for extensions that\r\n\r\n* Section 3.2, s/compact representation, in/compact representation. In\r\n\r\n* Section 3.2, s/principle, MUST NOT be/principle, it MUST NOT be\r\n\r\n* Section 5.1, s/Entries in Standard/Entries in the Standard\r\n\r\n* Section 5.2, s/Entries in Custom/Entries in the Custom\r\n\r\n* Table 1/2/3, s/RFCXXXX/RFC XXXX\r\n\r\n* Appendix B (2 instances), s/Concise Problem Details item/Concise \r\nProblem Details data item\r\n\r\n* Appendix B (2 instances), s/Custom Problem Detail entry/Custom Problem \r\nDetails entry\r\n```",
       "createdAt": "2022-05-16T12:08:05Z",
-      "updatedAt": "2022-05-16T12:08:13Z",
+      "updatedAt": "2022-05-30T09:22:48Z",
+      "closedAt": "2022-05-30T09:22:48Z",
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "Closed by #18.",
+          "createdAt": "2022-05-30T09:22:48Z",
+          "updatedAt": "2022-05-30T09:22:48Z"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOD7eoo85KpqNY",
+      "title": "SHOULD",
+      "url": "https://github.com/core-wg/core-problem-details/issues/21",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "review",
+        "comment",
+        "needs-discussion"
+      ],
+      "body": "_Comment by @fpalombini_\n\n[Section 2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-2):\n\n> ~~~ \n A short, human-readable summary of the problem shape.  It SHOULD\n NOT change from occurrence to occurrence of the same problem\n shape.\n~~~\nNeeds some context around why this is a SHOULD and what are the reasonable cases and consequences of this recommendation not being followed.\n\n",
+      "createdAt": "2022-05-30T09:12:43Z",
+      "updatedAt": "2022-05-30T09:32:21Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "(w/ TF:)\r\n\r\nThe current text \"SHOULD be stable across instances\" is copied from RFC 7807.\r\nThis made sense when this was basically a human readable version of type, i.e., a shorthand for\r\nthe problem type. \r\nBut the problem type has been subsumed by the problem shape.\r\nProbably better to cut short at \"A short, human-readable summary of the problem shape.\"\r\nMaybe we could add \"SHOULD not try to summarize the information given with the problem details\", i.e., the summary might include that the account does not have enough money, but not how much money it has and how much would be needed.",
+          "createdAt": "2022-05-30T09:30:21Z",
+          "updatedAt": "2022-05-30T09:30:21Z"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOD7eoo85KpqOh",
+      "title": "Untagged text strings for human readable text",
+      "url": "https://github.com/core-wg/core-problem-details/issues/22",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "review",
+        "comment",
+        "needs-discussion"
+      ],
+      "body": "_Comment by @fpalombini_\n\n[Section 2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-2):\n\n> Both \"title\" and \"detail\" can use either an unadorned CBOR text string (text) or a language-tagged text string (tag38); see Appendix A for the definition of the latter.\n\nI have a hard time motivating why this can be unadorned CBOR text string, given that these two fields are always human-readable text. Maybe we need to add a default, i.e. that when text used, that is to be interpreted as English language is used.\n\n",
+      "createdAt": "2022-05-30T09:12:46Z",
+      "updatedAt": "2022-05-30T09:34:13Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "(w/ TF:)\r\n\r\nmaking \"foo\" a shorthand for 38([\"en\", \"foo\", false]) makes sense in the Anglo-American dominated world we live in.\r\n \r\nDetails (en? en-US?) need to be discussed though.",
+          "createdAt": "2022-05-30T09:34:04Z",
+          "updatedAt": "2022-05-30T09:34:04Z"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOD7eoo85KpqO5",
+      "title": "More examples",
+      "url": "https://github.com/core-wg/core-problem-details/issues/23",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "wontfix",
+        "review",
+        "comment"
+      ],
+      "body": "_Comment by @fpalombini_\n\nIt would be nice with an example in [Section 3.1](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.1) as well.\n\n",
+      "createdAt": "2022-05-30T09:12:47Z",
+      "updatedAt": "2022-05-30T09:35:06Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "I\u2019m not sure we actually need one (there are 5 predefined now).\r\nInventing one always has this problem that people start using it from the example, so there is a threshold of usefulness before one includes an example that is not actually registered.\r\n",
+          "createdAt": "2022-05-30T09:35:05Z",
+          "updatedAt": "2022-05-30T09:35:05Z"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "I_kwDOD7eoo85KpqPU",
+      "title": "Example's format",
+      "url": "https://github.com/core-wg/core-problem-details/issues/24",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "review",
+        "comment",
+        "has-pr"
+      ],
+      "body": "_Comment by @fpalombini_\n\n[Section 3.2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.2):\n\n> An example of a custom extension using a URI as custom-problem- detail-entries key is shown in Figure 3.\n\nPlease explicitly state that the example (or examples if you add one in [Section 3.1](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.1)) uses CBOR diagnostic notation.\n\n",
+      "createdAt": "2022-05-30T09:12:49Z",
+      "updatedAt": "2022-05-30T09:36:13Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "Fixed in #20.",
+          "createdAt": "2022-05-30T09:35:42Z",
+          "updatedAt": "2022-05-30T09:35:42Z"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOD7eoo85KpqP5",
+      "title": "\"like this\"",
+      "url": "https://github.com/core-wg/core-problem-details/issues/25",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "review",
+        "comment"
+      ],
+      "body": "_Comment by @fpalombini_\n\n[Section 3.2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.2):\n\n> ~~~ \n   /example value 4711 not actually registered like this:/\n~~~\nI don't get the sentence above - if this is to highlight that this is an example and that the value 4711 is not actually registered, I think this is redundant (and you could also add that in the Figure caption rather than in the example's text).\n\n",
+      "createdAt": "2022-05-30T09:12:50Z",
+      "updatedAt": "2022-05-30T09:38:09Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "See #23: The danger that people are just blindly copying an example is just too high.  \r\nSo we would prefer to keep this redundant comment in.\r\nWe could improve the wording of the comment.",
+          "createdAt": "2022-05-30T09:38:09Z",
+          "updatedAt": "2022-05-30T09:38:09Z"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOD7eoo85KpqQW",
+      "title": "Reference for tunnel-7807 registration",
+      "url": "https://github.com/core-wg/core-problem-details/issues/26",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "review",
+        "comment",
+        "has-pr"
+      ],
+      "body": "_Comment by @fpalombini_\n\n[Section 5.2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-5.2):\n\n> ~~~ \n +=======+=============+===========================+===========+\n | 7807  | tunnel-7807 | Carry RFC 7807 problem    | RFC XXXX  |\n |       |             | details in a Concise      |           |\n |       |             | Problem Details data item |           |\n +-------+-------------+---------------------------+-----------+\n~~~\nPlease change the reference to \"RFC XXXX, Appendix B\".\n\n",
+      "createdAt": "2022-05-30T09:12:51Z",
+      "updatedAt": "2022-05-30T09:37:08Z",
       "closedAt": null,
       "comments": []
     }
@@ -1812,6 +2012,66 @@
           "body": "",
           "createdAt": "2022-05-23T19:40:15Z",
           "updatedAt": "2022-05-23T19:40:15Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOD7eoo844o0k5",
+      "title": "Ad review",
+      "url": "https://github.com/core-wg/core-problem-details/pull/20",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Start collecting changes from AD review",
+      "createdAt": "2022-05-29T09:38:21Z",
+      "updatedAt": "2022-05-29T16:00:53Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "813f237f67bd0633b606d1e2c03be35870d42d10",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "ad-review",
+      "headRefOid": "fad0c68e16e5364c5e154b60768bea28d3ecccd3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo8467Uu0",
+          "commit": {
+            "abbreviatedOid": "ccbbd69"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "LGTM.  I've left a small editorial suggestion.",
+          "createdAt": "2022-05-29T14:31:54Z",
+          "updatedAt": "2022-05-29T14:32:31Z",
+          "comments": [
+            {
+              "originalPosition": 18,
+              "body": "the editorial flow is a bit sub-optimal.  What about:\r\n\r\n```suggestion\r\n{{fig-example-custom-with-uri}} shows an example (in CBOR diagnostic notation)\r\nof a custom extension using a URI as `custom-problem-detail-entries` key.\r\n```",
+              "createdAt": "2022-05-29T14:31:54Z",
+              "updatedAt": "2022-05-29T14:32:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8467XBk",
+          "commit": {
+            "abbreviatedOid": "fad0c68"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "\ud83d\udc4d",
+          "createdAt": "2022-05-29T16:00:53Z",
+          "updatedAt": "2022-05-29T16:00:53Z",
           "comments": []
         }
       ]
