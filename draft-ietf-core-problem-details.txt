@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 26 November 2022                         Universität Bremen TZI
-                                                             25 May 2022
+Expires: 10 December 2022                         Universität Bremen TZI
+                                                             8 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 November 2022.
+   This Internet-Draft will expire on 10 December 2022.
 
 Copyright Notice
 
@@ -129,8 +129,10 @@ Table of Contents
 
 1.1.  Terminology and Requirements Language
 
-   The terminology from [RFC7252] and [STD94] applies.  Readers are also
-   expected to be familiar with the terminology from [RFC7807].
+   The terminology from [RFC7252], [STD94], and [RFC8610] applies; in
+   particular CBOR diagnostic notation is defined in Section 8 of
+   [STD94] and Appendix G of [RFC8610].  Readers are also expected to be
+   familiar with the terminology from [RFC7807].
 
    In this document, the structure of data is specified in CDDL
    [RFC8610] [RFC9165].
@@ -314,8 +316,8 @@ Table of Contents
    be dereferenced in the normal course of handling problem details
    (i.e., outside diagnostic/debugging procedures involving humans).
 
-   An example of a custom extension using a URI as custom-problem-
-   detail-entries key is shown in Figure 3.
+   Figure 3 shows an example (in CBOR diagnostic notation) of a custom
+   extension using a (made-up) URI as custom-problem-detail-entries key.
 
       {
         / title /         -1: "title of the error",
@@ -342,30 +344,31 @@ Table of Contents
 
    Obviously, an SDO like 3GPP can also easily register such a custom
    problem detail entry to receive a more efficient unsigned integer
-   key; the same example but using a registered unsigned int as custom-
-   problem-detail-entries key is shown in Figure 4.
+   key; Figure 4 shows how the same example would look like using a
+   (made-up) registered unsigned int as custom-problem-detail-entries
+   key:
 
-      {
-        / title /         -1: "title of the error",
-        / detail /        -2: "detailed information about the error",
-        / instance /      -3: "coaps://pd.example/FA317434",
-        / response-code / -4: 128, / 4.00 /
+     {
+       / title /         -1: "title of the error",
+       / detail /        -2: "detailed information about the error",
+       / instance /      -3: "coaps://pd.example/FA317434",
+       / response-code / -4: 128, / 4.00 /
 
-        /example value 4711 not actually registered like this:/
-        4711: {
-          / cause /  0: "machine readable error cause",
-          / invalidParams / 1: [
-            [
-              / param / "first parameter name",
-              / reason / "must be a positive integer"
-            ],
-            [
-              / param / "second parameter name"
-            ]
-          ],
-          / supportedFeatures / 2: "d34db33f"
-        }
-      }
+       /4711 is made-up example key that is not actually registered:/
+       4711: {
+         / cause /  0: "machine readable error cause",
+         / invalidParams / 1: [
+           [
+             / param / "first parameter name",
+             / reason / "must be a positive integer"
+           ],
+           [
+             / param / "second parameter name"
+           ]
+         ],
+         / supportedFeatures / 2: "d34db33f"
+       }
+     }
 
        Figure 4: Example Extension with unsigned int (registered) key
 
@@ -484,9 +487,9 @@ Table of Contents
       | Key   | Name        | Brief description         | Reference |
       | value |             |                           |           |
       +=======+=============+===========================+===========+
-      | 7807  | tunnel-7807 | Carry RFC 7807 problem    | RFC XXXX  |
-      |       |             | details in a Concise      |           |
-      |       |             | Problem Details data item |           |
+      | 7807  | tunnel-7807 | Carry RFC 7807 problem    | RFC XXXX, |
+      |       |             | details in a Concise      | Appendix  |
+      |       |             | Problem Details data item | B         |
       +-------+-------------+---------------------------+-----------+
 
          Table 2: Initial Entries in the Custom Problem Detail Key
@@ -780,8 +783,9 @@ A.2.  Detailed Semantics
 
 A.3.  Examples
 
-   Examples in this section are given in CBOR diagnostic mode, and then
-   as a pretty-printed hexadecimal representation of the encoded item.
+   Examples in this section are given in CBOR diagnostic notation first
+   and then as a pretty-printed hexadecimal representation of the
+   encoded item.
 
    The following example shows how the English-language string "Hello"
    is represented.
