@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 30 November 2022                         Universität Bremen TZI
-                                                             29 May 2022
+Expires: 10 December 2022                         Universität Bremen TZI
+                                                             8 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 November 2022.
+   This Internet-Draft will expire on 10 December 2022.
 
 Copyright Notice
 
@@ -317,7 +317,7 @@ Table of Contents
    (i.e., outside diagnostic/debugging procedures involving humans).
 
    Figure 3 shows an example (in CBOR diagnostic notation) of a custom
-   extension using a URI as custom-problem-detail-entries key.
+   extension using a (made-up) URI as custom-problem-detail-entries key.
 
       {
         / title /         -1: "title of the error",
@@ -344,30 +344,31 @@ Table of Contents
 
    Obviously, an SDO like 3GPP can also easily register such a custom
    problem detail entry to receive a more efficient unsigned integer
-   key; the same example but using a registered unsigned int as custom-
-   problem-detail-entries key is shown in Figure 4.
+   key; Figure 4 shows how the same example would look like using a
+   (made-up) registered unsigned int as custom-problem-detail-entries
+   key:
 
-      {
-        / title /         -1: "title of the error",
-        / detail /        -2: "detailed information about the error",
-        / instance /      -3: "coaps://pd.example/FA317434",
-        / response-code / -4: 128, / 4.00 /
+     {
+       / title /         -1: "title of the error",
+       / detail /        -2: "detailed information about the error",
+       / instance /      -3: "coaps://pd.example/FA317434",
+       / response-code / -4: 128, / 4.00 /
 
-        /example value 4711 not actually registered like this:/
-        4711: {
-          / cause /  0: "machine readable error cause",
-          / invalidParams / 1: [
-            [
-              / param / "first parameter name",
-              / reason / "must be a positive integer"
-            ],
-            [
-              / param / "second parameter name"
-            ]
-          ],
-          / supportedFeatures / 2: "d34db33f"
-        }
-      }
+       /4711 is made-up example key that is not actually registered:/
+       4711: {
+         / cause /  0: "machine readable error cause",
+         / invalidParams / 1: [
+           [
+             / param / "first parameter name",
+             / reason / "must be a positive integer"
+           ],
+           [
+             / param / "second parameter name"
+           ]
+         ],
+         / supportedFeatures / 2: "d34db33f"
+       }
+     }
 
        Figure 4: Example Extension with unsigned int (registered) key
 
