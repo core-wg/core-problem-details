@@ -138,7 +138,9 @@ The framework presented is largely inspired by the Problem Details for HTTP APIs
 
 ## Terminology and Requirements Language
 
-The terminology from {{-coap}} and {{-cbor}} applies.
+The terminology from {{-coap}}, {{-cbor}}, and {{-cddl}} applies; in particular CBOR
+diagnostic notation is defined in {{Section 8 of -cbor}} and {{Section G
+of -cddl}}.
 Readers are also expected to be familiar with the terminology from {{-http-problem}}.
 
 In this document, the structure of data is specified in CDDL {{-cddl}} {{-cddlplus}}.
@@ -319,8 +321,8 @@ purposes only and, even if dereferenceable in principle, it MUST NOT be
 dereferenced in the normal course of handling problem details (i.e., outside
 diagnostic/debugging procedures involving humans).
 
-An example of a custom extension using a URI as `custom-problem-detail-entries`
-key is shown in {{fig-example-custom-with-uri}}.
+{{fig-example-custom-with-uri}} shows an example (in CBOR diagnostic notation)
+of a custom extension using a (made-up) URI as `custom-problem-detail-entries` key.
 
 ~~~ cbor-diag
 {
@@ -349,9 +351,9 @@ key is shown in {{fig-example-custom-with-uri}}.
 
 Obviously, an SDO like 3GPP can also easily register such a custom
 problem detail entry to receive a more efficient unsigned integer key;
-the same example but using a registered unsigned int as
-`custom-problem-detail-entries` key is shown in
-{{fig-example-custom-with-uint}}.
+{{fig-example-custom-with-uint}} shows how
+the same example would look like using a (made-up) registered unsigned int as
+`custom-problem-detail-entries` key:
 
 ~~~ cbor-diag
 {
@@ -360,7 +362,7 @@ the same example but using a registered unsigned int as
   / instance /      -3: "coaps://pd.example/FA317434",
   / response-code / -4: 128, / 4.00 /
 
-  /example value 4711 not actually registered like this:/
+  /4711 is made-up example key that is not actually registered:/
   4711: {
     / cause /  0: "machine readable error cause",
     / invalidParams / 1: [
@@ -472,7 +474,7 @@ Reference:
 Initial entries in this sub-registry are as follows:
 
 | Key value | Name          |  Brief description                                                     | Reference |
-|      7807 | tunnel-7807   |  Carry RFC 7807 problem details in a Concise Problem Details data item | RFC XXXX   |
+|      7807 | tunnel-7807   |  Carry RFC 7807 problem details in a Concise Problem Details data item | RFC XXXX, {{comp7807}} |
 {: #cpdk title="Initial Entries in the Custom Problem Detail Key registry"}
 
 
@@ -632,7 +634,7 @@ Characters" in Section 23.9 of {{-unicode}}.
 Examples
 --------
 
-Examples in this section are given in CBOR diagnostic mode, and then
+Examples in this section are given in CBOR diagnostic notation first and then
 as a pretty-printed hexadecimal representation of the encoded item.
 
 The following example shows how the English-language string "Hello" is
