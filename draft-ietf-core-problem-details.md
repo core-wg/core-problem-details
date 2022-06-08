@@ -322,7 +322,7 @@ dereferenced in the normal course of handling problem details (i.e., outside
 diagnostic/debugging procedures involving humans).
 
 {{fig-example-custom-with-uri}} shows an example (in CBOR diagnostic notation)
-of a custom extension using a URI as `custom-problem-detail-entries` key.
+of a custom extension using a (made-up) URI as `custom-problem-detail-entries` key.
 
 ~~~ cbor-diag
 {
@@ -351,9 +351,9 @@ of a custom extension using a URI as `custom-problem-detail-entries` key.
 
 Obviously, an SDO like 3GPP can also easily register such a custom
 problem detail entry to receive a more efficient unsigned integer key;
-the same example but using a registered unsigned int as
-`custom-problem-detail-entries` key is shown in
-{{fig-example-custom-with-uint}}.
+{{fig-example-custom-with-uint}} shows how
+the same example would look like using a (made-up) registered unsigned int as
+`custom-problem-detail-entries` key:
 
 ~~~ cbor-diag
 {
@@ -362,7 +362,7 @@ the same example but using a registered unsigned int as
   / instance /      -3: "coaps://pd.example/FA317434",
   / response-code / -4: 128, / 4.00 /
 
-  /example value 4711 not actually registered like this:/
+  /4711 is made-up example key that is not actually registered:/
   4711: {
     / cause /  0: "machine readable error cause",
     / invalidParams / 1: [
