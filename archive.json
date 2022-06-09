@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-05-31T01:26:57.465407+00:00",
+  "timestamp": "2022-06-09T01:19:39.591543+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -474,7 +474,7 @@
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-2):\n\n> Both \"title\" and \"detail\" can use either an unadorned CBOR text string (text) or a language-tagged text string (tag38); see Appendix A for the definition of the latter.\n\nI have a hard time motivating why this can be unadorned CBOR text string, given that these two fields are always human-readable text. Maybe we need to add a default, i.e. that when text used, that is to be interpreted as English language is used.\n\n",
       "createdAt": "2022-05-30T09:12:46Z",
-      "updatedAt": "2022-05-30T09:34:13Z",
+      "updatedAt": "2022-06-08T12:36:37Z",
       "closedAt": null,
       "comments": [
         {
@@ -483,6 +483,13 @@
           "body": "(w/ TF:)\r\n\r\nmaking \"foo\" a shorthand for 38([\"en\", \"foo\", false]) makes sense in the Anglo-American dominated world we live in.\r\n \r\nDetails (en? en-US?) need to be discussed though.",
           "createdAt": "2022-05-30T09:34:04Z",
           "updatedAt": "2022-05-30T09:34:04Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Details (en? en-US?) need to be discussed though.\r\n\r\nI wouldn't go down the rabbit hole of also picking the locale.  Too much stress \ud83d\ude05 \r\n\r\nI'm happy with the minimum required to satisfy the `langtag` rule, i.e., \"en\".\r\n",
+          "createdAt": "2022-06-08T12:36:37Z",
+          "updatedAt": "2022-06-08T12:36:37Z"
         }
       ]
     },
@@ -519,7 +526,7 @@
       "id": "I_kwDOD7eoo85KpqPU",
       "title": "Example's format",
       "url": "https://github.com/core-wg/core-problem-details/issues/24",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
@@ -530,8 +537,8 @@
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 3.2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.2):\n\n> An example of a custom extension using a URI as custom-problem- detail-entries key is shown in Figure 3.\n\nPlease explicitly state that the example (or examples if you add one in [Section 3.1](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.1)) uses CBOR diagnostic notation.\n\n",
       "createdAt": "2022-05-30T09:12:49Z",
-      "updatedAt": "2022-05-30T09:36:13Z",
-      "closedAt": null,
+      "updatedAt": "2022-06-08T08:52:39Z",
+      "closedAt": "2022-06-08T08:52:39Z",
       "comments": [
         {
           "author": "cabo",
@@ -539,6 +546,13 @@
           "body": "Fixed in #20.",
           "createdAt": "2022-05-30T09:35:42Z",
           "updatedAt": "2022-05-30T09:35:42Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "Closed by 7463ce1",
+          "createdAt": "2022-06-08T08:52:39Z",
+          "updatedAt": "2022-06-08T08:52:39Z"
         }
       ]
     },
@@ -547,7 +561,7 @@
       "id": "I_kwDOD7eoo85KpqP5",
       "title": "\"like this\"",
       "url": "https://github.com/core-wg/core-problem-details/issues/25",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
@@ -557,8 +571,8 @@
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 3.2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.2):\n\n> ~~~ \n   /example value 4711 not actually registered like this:/\n~~~\nI don't get the sentence above - if this is to highlight that this is an example and that the value 4711 is not actually registered, I think this is redundant (and you could also add that in the Figure caption rather than in the example's text).\n\n",
       "createdAt": "2022-05-30T09:12:50Z",
-      "updatedAt": "2022-05-30T09:38:09Z",
-      "closedAt": null,
+      "updatedAt": "2022-06-08T08:50:30Z",
+      "closedAt": "2022-06-08T08:50:30Z",
       "comments": [
         {
           "author": "cabo",
@@ -574,7 +588,7 @@
       "id": "I_kwDOD7eoo85KpqQW",
       "title": "Reference for tunnel-7807 registration",
       "url": "https://github.com/core-wg/core-problem-details/issues/26",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
@@ -585,9 +599,17 @@
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 5.2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-5.2):\n\n> ~~~ \n +=======+=============+===========================+===========+\n | 7807  | tunnel-7807 | Carry RFC 7807 problem    | RFC XXXX  |\n |       |             | details in a Concise      |           |\n |       |             | Problem Details data item |           |\n +-------+-------------+---------------------------+-----------+\n~~~\nPlease change the reference to \"RFC XXXX, Appendix B\".\n\n",
       "createdAt": "2022-05-30T09:12:51Z",
-      "updatedAt": "2022-05-30T09:37:08Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2022-06-08T08:51:45Z",
+      "closedAt": "2022-06-08T08:51:44Z",
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "Closed by ccbbd69",
+          "createdAt": "2022-06-08T08:51:44Z",
+          "updatedAt": "2022-06-08T08:51:44Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -2021,24 +2043,26 @@
       "id": "PR_kwDOD7eoo844o0k5",
       "title": "Ad review",
       "url": "https://github.com/core-wg/core-problem-details/pull/20",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Start collecting changes from AD review",
       "createdAt": "2022-05-29T09:38:21Z",
-      "updatedAt": "2022-05-29T16:00:53Z",
+      "updatedAt": "2022-06-08T08:50:29Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "813f237f67bd0633b606d1e2c03be35870d42d10",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "ad-review",
-      "headRefOid": "fad0c68e16e5364c5e154b60768bea28d3ecccd3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "e0209961be414fc37dcca27c882e23cef268faf0",
+      "closedAt": "2022-06-08T08:50:29Z",
+      "mergedAt": "2022-06-08T08:50:29Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2073,6 +2097,139 @@
           "createdAt": "2022-05-29T16:00:53Z",
           "updatedAt": "2022-05-29T16:00:53Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "PR_kwDOD7eoo845TkQb",
+      "title": "Changes based on opsdir review (Joel Jaeggli)",
+      "url": "https://github.com/core-wg/core-problem-details/pull/27",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-08T09:48:18Z",
+      "updatedAt": "2022-06-08T13:47:32Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "opsdir-review",
+      "headRefOid": "a5d416d0e5f2dc9618aef5d785a19681e246456a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo847kmCR",
+          "commit": {
+            "abbreviatedOid": "a5d416d"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-08T09:53:29Z",
+          "updatedAt": "2022-06-08T10:01:49Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "another exception is that of a node that needs to avoid to accidentally forward potentially privacy-sensitive info.",
+              "createdAt": "2022-06-08T09:53:29Z",
+              "updatedAt": "2022-06-08T10:03:14Z"
+            },
+            {
+              "originalPosition": 36,
+              "body": "It sounds like an pretty intricate way of just saying:\r\n```suggestion\r\nThe \"ignore-unknown rule\" discussed in the introduction to\r\n{{sec-new-attributes}} applies fully.\r\n```\r\nno? \ud83d\ude04 ",
+              "createdAt": "2022-06-08T10:01:41Z",
+              "updatedAt": "2022-06-08T10:01:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo847k5i1",
+          "commit": {
+            "abbreviatedOid": "a5d416d"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-08T10:58:05Z",
+          "updatedAt": "2022-06-08T10:58:05Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Well, this sentence is a lead-in to specifically discussing ignore-unknown *inside* a CPDe.\r\nSo I don't think the simplified form helps as much.",
+              "createdAt": "2022-06-08T10:58:05Z",
+              "updatedAt": "2022-06-08T10:58:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo847lBLy",
+          "commit": {
+            "abbreviatedOid": "a5d416d"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-08T11:24:29Z",
+          "updatedAt": "2022-06-08T11:24:30Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Removing _\"fully\"_ from the suggested text could do the trick?\r\n\r\nStepping back a bit: I have troubles making sense of _\"[...] can help with including additional information.\"_.\r\n\r\nI think what we are trying to tell the reader is: \"apply ignore-unknown when dealing with extensions found in CPDe\".  If so, the way the text flows is not conducive to quick and unambiguous grasp of the concept.\r\n\r\n",
+              "createdAt": "2022-06-08T11:24:29Z",
+              "updatedAt": "2022-06-08T11:24:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo847lhO6",
+          "commit": {
+            "abbreviatedOid": "a5d416d"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-08T13:01:12Z",
+          "updatedAt": "2022-06-08T13:01:12Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "I think we are trying to explain you don't have to overdo the evolution of a CPDe because you always can make a new one.",
+              "createdAt": "2022-06-08T13:01:12Z",
+              "updatedAt": "2022-06-08T13:01:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo847l5gE",
+          "commit": {
+            "abbreviatedOid": "a5d416d"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-08T13:47:31Z",
+          "updatedAt": "2022-06-08T13:47:32Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Then we probably should say exactly so :-)",
+              "createdAt": "2022-06-08T13:47:32Z",
+              "updatedAt": "2022-06-08T13:47:32Z"
+            }
+          ]
         }
       ]
     }
