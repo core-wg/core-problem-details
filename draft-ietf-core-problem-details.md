@@ -150,7 +150,7 @@ In this document, the structure of data is specified in CDDL {{-cddl}} {{-cddlpl
 # Basic Problem Details
 
 A Concise Problem Details data item is a CBOR data item with the following
-structure:
+structure (rules named starting with `tag38` are defined in {{tag38}}):
 
 ~~~ cddl
 problem-details = non-empty<{
@@ -159,6 +159,8 @@ problem-details = non-empty<{
   ? &(instance: -3) => ~uri
   ? &(response-code: -4) => uint .size 1
   ? &(base-uri: -5) => ~uri
+  ? &(base-lang: -6) => tag38-ltag
+  ? &(base-rtl: -7) => tag38-direction
   standard-problem-detail-entries
   custom-problem-detail-entries
 }>
@@ -173,7 +175,7 @@ custom-problem-detail-entries = (
 
 non-empty<M> = (M) .and ({ + any => any })
 
-oltext = text / tag38 ; see Appendix A for tag38
+oltext = text / tag38
 
 ~~~
 {: #cddl title="Structure of Concise Problem Details Data Item"}
@@ -210,9 +212,26 @@ The base-uri (key -5):
   relative URI references embedded in this Concise Problem Details
   data item.
 
+The base-lang (key -6):
+: The language-tag (tag38-ltag) that applies to the presentation of
+  unadorned text strings in this Concise Problem Details data item,
+  see {{tag38}}.
+
+The base-rtl (key -7):
+: The writing-direction (tag38-direction) that applies to the
+  presentation of unadorned text strings in this Concise Problem
+  Details data item, see {{tag38}}.
+
 Both "title" and "detail" can use either an unadorned CBOR text string
 (`text`) or a language-tagged text string (`tag38`); see {{tag38}} for
 the definition of the latter.
+Language tag and writing direction information for unadorned text
+strings are intended to be obtained from context; if that context
+needs to be saved or forwarded with a Concise Problem Details data
+item, "base-lang" and "base-rtl" can be used for that.
+If no such (explicitly saved or implicit) context information is
+available, unadorned text is interpreted with language-tag "en" and
+writing-direction "false" (ltr).
 
 The "title" string is advisory and included to give
 consumers a shorthand for the category (problem shape) of the error encountered.
@@ -440,12 +459,14 @@ reference:
 
 Initial entries in this sub-registry are as follows:
 
-| Key value | Name | CDDL Type | Brief description | Reference |
-| -1 | title | text or tag 38 | short, human-readable summary of the problem shape | RFC XXXX |
-| -2 | detail | text or tag 38  | human-readable explanation specific to this occurrence of the problem | RFC XXXX |
-| -3 | instance | ~uri | URI reference identifying specific occurrence of the problem | RFC XXXX |
-| -4 | response-code | uint .size 1 | CoAP response code | RFC XXXX |
-| -5 | base-uri | ~uri | Base URI | RFC XXXX |
+| Key value | Name          | CDDL Type       | Brief description                                                     | Reference |
+|        -1 | title         | text or tag 38  | short, human-readable summary of the problem shape                    | RFC XXXX  |
+|        -2 | detail        | text or tag 38  | human-readable explanation specific to this occurrence of the problem | RFC XXXX  |
+|        -3 | instance      | ~uri            | URI reference identifying specific occurrence of the problem          | RFC XXXX  |
+|        -4 | response-code | uint .size 1    | CoAP response code                                                    | RFC XXXX  |
+|        -5 | base-uri      | ~uri            | Base URI                                                              | RFC XXXX  |
+|        -6 | base-lang     | tag38-ltag      | Base language tag (see {{tag38}})                                       | RFC XXXX  |
+|        -7 | base-rtl      | tag38-direction | Base writing direction (see {{tag38}})                                  | RFC XXXX  |
 {: #spdk title="Initial Entries in the Standard Problem Detail Key registry"}
 
 ## Custom Problem Detail Key registry {#iana-cpdk}
