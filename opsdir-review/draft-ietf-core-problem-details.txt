@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 10 December 2022                         Universität Bremen TZI
-                                                             8 June 2022
+Expires: 13 December 2022                         Universität Bremen TZI
+                                                            11 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 December 2022.
+   This Internet-Draft will expire on 13 December 2022.
 
 Copyright Notice
 
@@ -271,9 +271,11 @@ Table of Contents
    Problem Detail entries, that they do not recognize ("ignore-unknown
    rule"); this allows problem details to evolve.  When storing the data
    item for future use or forwarding it to other consumers, it is
-   strongly RECOMMENDED to retain the unrecognized entries; an exception
+   strongly RECOMMENDED to retain the unrecognized entries; exceptions
    might be when storage/forwarding occurs in a different format/
-   protocol that cannot accommodate them.
+   protocol that cannot accommodate them, or when the storage/forwarding
+   function needs to filter out privacy-sensitive information and for
+   that needs to assume unrecognized entries might be privacy-sensitive.
 
 3.1.  Standard Problem Detail Entries
 
