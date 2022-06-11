@@ -191,8 +191,12 @@ a "problem shape" for short.
 {:vspace}
 The title (key -1):
 : A short, human-readable summary of the problem shape.
-  It SHOULD NOT change from occurrence to occurrence of the same
-  problem shape.
+  Beyond the shape of the problem, it is not intended to summarize all
+  the specific information given with the problem details.
+  For instance, the summary might include that an account does not
+  have enough money for a transaction to succeed, but not the detail
+  information such as the account number, how much money that account
+  has, and how much would be needed.
 
 The detail (key -2):
 : A human-readable explanation specific to this occurrence of the problem.
