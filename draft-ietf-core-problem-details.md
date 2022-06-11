@@ -277,8 +277,11 @@ Problem Detail entries, that they do not recognize ("ignore-unknown
 rule"); this allows problem details to evolve.
 When storing the data item for future use or forwarding it to other
 consumers, it is strongly RECOMMENDED to retain the unrecognized
-entries; an exception might be when storage/forwarding occurs in a
-different format/protocol that cannot accommodate them.
+entries; exceptions might be when storage/forwarding occurs in a
+different format/protocol that cannot accommodate them, or when the
+storage/forwarding function needs to filter out privacy-sensitive
+information and for that needs to assume unrecognized entries might be
+privacy-sensitive.
 
 ## Standard Problem Detail Entries {#new-spdk}
 
