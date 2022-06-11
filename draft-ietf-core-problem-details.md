@@ -395,20 +395,20 @@ entries are defined specifically to the identifier of that Custom Problem Detail
 entry, the documentation of which defines these internal entries,
 typically chosen to address a given application domain.
 
-When evolving Custom Problem Detail entry definitions, the
+When there is a need to evolve a Custom Problem Detail entry definition, the
 "ignore-unknown rule" discussed in the introduction to
-{{sec-new-attributes}} can help with including additional information.
+{{sec-new-attributes}} provides an easy way to include additional information.
 The assumption is that this is done in a backward and forward
 compatible way.
-Sometimes, Custom Problem Detail entries can evolve in a way where
+Sometimes, Custom Problem Detail entries may need to evolve in a way where
 forward compatibility by applying the "ignore-unknown rule" would not
-be appropriate: e.g., when needing to add a "must-understand" member,
+be appropriate: e.g., when adding a "must-understand" member,
 which can only
 be ignored at the peril of misunderstanding the Concise Problem
 Details data item ("false interoperability").
 In this case, a new Custom Problem Detail key can simply be
 registered for this case, keeping the old key backward and
-forward-compatible.
+forward compatible.
 
 # Security Considerations {#seccons}
 
