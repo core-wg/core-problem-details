@@ -745,3 +745,10 @@ For {{tag38}}, John Cowan and Doug Ewell are also to be acknowledged.
 The content of an earlier version of this appendix was also discussed
 in the "apps-discuss at ietf.org" and "ltru at ietf.org" mailing
 lists.
+More recently, the authors initiated a discussion about the handling
+of writing direction information in conjunction with language tags.
+That led to discussions within the W3C Internationalization Core
+Working Group.
+The authors would like to acknowledge that cross-organization
+cooperation and particular contributions from John Klensin and
+Addison Phillips.
