@@ -378,15 +378,6 @@ options (such as Accept or Proxy-Uri), there are special response
 codes (4.06 Not Acceptable, 5.05 Proxying Not Supported,
 respectively) to be sent instead of 4.02 Bad Option.
 
-For future compatibility, receivers are expected to ignore values that
-do not match the CDDL type given in this registration, as these might
-be used to provide more precise information about an option if the
-demand arises.  [^cabo1]
-
-[^cabo1]: I'm not so sure we should include this paragraph.  Why not
-    register a new key for this case if the old one can't be
-    understood anyway?
-
 ## Custom Problem Detail Entries {#new-cpdk}
 
 Applications may extend the Problem Details data item with
