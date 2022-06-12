@@ -73,6 +73,7 @@ Table of Contents
    2.  Basic Problem Details
    3.  Extending Concise Problem Details
      3.1.  Standard Problem Detail Entries
+       3.1.1.  Standard Problem Detail Entry: Unprocessed CoAP Option
      3.2.  Custom Problem Detail Entries
    4.  Security Considerations
    5.  IANA Considerations
@@ -315,6 +316,59 @@ Table of Contents
    global namespace that is not specific to a particular application
    domain.
 
+3.1.1.  Standard Problem Detail Entry: Unprocessed CoAP Option
+
+   Section 2 provides a number of generally applicable Standard Problem
+   Detail Entries.  The present section both registers another useful
+   Standard Problem Detail entry and serves as an example of a Standard
+   Problem Detail Entry registration, in the registration template
+   format that would be ready for registration.
+
+   |  Key Value:  TBD (assigned at registration)
+   |  
+   |  Name:  unprocessed-coap-option
+   |  
+   |  CDDL type:  one-or-more<uint>, where
+   |  
+   |     one-or-more<T> = T / [ 2* T ]
+   |  
+   |  Brief description:  Option number(s) of CoAP option(s) that were
+   |     not understood
+   |  
+   |  Specification reference:  Section 3.1.1 of RFC XXXX
+
+   The specification of the Standard Problem Detail entry referenced by
+   the above registration template follows:
+
+   The Standard Problem Detail entry unprocessed-coap-option provides
+   the option number(s) of CoAP option(s) present in the request that
+   could not be processed by the server.
+
+   This may be a critical option that the server is unaware of, or an
+   option the server is aware of but could not process (and chose not
+   to, or was not allowed to, ignore it).
+
+   The Concise Problem Details data item including this Standard Problem
+   Detail Entry can be used in fulfillment of the "SHOULD" requirement
+   in Section 5.4.1 of [RFC7252].
+
+   Several option numbers may be given in a list (in no particular
+   order), without any guarantee that the list is a complete
+   representation of all the problems in the request (as the server
+   might have stopped processing already at one of the problematic
+   options).  If an option with the given number was repeated, there is
+   no indication which of the values caused the error.
+
+   Clients need to expect seeing options in the list they did not send
+   in the request; this can happen if the request traversed a proxy that
+   added the option but did not act on the problem details response
+   being returned by the origin server.
+
+   Note that for a few special values of unprocessed CoAP options (such
+   as Accept or Proxy-Uri), there are special response codes (4.06 Not
+   Acceptable, 5.05 Proxying Not Supported, respectively) to be sent
+   instead of 4.02 Bad Option.
+
 3.2.  Custom Problem Detail Entries
 
    Applications may extend the Problem Details data item with additional
@@ -458,42 +512,61 @@ Table of Contents
 
    Initial entries in this sub-registry are as follows:
 
-   +=====+===============+=================+================+==========+
-   |Key  | Name          | CDDL Type       |Brief           |Reference |
-   |value|               |                 |description     |          |
-   +=====+===============+=================+================+==========+
-   |-1   | title         | text or tag 38  |short, human-   |RFC XXXX  |
-   |     |               |                 |readable summary|          |
-   |     |               |                 |of the problem  |          |
-   |     |               |                 |shape           |          |
-   +-----+---------------+-----------------+----------------+----------+
-   |-2   | detail        | text or tag 38  |human-readable  |RFC XXXX  |
-   |     |               |                 |explanation     |          |
-   |     |               |                 |specific to this|          |
-   |     |               |                 |occurrence of   |          |
-   |     |               |                 |the problem     |          |
-   +-----+---------------+-----------------+----------------+----------+
-   |-3   | instance      | ~uri            |URI reference   |RFC XXXX  |
-   |     |               |                 |identifying     |          |
-   |     |               |                 |specific        |          |
-   |     |               |                 |occurrence of   |          |
-   |     |               |                 |the problem     |          |
-   +-----+---------------+-----------------+----------------+----------+
-   |-4   | response-code | uint .size 1    |CoAP response   |RFC XXXX  |
-   |     |               |                 |code            |          |
-   +-----+---------------+-----------------+----------------+----------+
-   |-5   | base-uri      | ~uri            |Base URI        |RFC XXXX  |
-   +-----+---------------+-----------------+----------------+----------+
-   |-6   | base-lang     | tag38-ltag      |Base language   |RFC XXXX  |
-   |     |               |                 |tag (see        |          |
-   |     |               |                 |Appendix A)     |          |
-   +-----+---------------+-----------------+----------------+----------+
-   |-7   | base-rtl      | tag38-direction |Base writing    |RFC XXXX  |
-   |     |               |                 |direction (see  |          |
-   |     |               |                 |Appendix A)     |          |
-   +-----+---------------+-----------------+----------------+----------+
+   +=======+==============+=================+=============+===========+
+   | Key   | Name         | CDDL Type       | Brief       | Reference |
+   | value |              |                 | description |           |
+   +=======+==============+=================+=============+===========+
+   | -1    | title        | text / tag38    | short,      | RFC XXXX  |
+   |       |              |                 | human-      |           |
+   |       |              |                 | readable    |           |
+   |       |              |                 | summary of  |           |
+   |       |              |                 | the problem |           |
+   |       |              |                 | shape       |           |
+   +-------+--------------+-----------------+-------------+-----------+
+   | -2    | detail       | text / tag38    | human-      | RFC XXXX  |
+   |       |              |                 | readable    |           |
+   |       |              |                 | explanation |           |
+   |       |              |                 | specific to |           |
+   |       |              |                 | this        |           |
+   |       |              |                 | occurrence  |           |
+   |       |              |                 | of the      |           |
+   |       |              |                 | problem     |           |
+   +-------+--------------+-----------------+-------------+-----------+
+   | -3    | instance     | ~uri            | URI         | RFC XXXX  |
+   |       |              |                 | reference   |           |
+   |       |              |                 | identifying |           |
+   |       |              |                 | specific    |           |
+   |       |              |                 | occurrence  |           |
+   |       |              |                 | of the      |           |
+   |       |              |                 | problem     |           |
+   +-------+--------------+-----------------+-------------+-----------+
+   | -4    | response-    | uint .size 1    | CoAP        | RFC XXXX  |
+   |       | code         |                 | response    |           |
+   |       |              |                 | code        |           |
+   +-------+--------------+-----------------+-------------+-----------+
+   | -5    | base-uri     | ~uri            | Base URI    | RFC XXXX  |
+   +-------+--------------+-----------------+-------------+-----------+
+   | -6    | base-lang    | tag38-ltag      | Base        | RFC XXXX  |
+   |       |              |                 | language    |           |
+   |       |              |                 | tag (see    |           |
+   |       |              |                 | Appendix A) |           |
+   +-------+--------------+-----------------+-------------+-----------+
+   | -7    | base-rtl     | tag38-direction | Base        | RFC XXXX  |
+   |       |              |                 | writing     |           |
+   |       |              |                 | direction   |           |
+   |       |              |                 | (see        |           |
+   |       |              |                 | Appendix A) |           |
+   +-------+--------------+-----------------+-------------+-----------+
+   | TBD   | unprocessed- | one-or-         | Option      | RFC XXXX, |
+   |       | coap-option  | more<uint>      | number(s)   | Section   |
+   |       |              |                 | of CoAP     | 3.1.1     |
+   |       |              |                 | option(s)   |           |
+   |       |              |                 | that were   |           |
+   |       |              |                 | not         |           |
+   |       |              |                 | understood  |           |
+   +-------+--------------+-----------------+-------------+-----------+
 
-    Table 1: Initial Entries in the Standard Problem Detail Key registry
+   Table 1: Initial Entries in the Standard Problem Detail Key registry
 
 5.2.  Custom Problem Detail Key registry
 
