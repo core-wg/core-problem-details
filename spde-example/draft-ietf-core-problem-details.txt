@@ -369,14 +369,6 @@ Table of Contents
    Acceptable, 5.05 Proxying Not Supported, respectively) to be sent
    instead of 4.02 Bad Option.
 
-   For future compatibility, receivers are expected to ignore values
-   that do not match the CDDL type given in this registration, as these
-   might be used to provide more precise information about an option if
-   the demand arises.
-   // I'm not so sure we should include this paragraph.  Why not
-   // register a new key for this case if the old one can't be
-   // understood anyway?
-
 3.2.  Custom Problem Detail Entries
 
    Applications may extend the Problem Details data item with additional
