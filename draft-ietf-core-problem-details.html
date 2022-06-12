@@ -1314,7 +1314,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-3" class="pilcrow">�
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-basic-problem-details" class="section-name selfRef">Basic Problem Details</a>
       </h2>
 <p id="section-2-1">A Concise Problem Details data item is a CBOR data item with the following
-structure:<a href="#section-2-1" class="pilcrow">¶</a></p>
+structure (rules named starting with <code>tag38</code> are defined in <a href="#tag38" class="xref">Appendix A</a>):<a href="#section-2-1" class="pilcrow">¶</a></p>
 <span id="name-structure-of-concise-proble"></span><div id="cddl">
 <figure id="figure-2">
         <div id="section-2-2.1">
@@ -1325,6 +1325,8 @@ problem-details = non-empty&lt;{
   ? &amp;(instance: -3) =&gt; ~uri
   ? &amp;(response-code: -4) =&gt; uint .size 1
   ? &amp;(base-uri: -5) =&gt; ~uri
+  ? &amp;(base-lang: -6) =&gt; tag38-ltag
+  ? &amp;(base-rtl: -7) =&gt; tag38-direction
   standard-problem-detail-entries
   custom-problem-detail-entries
 }&gt;
@@ -1339,7 +1341,7 @@ custom-problem-detail-entries = (
 
 non-empty&lt;M&gt; = (M) .and ({ + any =&gt; any })
 
-oltext = text / tag38 ; see Appendix A for tag38
+oltext = text / tag38
 
 </pre>
 </div>
@@ -1390,11 +1392,32 @@ server for this occurrence of the problem.<a href="#section-2-5.8.1" class="pilc
 relative URI references embedded in this Concise Problem Details
 data item.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
 </dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.11">The base-lang (key -6):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.12">
+          <p id="section-2-5.12.1">The language-tag (tag38-ltag) that applies to the presentation of
+unadorned text strings in this Concise Problem Details data item,
+see <a href="#tag38" class="xref">Appendix A</a>.<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-5.13">The base-rtl (key -7):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-5.14">
+          <p id="section-2-5.14.1">The writing-direction (tag38-direction) that applies to the
+presentation of unadorned text strings in this Concise Problem
+Details data item, see <a href="#tag38" class="xref">Appendix A</a>.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
+</dd>
       <dd class="break"></dd>
 </dl>
 <p id="section-2-6">Both "title" and "detail" can use either an unadorned CBOR text string
 (<code>text</code>) or a language-tagged text string (<code>tag38</code>); see <a href="#tag38" class="xref">Appendix A</a> for
-the definition of the latter.<a href="#section-2-6" class="pilcrow">¶</a></p>
+the definition of the latter.
+Language tag and writing direction information for unadorned text
+strings are intended to be obtained from context; if that context
+needs to be saved or forwarded with a Concise Problem Details data
+item, "base-lang" and "base-rtl" can be used for that.
+If no such (explicitly saved or implicit) context information is
+available, unadorned text is interpreted with language-tag "en" and
+writing-direction "false" (ltr).<a href="#section-2-6" class="pilcrow">¶</a></p>
 <p id="section-2-7">The "title" string is advisory and included to give
 consumers a shorthand for the category (problem shape) of the error encountered.<a href="#section-2-7" class="pilcrow">¶</a></p>
 <p id="section-2-8">The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers <span class="bcp14">SHOULD NOT</span> parse the "detail" member for information; extensions (see <a href="#sec-new-attributes" class="xref">Section 3</a>) are more suitable and less error-prone ways to obtain such information.<a href="#section-2-8" class="pilcrow">¶</a></p>
@@ -1684,6 +1707,20 @@ with the policy "specification required" <span>[<a href="#RFC8126" class="xref">
               <td class="text-left" rowspan="1" colspan="1">base-uri</td>
               <td class="text-left" rowspan="1" colspan="1">~uri</td>
               <td class="text-left" rowspan="1" colspan="1">Base URI</td>
+              <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">-6</td>
+              <td class="text-left" rowspan="1" colspan="1">base-lang</td>
+              <td class="text-left" rowspan="1" colspan="1">tag38-ltag</td>
+              <td class="text-left" rowspan="1" colspan="1">Base language tag (see <a href="#tag38" class="xref">Appendix A</a>)</td>
+              <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">-7</td>
+              <td class="text-left" rowspan="1" colspan="1">base-rtl</td>
+              <td class="text-left" rowspan="1" colspan="1">tag38-direction</td>
+              <td class="text-left" rowspan="1" colspan="1">Base writing direction (see <a href="#tag38" class="xref">Appendix A</a>)</td>
               <td class="text-left" rowspan="1" colspan="1">RFC XXXX</td>
             </tr>
           </tbody>

@@ -146,7 +146,8 @@ Table of Contents
 2.  Basic Problem Details
 
    A Concise Problem Details data item is a CBOR data item with the
-   following structure:
+   following structure (rules named starting with tag38 are defined in
+   Appendix A):
 
    problem-details = non-empty<{
      ? &(title: -1) => oltext
@@ -154,6 +155,8 @@ Table of Contents
      ? &(instance: -3) => ~uri
      ? &(response-code: -4) => uint .size 1
      ? &(base-uri: -5) => ~uri
+     ? &(base-lang: -6) => tag38-ltag
+     ? &(base-rtl: -7) => tag38-direction
      standard-problem-detail-entries
      custom-problem-detail-entries
    }>
@@ -168,7 +171,7 @@ Table of Contents
 
    non-empty<M> = (M) .and ({ + any => any })
 
-   oltext = text / tag38 ; see Appendix A for tag38
+   oltext = text / tag38
 
           Figure 2: Structure of Concise Problem Details Data Item
 
@@ -208,9 +211,26 @@ Table of Contents
       resolve relative URI references embedded in this Concise Problem
       Details data item.
 
+   The base-lang (key -6):
+      The language-tag (tag38-ltag) that applies to the presentation of
+      unadorned text strings in this Concise Problem Details data item,
+      see Appendix A.
+
+   The base-rtl (key -7):
+      The writing-direction (tag38-direction) that applies to the
+      presentation of unadorned text strings in this Concise Problem
+      Details data item, see Appendix A.
+
    Both "title" and "detail" can use either an unadorned CBOR text
    string (text) or a language-tagged text string (tag38); see
-   Appendix A for the definition of the latter.
+   Appendix A for the definition of the latter.  Language tag and
+   writing direction information for unadorned text strings are intended
+   to be obtained from context; if that context needs to be saved or
+   forwarded with a Concise Problem Details data item, "base-lang" and
+   "base-rtl" can be used for that.  If no such (explicitly saved or
+   implicit) context information is available, unadorned text is
+   interpreted with language-tag "en" and writing-direction "false"
+   (ltr).
 
    The "title" string is advisory and included to give consumers a
    shorthand for the category (problem shape) of the error encountered.
@@ -433,33 +453,40 @@ Table of Contents
 
    Initial entries in this sub-registry are as follows:
 
-   +=======+===============+========+======================+===========+
-   | Key   | Name          | CDDL   | Brief                | Reference |
-   | value |               | Type   | description          |           |
-   +=======+===============+========+======================+===========+
-   | -1    | title         | text   | short, human-        | RFC XXXX  |
-   |       |               | or     | readable             |           |
-   |       |               | tag 38 | summary of the       |           |
-   |       |               |        | problem shape        |           |
-   +-------+---------------+--------+----------------------+-----------+
-   | -2    | detail        | text   | human-readable       | RFC XXXX  |
-   |       |               | or     | explanation          |           |
-   |       |               | tag 38 | specific to          |           |
-   |       |               |        | this occurrence      |           |
-   |       |               |        | of the problem       |           |
-   +-------+---------------+--------+----------------------+-----------+
-   | -3    | instance      | ~uri   | URI reference        | RFC XXXX  |
-   |       |               |        | identifying          |           |
-   |       |               |        | specific             |           |
-   |       |               |        | occurrence of        |           |
-   |       |               |        | the problem          |           |
-   +-------+---------------+--------+----------------------+-----------+
-   | -4    | response-code | uint   | CoAP response        | RFC XXXX  |
-   |       |               | .size  | code                 |           |
-   |       |               | 1      |                      |           |
-   +-------+---------------+--------+----------------------+-----------+
-   | -5    | base-uri      | ~uri   | Base URI             | RFC XXXX  |
-   +-------+---------------+--------+----------------------+-----------+
+   +=====+===============+=================+================+==========+
+   |Key  | Name          | CDDL Type       |Brief           |Reference |
+   |value|               |                 |description     |          |
+   +=====+===============+=================+================+==========+
+   |-1   | title         | text or tag 38  |short, human-   |RFC XXXX  |
+   |     |               |                 |readable summary|          |
+   |     |               |                 |of the problem  |          |
+   |     |               |                 |shape           |          |
+   +-----+---------------+-----------------+----------------+----------+
+   |-2   | detail        | text or tag 38  |human-readable  |RFC XXXX  |
+   |     |               |                 |explanation     |          |
+   |     |               |                 |specific to this|          |
+   |     |               |                 |occurrence of   |          |
+   |     |               |                 |the problem     |          |
+   +-----+---------------+-----------------+----------------+----------+
+   |-3   | instance      | ~uri            |URI reference   |RFC XXXX  |
+   |     |               |                 |identifying     |          |
+   |     |               |                 |specific        |          |
+   |     |               |                 |occurrence of   |          |
+   |     |               |                 |the problem     |          |
+   +-----+---------------+-----------------+----------------+----------+
+   |-4   | response-code | uint .size 1    |CoAP response   |RFC XXXX  |
+   |     |               |                 |code            |          |
+   +-----+---------------+-----------------+----------------+----------+
+   |-5   | base-uri      | ~uri            |Base URI        |RFC XXXX  |
+   +-----+---------------+-----------------+----------------+----------+
+   |-6   | base-lang     | tag38-ltag      |Base language   |RFC XXXX  |
+   |     |               |                 |tag (see        |          |
+   |     |               |                 |Appendix A)     |          |
+   +-----+---------------+-----------------+----------------+----------+
+   |-7   | base-rtl      | tag38-direction |Base writing    |RFC XXXX  |
+   |     |               |                 |direction (see  |          |
+   |     |               |                 |Appendix A)     |          |
+   +-----+---------------+-----------------+----------------+----------+
 
     Table 1: Initial Entries in the Standard Problem Detail Key registry
 
