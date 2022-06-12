@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 10 December 2022                         Universität Bremen TZI
-                                                             8 June 2022
+Expires: 14 December 2022                         Universität Bremen TZI
+                                                            12 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 December 2022.
+   This Internet-Draft will expire on 14 December 2022.
 
 Copyright Notice
 
@@ -182,9 +182,13 @@ Table of Contents
    problem details offered.  We talk of a "problem shape" for short.
 
    The title (key -1):
-      A short, human-readable summary of the problem shape.  It SHOULD
-      NOT change from occurrence to occurrence of the same problem
-      shape.
+      A short, human-readable summary of the problem shape.  Beyond the
+      shape of the problem, it is not intended to summarize all the
+      specific information given with the problem details.  For
+      instance, the summary might include that an account does not have
+      enough money for a transaction to succeed, but not the detail
+      information such as the account number, how much money that
+      account has, and how much would be needed.
 
    The detail (key -2):
       A human-readable explanation specific to this occurrence of the
