@@ -294,6 +294,18 @@ Application-specific attributes will be allocated in the
 `custom-problem-detail-entries` slot according to the procedure described in
 {{new-cpdk}}.
 
+Consumers of a Concise Problem Details data item MUST ignore any
+Standard or Custom Problem Detail entries, or keys inside the Custom
+Problem Detail entries, that they do not recognize ("ignore-unknown
+rule"); this allows problem details to evolve.
+When storing the data item for future use or forwarding it to other
+consumers, it is strongly RECOMMENDED to retain the unrecognized
+entries; exceptions might be when storage/forwarding occurs in a
+different format/protocol that cannot accommodate them, or when the
+storage/forwarding function needs to filter out privacy-sensitive
+information and for that needs to assume unrecognized entries might be
+privacy-sensitive.
+
 ## Standard Problem Detail Entries {#new-spdk}
 
 Beyond the Standard Problem Detail keys defined in {{cddl}}, additional
@@ -307,9 +319,6 @@ application domain
 
 In summary, the keys for Standard Problem Detail entries are in a
 global namespace that is not specific to a particular application domain.
-
-Consumers of a Concise Problem Details data item MUST ignore any Standard Problem
-Detail entries that they do not recognize; this allows problem details to evolve.
 
 ## Custom Problem Detail Entries {#new-cpdk}
 
@@ -409,21 +418,20 @@ entries are defined specifically to the identifier of that Custom Problem Detail
 entry, the documentation of which defines these internal entries,
 typically chosen to address a given application domain.
 
-Consumers of a Concise Problem Details data item MUST ignore any Custom
-Problem Detail entries, or keys inside the Custom Problem Detail
-entries, that they do not recognize; this allows Custom Problem Detail
-entries to evolve and include additional information in the future.
+When there is a need to evolve a Custom Problem Detail entry definition, the
+"ignore-unknown rule" discussed in the introduction to
+{{sec-new-attributes}} provides an easy way to include additional information.
 The assumption is that this is done in a backward and forward
 compatible way.
-
-Sometimes, Custom Problem Detail entries can evolve in a way where
-forward compatibility by "ignore unknown" would not be appropriate:
-e.g., when needing to add a "must-understand" member, which can only
+Sometimes, Custom Problem Detail entries may need to evolve in a way where
+forward compatibility by applying the "ignore-unknown rule" would not
+be appropriate: e.g., when adding a "must-understand" member,
+which can only
 be ignored at the peril of misunderstanding the Concise Problem
 Details data item ("false interoperability").
 In this case, a new Custom Problem Detail key can simply be
 registered for this case, keeping the old key backward and
-forward-compatible.
+forward compatible.
 
 # Security Considerations {#seccons}
 
