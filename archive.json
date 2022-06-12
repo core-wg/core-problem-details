@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-09T01:19:39.591543+00:00",
+  "timestamp": "2022-06-12T01:40:28.317929+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -442,11 +442,11 @@
       "labels": [
         "review",
         "comment",
-        "needs-discussion"
+        "has-pr"
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-2):\n\n> ~~~ \n A short, human-readable summary of the problem shape.  It SHOULD\n NOT change from occurrence to occurrence of the same problem\n shape.\n~~~\nNeeds some context around why this is a SHOULD and what are the reasonable cases and consequences of this recommendation not being followed.\n\n",
       "createdAt": "2022-05-30T09:12:43Z",
-      "updatedAt": "2022-05-30T09:32:21Z",
+      "updatedAt": "2022-06-11T22:02:44Z",
       "closedAt": null,
       "comments": [
         {
@@ -470,11 +470,11 @@
       "labels": [
         "review",
         "comment",
-        "needs-discussion"
+        "has-pr"
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-2):\n\n> Both \"title\" and \"detail\" can use either an unadorned CBOR text string (text) or a language-tagged text string (tag38); see Appendix A for the definition of the latter.\n\nI have a hard time motivating why this can be unadorned CBOR text string, given that these two fields are always human-readable text. Maybe we need to add a default, i.e. that when text used, that is to be interpreted as English language is used.\n\n",
       "createdAt": "2022-05-30T09:12:46Z",
-      "updatedAt": "2022-06-08T12:36:37Z",
+      "updatedAt": "2022-06-11T21:25:10Z",
       "closedAt": null,
       "comments": [
         {
@@ -490,6 +490,13 @@
           "body": "> Details (en? en-US?) need to be discussed though.\r\n\r\nI wouldn't go down the rabbit hole of also picking the locale.  Too much stress \ud83d\ude05 \r\n\r\nI'm happy with the minimum required to satisfy the `langtag` rule, i.e., \"en\".\r\n",
           "createdAt": "2022-06-08T12:36:37Z",
           "updatedAt": "2022-06-08T12:36:37Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In [yesterday's interim](https://datatracker.ietf.org/meeting/interim-2022-core-08/materials/slides-interim-2022-core-08-sessa-carstens-slides-00#page=4) we decided to go with the following:\r\n1. use context if available\r\n2. fall back to english\r\n\r\n\r\nNow, similar to `base-uri`, should we have a `lang` (and `dir`) keys for when the CPD is stored/forwarded and therefore the context is lost?\r\n\r\n",
+          "createdAt": "2022-06-09T08:19:03Z",
+          "updatedAt": "2022-06-09T08:19:03Z"
         }
       ]
     },
@@ -608,6 +615,30 @@
           "body": "Closed by ccbbd69",
           "createdAt": "2022-06-08T08:51:44Z",
           "updatedAt": "2022-06-08T08:51:44Z"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOD7eoo85LkB3c",
+      "title": "Initial SPD suggestion: \"offending option number\"",
+      "url": "https://github.com/core-wg/core-problem-details/issues/28",
+      "state": "OPEN",
+      "author": "chrysn",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Just having run into a a Bad Option response that was hard to debug without attaching a literal debugger to the program under test (because for some reason all the communication on the net is nowadays encrypted), I'd like to suggest one option for inclusion in the original problem details set:\r\n\r\n* Name: Unprocessed CoAP option\r\n* CDDL type: uint | [+uint]\r\n* Brief description: CoAP option number that was not understood\r\n* Longer description: A CoAP option number present in the request that could not be processed by the server. It may be a critical option that the server is unaware of, or an option the server is aware of but could not process (and chose not to, or was not allowed to, ignore it). Several options may be given in a list (in no particular order), without any guarantee that the list is complete (as the server might have stopped processing already at the first problematic option). If an option with the given number was repeated, there is no indication which of the values caused the fault. Clients need to expect seeing options in there they did not send in the request; this can happen if the request traversed a proxy that added the option but did not act on the problem details response. Note that for a few special values of unprocessed CoAP options (such as Accept or Proxy-Uri), there are special response codes (4.06 Not Acceptable, 5.05 Proxying Not Supported, respectively) to be sent instead. For future compatibility, receivers should ignore values not matching the current CDDL type, as these might be used to indicate an option more precisely if the demand arises.\r\n\r\nA typical error response with this can be rather short -- just 4.02, 1+2 byte content format, and 3 bytes of CBOR data for option numbers up to 23.",
+      "createdAt": "2022-06-10T16:00:19Z",
+      "updatedAt": "2022-06-11T19:50:29Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "CDDL type probably more like `one-or-more<uint>`, where \r\n\r\n``` \r\n   one-or-more<T> = T / [ 2* T ]\r\n``` \r\n\r\nShould we throw this in now or add this registration later?",
+          "createdAt": "2022-06-11T19:50:10Z",
+          "updatedAt": "2022-06-11T19:50:29Z"
         }
       ]
     }
@@ -2112,13 +2143,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-06-08T09:48:18Z",
-      "updatedAt": "2022-06-08T13:47:32Z",
+      "updatedAt": "2022-06-11T19:44:16Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "opsdir-review",
-      "headRefOid": "a5d416d0e5f2dc9618aef5d785a19681e246456a",
+      "headRefOid": "adb7076152499658e30c4aa40ceb0719ec565a50",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -2230,8 +2261,126 @@
               "updatedAt": "2022-06-08T13:47:32Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8470BhG",
+          "commit": {
+            "abbreviatedOid": "a5d416d"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-11T19:35:46Z",
+          "updatedAt": "2022-06-11T19:35:47Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "Addressed in 76fe25d",
+              "createdAt": "2022-06-11T19:35:46Z",
+              "updatedAt": "2022-06-11T19:35:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8470BoI",
+          "commit": {
+            "abbreviatedOid": "a5d416d"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-11T19:44:07Z",
+          "updatedAt": "2022-06-11T19:44:08Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "I think we do.  Note that this is text that is directed at the person who wants to evolve a CPDe definition; if it were about handling evolved definitions, it would indeed be redundant.\r\n\r\nI tried to make this context more accessible in adb7076",
+              "createdAt": "2022-06-11T19:44:08Z",
+              "updatedAt": "2022-06-11T19:44:08Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 29,
+      "id": "PR_kwDOD7eoo845gkyE",
+      "title": "Language Tag/Writing Direction information for unadorned text",
+      "url": "https://github.com/core-wg/core-problem-details/pull/29",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Capture the discussion in the 2022-06-08 interim and #22.\r\n\r\nFix #22.\r\n",
+      "createdAt": "2022-06-11T21:24:47Z",
+      "updatedAt": "2022-06-11T21:26:22Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "fix-22",
+      "headRefOid": "6c416080abdd58cebd3c79328f27cc7380896d3f",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 30,
+      "id": "PR_kwDOD7eoo845gl37",
+      "title": "Better explain the intention of the title (fix #21)",
+      "url": "https://github.com/core-wg/core-problem-details/pull/30",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-11T22:01:58Z",
+      "updatedAt": "2022-06-11T22:02:21Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "fix-21",
+      "headRefOid": "7c5a2942e314d1630078b9f08d2b57f034e12d77",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 31,
+      "id": "PR_kwDOD7eoo845gmFS",
+      "title": "Acknowledge the contributions in recent discussions",
+      "url": "https://github.com/core-wg/core-problem-details/pull/31",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "about writing direction information.",
+      "createdAt": "2022-06-11T22:08:50Z",
+      "updatedAt": "2022-06-11T22:09:03Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "ack-rtl-discussion",
+      "headRefOid": "fe3f071fca8bdf4d29cc1597dfe36f767aeffa96",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
