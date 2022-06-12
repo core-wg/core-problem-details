@@ -147,7 +147,7 @@ In this document, the structure of data is specified in CDDL {{-cddl}} {{-cddlpl
 
 {::boilerplate bcp14-tagged}
 
-# Basic Problem Details
+# Basic Problem Details {#basic}
 
 A Concise Problem Details data item is a CBOR data item with the following
 structure (rules named starting with `tag38` are defined in {{tag38}}):
@@ -320,6 +320,73 @@ application domain
 In summary, the keys for Standard Problem Detail entries are in a
 global namespace that is not specific to a particular application domain.
 
+### Standard Problem Detail Entry: Unprocessed CoAP Option {#uco}
+
+{{basic}} provides a number of generally applicable Standard Problem
+Detail Entries.  The present section both registers another useful
+Standard Problem Detail entry and serves as an example of a Standard
+Problem Detail Entry registration, in the registration template format
+that would be ready for registration.
+
+{:quote}
+> Key Value:
+> : TBD (assigned at registration)
+>
+> Name:
+> : unprocessed-coap-option
+>
+> CDDL type:
+> : `one-or-more<uint>`, where
+>
+>       one-or-more<T> = T / [ 2* T ]
+>
+> Brief description:
+> : Option number(s) of CoAP option(s) that were not understood
+>
+> Specification reference:
+> : {{uco}} of RFC XXXX
+
+The specification of the Standard Problem Detail entry referenced by
+the above registration template follows:
+
+The Standard Problem Detail entry `unprocessed-coap-option` provides
+the option number(s) of CoAP option(s) present in the request that
+could not be processed by the server.
+
+This may be a critical option that the server is unaware of, or an
+option the server is aware of but could not process (and chose not
+to, or was not allowed to, ignore it).
+
+The Concise Problem Details data item including this Standard
+Problem Detail Entry can be used in fulfillment of the "SHOULD"
+requirement in {{Section 5.4.1 of -coap}}.
+
+Several option numbers may be given in a list (in no particular order),
+without any guarantee that the list is a complete representation of
+all the problems in the request (as the server might
+have stopped processing already at one of the problematic options).
+If an option with the given number was repeated, there is no
+indication which of the values caused the error.
+
+Clients need to expect seeing options in the list they did not send
+in the request; this can happen if the request traversed a proxy
+that added the option but did not act on the problem details
+response being returned by the origin server.
+
+Note that for a few special values of unprocessed CoAP
+options (such as Accept or Proxy-Uri), there are special response
+codes (4.06 Not Acceptable, 5.05 Proxying Not Supported,
+respectively) to be sent instead of 4.02 Bad Option.
+
+For future compatibility, receivers are expected to ignore values that
+do not match the CDDL type given in this registration, as these might
+be used to provide more precise information about an option if the
+demand arises.  [^cabo1]
+
+[^cabo1]: I'm not so sure we should include this paragraph.  Why not
+    register a new key for this case if the old one can't be
+    understood anyway?
+
 ## Custom Problem Detail Entries {#new-cpdk}
 
 Applications may extend the Problem Details data item with
@@ -471,14 +538,15 @@ reference:
 
 Initial entries in this sub-registry are as follows:
 
-| Key value | Name          | CDDL Type       | Brief description                                                     | Reference |
-|        -1 | title         | text or tag 38  | short, human-readable summary of the problem shape                    | RFC XXXX  |
-|        -2 | detail        | text or tag 38  | human-readable explanation specific to this occurrence of the problem | RFC XXXX  |
-|        -3 | instance      | ~uri            | URI reference identifying specific occurrence of the problem          | RFC XXXX  |
-|        -4 | response-code | uint .size 1    | CoAP response code                                                    | RFC XXXX  |
-|        -5 | base-uri      | ~uri            | Base URI                                                              | RFC XXXX  |
-|        -6 | base-lang     | tag38-ltag      | Base language tag (see {{tag38}})                                       | RFC XXXX  |
-|        -7 | base-rtl      | tag38-direction | Base writing direction (see {{tag38}})                                  | RFC XXXX  |
+| Key value | Name                    | CDDL Type           | Brief description                                                     | Reference       |
+|        -1 | title                   | `text / tag38`      | short, human-readable summary of the problem shape                    | RFC XXXX        |
+|        -2 | detail                  | `text / tag38`      | human-readable explanation specific to this occurrence of the problem | RFC XXXX        |
+|        -3 | instance                | `~uri`              | URI reference identifying specific occurrence of the problem          | RFC XXXX        |
+|        -4 | response-code           | `uint .size 1`      | CoAP response code                                                    | RFC XXXX        |
+|        -5 | base-uri                | `~uri`              | Base URI                                                              | RFC XXXX        |
+|        -6 | base-lang               | `tag38-ltag`        | Base language tag (see {{tag38}})                                       | RFC XXXX        |
+|        -7 | base-rtl                | `tag38-direction`   | Base writing direction (see {{tag38}})                                  | RFC XXXX        |
+|       TBD | unprocessed-coap-option | `one-or-more<uint>` | Option number(s) of CoAP option(s) that were not understood           | RFC XXXX, {{uco}} |
 {: #spdk title="Initial Entries in the Standard Problem Detail Key registry"}
 
 ## Custom Problem Detail Key registry {#iana-cpdk}
