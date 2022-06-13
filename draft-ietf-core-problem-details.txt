@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 14 December 2022                         Universität Bremen TZI
-                                                            12 June 2022
+Expires: 15 December 2022                         Universität Bremen TZI
+                                                            13 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 December 2022.
+   This Internet-Draft will expire on 15 December 2022.
 
 Copyright Notice
 
@@ -982,6 +982,9 @@ Acknowledgments
    and Jaime Jiménez, co-authors of an earlier generation of this
    specification.  Christian Amsüss, Marco Tiloca, Ari Keränen and
    Michael Richardson for review and comments on this document.
+   Francesca Palombini for her review (and support) as responsible AD,
+   and Joel Jaeggli for his OPSDIR review, both of which brought
+   significant additional considerations to this document.
 
    For Appendix A, John Cowan and Doug Ewell are also to be
    acknowledged.  The content of an earlier version of this appendix was
@@ -1001,6 +1004,12 @@ Contributors
 
 
    Peter defined CBOR tag 38, basis of Appendix A.
+
+   Christian Amsüss
+   Email: christian@amsuess.com
+
+
+   Christian contributed what became Section 3.1.1.
 
 Authors' Addresses
 
