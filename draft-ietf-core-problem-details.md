@@ -33,6 +33,9 @@ contributor:
     email: poccil14 at gmail dot com
     uri: http://peteroupc.github.io/CBOR/
     contribution: Peter defined CBOR tag 38, basis of {{tag38}}.
+ -  name: Christian Amsüss
+    email: christian@amsuess.com
+    contribution: Christian contributed what became {{uco}}.
 
 venue:
   group: Constrained RESTful Environments
@@ -828,6 +831,9 @@ in a separate document when the work on {{-7807bis}} is completed.
 Hartke}}} and {{{Jaime Jiménez}}}, co-authors of an earlier generation of this
 specification.  {{{Christian Amsüss}}}, {{{Marco Tiloca}}}, {{{Ari Keränen}}}
 and {{{Michael Richardson}}} for review and comments on this document.
+{{{Francesca Palombini}}} for her review (and support) as responsible AD,
+and {{{Joel Jaeggli}}} for his OPSDIR review, both of which brought
+significant additional considerations to this document.
 
 For {{tag38}}, John Cowan and Doug Ewell are also to be acknowledged.
 The content of an earlier version of this appendix was also discussed
