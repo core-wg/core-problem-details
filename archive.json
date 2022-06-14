@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-12T01:40:28.317929+00:00",
+  "timestamp": "2022-06-14T01:44:22.052447+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -435,7 +435,7 @@
       "id": "I_kwDOD7eoo85KpqNY",
       "title": "SHOULD",
       "url": "https://github.com/core-wg/core-problem-details/issues/21",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
@@ -446,8 +446,8 @@
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-2):\n\n> ~~~ \n A short, human-readable summary of the problem shape.  It SHOULD\n NOT change from occurrence to occurrence of the same problem\n shape.\n~~~\nNeeds some context around why this is a SHOULD and what are the reasonable cases and consequences of this recommendation not being followed.\n\n",
       "createdAt": "2022-05-30T09:12:43Z",
-      "updatedAt": "2022-06-11T22:02:44Z",
-      "closedAt": null,
+      "updatedAt": "2022-06-12T17:08:44Z",
+      "closedAt": "2022-06-12T17:08:44Z",
       "comments": [
         {
           "author": "cabo",
@@ -463,7 +463,7 @@
       "id": "I_kwDOD7eoo85KpqOh",
       "title": "Untagged text strings for human readable text",
       "url": "https://github.com/core-wg/core-problem-details/issues/22",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
@@ -474,8 +474,8 @@
       ],
       "body": "_Comment by @fpalombini_\n\n[Section 2](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-2):\n\n> Both \"title\" and \"detail\" can use either an unadorned CBOR text string (text) or a language-tagged text string (tag38); see Appendix A for the definition of the latter.\n\nI have a hard time motivating why this can be unadorned CBOR text string, given that these two fields are always human-readable text. Maybe we need to add a default, i.e. that when text used, that is to be interpreted as English language is used.\n\n",
       "createdAt": "2022-05-30T09:12:46Z",
-      "updatedAt": "2022-06-11T21:25:10Z",
-      "closedAt": null,
+      "updatedAt": "2022-06-12T17:09:10Z",
+      "closedAt": "2022-06-12T17:09:10Z",
       "comments": [
         {
           "author": "cabo",
@@ -505,19 +505,19 @@
       "id": "I_kwDOD7eoo85KpqO5",
       "title": "More examples",
       "url": "https://github.com/core-wg/core-problem-details/issues/23",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [
-        "wontfix",
         "review",
-        "comment"
+        "comment",
+        "has-pr"
       ],
       "body": "_Comment by @fpalombini_\n\nIt would be nice with an example in [Section 3.1](https://www.ietf.org/archive/id/draft-ietf-core-problem-details-04.html#section-3.1) as well.\n\n",
       "createdAt": "2022-05-30T09:12:47Z",
-      "updatedAt": "2022-05-30T09:35:06Z",
-      "closedAt": null,
+      "updatedAt": "2022-06-12T22:15:39Z",
+      "closedAt": "2022-06-12T22:15:39Z",
       "comments": [
         {
           "author": "cabo",
@@ -525,6 +525,13 @@
           "body": "I\u2019m not sure we actually need one (there are 5 predefined now).\r\nInventing one always has this problem that people start using it from the example, so there is a threshold of usefulness before one includes an example that is not actually registered.\r\n",
           "createdAt": "2022-05-30T09:35:05Z",
           "updatedAt": "2022-05-30T09:35:05Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "Actually, #32 is an attempt to provide an example that is actually useful to register.",
+          "createdAt": "2022-06-12T20:54:49Z",
+          "updatedAt": "2022-06-12T20:54:49Z"
         }
       ]
     },
@@ -623,15 +630,17 @@
       "id": "I_kwDOD7eoo85LkB3c",
       "title": "Initial SPD suggestion: \"offending option number\"",
       "url": "https://github.com/core-wg/core-problem-details/issues/28",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chrysn",
       "authorAssociation": "MEMBER",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "has-pr"
+      ],
       "body": "Just having run into a a Bad Option response that was hard to debug without attaching a literal debugger to the program under test (because for some reason all the communication on the net is nowadays encrypted), I'd like to suggest one option for inclusion in the original problem details set:\r\n\r\n* Name: Unprocessed CoAP option\r\n* CDDL type: uint | [+uint]\r\n* Brief description: CoAP option number that was not understood\r\n* Longer description: A CoAP option number present in the request that could not be processed by the server. It may be a critical option that the server is unaware of, or an option the server is aware of but could not process (and chose not to, or was not allowed to, ignore it). Several options may be given in a list (in no particular order), without any guarantee that the list is complete (as the server might have stopped processing already at the first problematic option). If an option with the given number was repeated, there is no indication which of the values caused the fault. Clients need to expect seeing options in there they did not send in the request; this can happen if the request traversed a proxy that added the option but did not act on the problem details response. Note that for a few special values of unprocessed CoAP options (such as Accept or Proxy-Uri), there are special response codes (4.06 Not Acceptable, 5.05 Proxying Not Supported, respectively) to be sent instead. For future compatibility, receivers should ignore values not matching the current CDDL type, as these might be used to indicate an option more precisely if the demand arises.\r\n\r\nA typical error response with this can be rather short -- just 4.02, 1+2 byte content format, and 3 bytes of CBOR data for option numbers up to 23.",
       "createdAt": "2022-06-10T16:00:19Z",
-      "updatedAt": "2022-06-11T19:50:29Z",
-      "closedAt": null,
+      "updatedAt": "2022-06-12T22:15:39Z",
+      "closedAt": "2022-06-12T22:15:39Z",
       "comments": [
         {
           "author": "cabo",
@@ -639,6 +648,13 @@
           "body": "CDDL type probably more like `one-or-more<uint>`, where \r\n\r\n``` \r\n   one-or-more<T> = T / [ 2* T ]\r\n``` \r\n\r\nShould we throw this in now or add this registration later?",
           "createdAt": "2022-06-11T19:50:10Z",
           "updatedAt": "2022-06-11T19:50:29Z"
+        },
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "This case appears to be the only one where RFC 7252 explicitly recommends a diagnostic payload.\r\n\r\nThe policy is specification required, so we could simply write this up as a document in this repo and register from there.  Of course, including it in the RFC provides more visibility.",
+          "createdAt": "2022-06-12T20:18:48Z",
+          "updatedAt": "2022-06-12T20:18:48Z"
         }
       ]
     }
@@ -656,7 +672,7 @@
       "labels": [],
       "body": "...as described in the former Appendix B",
       "createdAt": "2020-07-12T11:12:33Z",
-      "updatedAt": "2020-07-13T13:11:57Z",
+      "updatedAt": "2022-06-12T17:10:14Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "282ce9125dd3749f08beeb5b49914c887bbb51af",
@@ -698,7 +714,7 @@
       "labels": [],
       "body": "Fixes #4 ",
       "createdAt": "2020-10-30T23:36:08Z",
-      "updatedAt": "2021-07-12T15:42:12Z",
+      "updatedAt": "2022-06-12T17:10:05Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "8be99435a2779501d17d41fe26548c2dff1e32c9",
@@ -810,7 +826,7 @@
       "labels": [],
       "body": "The problem-details specification has been parked for a while waiting\r\nfor CoRAL to complete.\r\nIn the meantime, 3GPP has written the problem-details specification\r\ninto their client-server specifications and is expecting to cut a\r\nrelease in June 2022.\r\nIt is unlikely that the CoRAL is complete by then, which would cause\r\nproblem-details to be written out of the specification (and probably\r\nbe replaced by an ad-hoc mechanism).\r\n\r\nThis PR proposes to define a concise problem details structure that\r\nis simple enough so it can be completed within a couple of months.\r\nThis would keep the problem details approach within the 3GPP system\r\nand will allow us to add a more complete CoRAL version later.",
       "createdAt": "2022-04-24T22:48:17Z",
-      "updatedAt": "2022-05-06T22:20:12Z",
+      "updatedAt": "2022-06-12T17:10:29Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "659bdf42194ec481df1ee1a4d49efecd3e27ed5d",
@@ -1912,7 +1928,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-05-20T13:33:40Z",
-      "updatedAt": "2022-05-25T14:37:53Z",
+      "updatedAt": "2022-06-12T17:10:04Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "637d4c8a5a2ccd32b5c5f2375187474c9f429ec8",
@@ -2081,7 +2097,7 @@
       "labels": [],
       "body": "Start collecting changes from AD review",
       "createdAt": "2022-05-29T09:38:21Z",
-      "updatedAt": "2022-06-08T08:50:29Z",
+      "updatedAt": "2022-06-12T17:10:09Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "813f237f67bd0633b606d1e2c03be35870d42d10",
@@ -2136,24 +2152,26 @@
       "id": "PR_kwDOD7eoo845TkQb",
       "title": "Changes based on opsdir review (Joel Jaeggli)",
       "url": "https://github.com/core-wg/core-problem-details/pull/27",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2022-06-08T09:48:18Z",
-      "updatedAt": "2022-06-11T19:44:16Z",
+      "updatedAt": "2022-06-12T17:09:25Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "opsdir-review",
       "headRefOid": "adb7076152499658e30c4aa40ceb0719ec565a50",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-06-12T17:09:23Z",
+      "mergedAt": "2022-06-12T17:09:22Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "32a6978088c65a307b8ba8d2ea8d401819a62d55"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2301,6 +2319,19 @@
               "updatedAt": "2022-06-11T19:44:08Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8470ltK",
+          "commit": {
+            "abbreviatedOid": "adb7076"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "thanks",
+          "createdAt": "2022-06-12T16:15:53Z",
+          "updatedAt": "2022-06-12T16:15:53Z",
+          "comments": []
         }
       ]
     },
@@ -2309,78 +2340,250 @@
       "id": "PR_kwDOD7eoo845gkyE",
       "title": "Language Tag/Writing Direction information for unadorned text",
       "url": "https://github.com/core-wg/core-problem-details/pull/29",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Capture the discussion in the 2022-06-08 interim and #22.\r\n\r\nFix #22.\r\n",
       "createdAt": "2022-06-11T21:24:47Z",
-      "updatedAt": "2022-06-11T21:26:22Z",
+      "updatedAt": "2022-06-12T17:09:13Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "fix-22",
       "headRefOid": "6c416080abdd58cebd3c79328f27cc7380896d3f",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-06-12T17:09:10Z",
+      "mergedAt": "2022-06-12T17:09:10Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "8b7254f35f0d9840fdd7b7a03c16b7450dce1f4b"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo8470lq0",
+          "commit": {
+            "abbreviatedOid": "6c41608"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2022-06-12T16:14:16Z",
+          "updatedAt": "2022-06-12T16:14:16Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 30,
       "id": "PR_kwDOD7eoo845gl37",
       "title": "Better explain the intention of the title (fix #21)",
       "url": "https://github.com/core-wg/core-problem-details/pull/30",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2022-06-11T22:01:58Z",
-      "updatedAt": "2022-06-11T22:02:21Z",
+      "updatedAt": "2022-06-12T17:10:07Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "fix-21",
       "headRefOid": "7c5a2942e314d1630078b9f08d2b57f034e12d77",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-06-12T17:08:43Z",
+      "mergedAt": "2022-06-12T17:08:43Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "f887fe2256ebdb4cc905510de25939a2cb61f9a4"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo8470ln5",
+          "commit": {
+            "abbreviatedOid": "7c5a294"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-06-12T16:12:08Z",
+          "updatedAt": "2022-06-12T16:12:08Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 31,
       "id": "PR_kwDOD7eoo845gmFS",
       "title": "Acknowledge the contributions in recent discussions",
       "url": "https://github.com/core-wg/core-problem-details/pull/31",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "about writing direction information.",
       "createdAt": "2022-06-11T22:08:50Z",
-      "updatedAt": "2022-06-11T22:09:03Z",
+      "updatedAt": "2022-06-12T17:09:00Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "97cceca0928b90f77bdc9a15c91aeed904faf2ce",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "ack-rtl-discussion",
       "headRefOid": "fe3f071fca8bdf4d29cc1597dfe36f767aeffa96",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-06-12T17:08:55Z",
+      "mergedAt": "2022-06-12T17:08:54Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "2542382f67655ec1984939105aafcbb004704281"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo8470lmN",
+          "commit": {
+            "abbreviatedOid": "fe3f071"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "\ud83d\udc4d ",
+          "createdAt": "2022-06-12T16:10:50Z",
+          "updatedAt": "2022-06-12T16:10:50Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "id": "PR_kwDOD7eoo845hhXb",
+      "title": "Add example for SPDe registration (fix #28, fix #23)",
+      "url": "https://github.com/core-wg/core-problem-details/pull/32",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Add an example for an SPDe registration based on #28, also fulfilling the request in #23.",
+      "createdAt": "2022-06-12T20:53:55Z",
+      "updatedAt": "2022-06-12T22:15:38Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "32a6978088c65a307b8ba8d2ea8d401819a62d55",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "spde-example",
+      "headRefOid": "50dbcbb3d1a4af7a42ed1909448842bd6b29ad58",
+      "closedAt": "2022-06-12T22:15:38Z",
+      "mergedAt": "2022-06-12T22:15:38Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "851e895f1e0754cc96f9b2ebda6ff1fede07ddea"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo8470tre",
+          "commit": {
+            "abbreviatedOid": "36ece36"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "I think this is an excellent idea.",
+          "createdAt": "2022-06-12T22:04:55Z",
+          "updatedAt": "2022-06-12T22:06:48Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "That was my knee-jerk reaction too.  If we really wanted an unknown value to be ignored we should be more explicit in the defining CDDL, allowing `any` as an alternative to the `uint` array -- subordinate to a future feature extension.",
+              "createdAt": "2022-06-12T22:04:55Z",
+              "updatedAt": "2022-06-12T22:07:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8470t0v",
+          "commit": {
+            "abbreviatedOid": "36ece36"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-12T22:12:07Z",
+          "updatedAt": "2022-06-12T22:12:07Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "OK, I removed this paragraph.",
+              "createdAt": "2022-06-12T22:12:07Z",
+              "updatedAt": "2022-06-12T22:12:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo8470t4Q",
+          "commit": {
+            "abbreviatedOid": "50dbcbb"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-06-12T22:15:28Z",
+          "updatedAt": "2022-06-12T22:15:28Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "id": "PR_kwDOD7eoo845imXt",
+      "title": "Late addition of acknowledgements/contributor info...",
+      "url": "https://github.com/core-wg/core-problem-details/pull/33",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "... that should have been in -05.",
+      "createdAt": "2022-06-13T07:32:22Z",
+      "updatedAt": "2022-06-13T07:41:28Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "851e895f1e0754cc96f9b2ebda6ff1fede07ddea",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "ackno-06",
+      "headRefOid": "05248609ed812ae8590d7d06bade1b6f38a604a5",
+      "closedAt": "2022-06-13T07:41:26Z",
+      "mergedAt": "2022-06-13T07:41:26Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "2d2f2168fc4ba13e6db7ba1c961a237370a51d21"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo8471mkP",
+          "commit": {
+            "abbreviatedOid": "0524860"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "\ud83d\udc4d ",
+          "createdAt": "2022-06-13T07:41:20Z",
+          "updatedAt": "2022-06-13T07:41:20Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
