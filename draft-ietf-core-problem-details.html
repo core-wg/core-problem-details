@@ -1037,7 +1037,7 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Fossati &amp; Bormann</td>
-<td class="center">Expires 15 December 2022</td>
+<td class="center">Expires 17 December 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1050,12 +1050,12 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-core-problem-details-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-06-13" class="published">13 June 2022</time>
+<time datetime="2022-06-15" class="published">15 June 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-12-15">15 December 2022</time></dd>
+<dd class="expires"><time datetime="2022-12-17">17 December 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1113,7 +1113,7 @@ Details for HTTP APIs defined in RFC 7807.<a href="#section-abstract-1" class="p
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 December 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 December 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1243,7 +1243,7 @@ codes (<span><a href="https://rfc-editor.org/rfc/rfc7252#section-5.9" class="rel
 an error to be helpful.  This specification defines a simple and extensible
 framework to define CBOR <span>[<a href="#STD94" class="xref">STD94</a>]</span> data items to suit this purpose.
 It is designed to be reused by REST APIs, which can identify distinct
-shapes of these data items specific to their needs.
+"shapes" of these data items specific to their needs.
 Thus, API clients can be informed of both the high-level error class
 (using the response code) and the finer-grained details of the problem
 (using the vocabulary defined here).
@@ -1354,66 +1354,68 @@ oltext = text / tag38
 <a href="#name-structure-of-concise-proble" class="selfRef">Structure of Concise Problem Details Data Item</a>
         </figcaption></figure>
 </div>
-<p id="section-2-3">A number of problem detail entries, the Standard Problem Detail
+<p id="section-2-3">(Examples of elaborated Concise Problem Details data items can
+be found later in the document, e.g., <a href="#fig-example-custom-with-uri" class="xref">Figure 3</a>.)<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">A number of problem detail entries, the Standard Problem Detail
 entries, are predefined (more predefined details can be registered,
-see <a href="#new-spdk" class="xref">Section 3.1</a>).<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">Note that, unlike <span>[<a href="#RFC7807" class="xref">RFC7807</a>]</span>, Concise Problem Details data items have
+see <a href="#new-spdk" class="xref">Section 3.1</a>).<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-5">Note that, unlike <span>[<a href="#RFC7807" class="xref">RFC7807</a>]</span>, Concise Problem Details data items have
 no explicit "problem type".
 Instead, the category (or, one could say, Gestalt) of the problem can
 be understood from the shape of the problem details offered. We talk of
-a "problem shape" for short.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlNewline" id="section-2-5">
-        <dt id="section-2-5.1">The title (key -1):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-5.2">
-          <p id="section-2-5.2.1">A short, human-readable summary of the problem shape.
+a "problem shape" for short.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlNewline" id="section-2-6">
+        <dt id="section-2-6.1">The title (key -1):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.2">
+          <p id="section-2-6.2.1">A short, human-readable summary of the problem shape.
 Beyond the shape of the problem, it is not intended to summarize all
 the specific information given with the problem details.
 For instance, the summary might include that an account does not
 have enough money for a transaction to succeed, but not the detail
 information such as the account number, how much money that account
-has, and how much would be needed.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
+has, and how much would be needed.<a href="#section-2-6.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.3">The detail (key -2):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-5.4">
-          <p id="section-2-5.4.1">A human-readable explanation specific to this occurrence of the problem.<a href="#section-2-5.4.1" class="pilcrow">¶</a></p>
+<dt id="section-2-6.3">The detail (key -2):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.4">
+          <p id="section-2-6.4.1">A human-readable explanation specific to this occurrence of the problem.<a href="#section-2-6.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.5">The instance (key -3):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-5.6">
-          <p id="section-2-5.6.1">A URI reference that identifies the specific occurrence of the problem.
-It may or may not yield further information if dereferenced.<a href="#section-2-5.6.1" class="pilcrow">¶</a></p>
+<dt id="section-2-6.5">The instance (key -3):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.6">
+          <p id="section-2-6.6.1">A URI reference that identifies the specific occurrence of the problem.
+It may or may not yield further information if dereferenced.<a href="#section-2-6.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.7">The response-code (key -4):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-5.8">
-          <p id="section-2-5.8.1">The CoAP response code (Sections <a href="https://rfc-editor.org/rfc/rfc7252#section-5.9" class="relref">5.9</a> and <a href="https://rfc-editor.org/rfc/rfc7252#section-12.1.2" class="relref">12.1.2</a> of <span>[<a href="#RFC7252" class="xref">RFC7252</a>]</span>) generated by the origin
-server for this occurrence of the problem.<a href="#section-2-5.8.1" class="pilcrow">¶</a></p>
+<dt id="section-2-6.7">The response-code (key -4):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.8">
+          <p id="section-2-6.8.1">The CoAP response code (Sections <a href="https://rfc-editor.org/rfc/rfc7252#section-5.9" class="relref">5.9</a> and <a href="https://rfc-editor.org/rfc/rfc7252#section-12.1.2" class="relref">12.1.2</a> of <span>[<a href="#RFC7252" class="xref">RFC7252</a>]</span>) generated by the origin
+server for this occurrence of the problem.<a href="#section-2-6.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.9">The base-uri (key -5):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-5.10">
-          <p id="section-2-5.10.1">The base URI (<span><a href="https://rfc-editor.org/rfc/rfc3986#section-5.1" class="relref">Section 5.1</a> of [<a href="#STD66" class="xref">STD66</a>]</span>) that should be used to resolve
+<dt id="section-2-6.9">The base-uri (key -5):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.10">
+          <p id="section-2-6.10.1">The base URI (<span><a href="https://rfc-editor.org/rfc/rfc3986#section-5.1" class="relref">Section 5.1</a> of [<a href="#STD66" class="xref">STD66</a>]</span>) that should be used to resolve
 relative URI references embedded in this Concise Problem Details
-data item.<a href="#section-2-5.10.1" class="pilcrow">¶</a></p>
+data item.<a href="#section-2-6.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.11">The base-lang (key -6):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-5.12">
-          <p id="section-2-5.12.1">The language-tag (tag38-ltag) that applies to the presentation of
+<dt id="section-2-6.11">The base-lang (key -6):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.12">
+          <p id="section-2-6.12.1">The language-tag (tag38-ltag) that applies to the presentation of
 unadorned text strings in this Concise Problem Details data item,
-see <a href="#tag38" class="xref">Appendix A</a>.<a href="#section-2-5.12.1" class="pilcrow">¶</a></p>
+see <a href="#tag38" class="xref">Appendix A</a>.<a href="#section-2-6.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-5.13">The base-rtl (key -7):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-5.14">
-          <p id="section-2-5.14.1">The writing-direction (tag38-direction) that applies to the
+<dt id="section-2-6.13">The base-rtl (key -7):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-6.14">
+          <p id="section-2-6.14.1">The writing-direction (tag38-direction) that applies to the
 presentation of unadorned text strings in this Concise Problem
-Details data item, see <a href="#tag38" class="xref">Appendix A</a>.<a href="#section-2-5.14.1" class="pilcrow">¶</a></p>
+Details data item, see <a href="#tag38" class="xref">Appendix A</a>.<a href="#section-2-6.14.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-2-6">Both "title" and "detail" can use either an unadorned CBOR text string
+<p id="section-2-7">Both "title" and "detail" can use either an unadorned CBOR text string
 (<code>text</code>) or a language-tagged text string (<code>tag38</code>); see <a href="#tag38" class="xref">Appendix A</a> for
 the definition of the latter.
 Language tag and writing direction information for unadorned text
@@ -1422,14 +1424,14 @@ needs to be saved or forwarded with a Concise Problem Details data
 item, "base-lang" and "base-rtl" can be used for that.
 If no such (explicitly saved or implicit) context information is
 available, unadorned text is interpreted with language-tag "en" and
-writing-direction "false" (ltr).<a href="#section-2-6" class="pilcrow">¶</a></p>
-<p id="section-2-7">The "title" string is advisory and included to give
-consumers a shorthand for the category (problem shape) of the error encountered.<a href="#section-2-7" class="pilcrow">¶</a></p>
-<p id="section-2-8">The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers <span class="bcp14">SHOULD NOT</span> parse the "detail" member for information; extensions (see <a href="#sec-new-attributes" class="xref">Section 3</a>) are more suitable and less error-prone ways to obtain such information.<a href="#section-2-8" class="pilcrow">¶</a></p>
-<p id="section-2-9">Note that the "instance" URI reference may be relative; this means
+writing-direction "false" (ltr).<a href="#section-2-7" class="pilcrow">¶</a></p>
+<p id="section-2-8">The "title" string is advisory and included to give
+consumers a shorthand for the category (problem shape) of the error encountered.<a href="#section-2-8" class="pilcrow">¶</a></p>
+<p id="section-2-9">The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers <span class="bcp14">SHOULD NOT</span> parse the "detail" member for information; extensions (see <a href="#sec-new-attributes" class="xref">Section 3</a>) are more suitable and less error-prone ways to obtain such information.<a href="#section-2-9" class="pilcrow">¶</a></p>
+<p id="section-2-10">Note that the "instance" URI reference may be relative; this means
 that it must be resolved relative to the representation's base URI, as
-per <span><a href="https://rfc-editor.org/rfc/rfc3986#section-5" class="relref">Section 5</a> of [<a href="#STD66" class="xref">STD66</a>]</span>.<a href="#section-2-9" class="pilcrow">¶</a></p>
-<p id="section-2-10">The "response-code" member, if present, is only advisory; it conveys
+per <span><a href="https://rfc-editor.org/rfc/rfc3986#section-5" class="relref">Section 5</a> of [<a href="#STD66" class="xref">STD66</a>]</span>.<a href="#section-2-10" class="pilcrow">¶</a></p>
+<p id="section-2-11">The "response-code" member, if present, is only advisory; it conveys
 the CoAP response code used for the convenience of the consumer.
 Generators <span class="bcp14">MUST</span> use the same response code here as in the actual CoAP
 response; the latter is needed to assure that generic CoAP software that
@@ -1448,13 +1450,13 @@ that it received on the CoAP level.
 Note that the "response-code" value is a numeric representation of the
 actual code (see <span><a href="https://rfc-editor.org/rfc/rfc7252#section-3" class="relref">Section 3</a> of [<a href="#RFC7252" class="xref">RFC7252</a>]</span>), so it does not take the usual
 presentation form that resembles an
-HTTP status code -- <code>4.04 Not found</code> is represented by the number 132.<a href="#section-2-10" class="pilcrow">¶</a></p>
-<p id="section-2-11">The "base-uri" member is usually not present in the initial
+HTTP status code -- <code>4.04 Not found</code> is represented by the number 132.<a href="#section-2-11" class="pilcrow">¶</a></p>
+<p id="section-2-12">The "base-uri" member is usually not present in the initial
 request-response communication as it can be inferred as per <span><a href="https://rfc-editor.org/rfc/rfc3986#section-5.1.3" class="relref">Section 5.1.3</a> of [<a href="#STD66" class="xref">STD66</a>]</span>.
 An entity that stores a Concise Problem Details data item or otherwise
 makes it available for consumers without this context might add in a
 base-uri member to allow those consumers to perform resolution of any
-relative URI references embedded in the data item.<a href="#section-2-11" class="pilcrow">¶</a></p>
+relative URI references embedded in the data item.<a href="#section-2-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-new-attributes">

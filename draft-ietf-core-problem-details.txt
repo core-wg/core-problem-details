@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 15 December 2022                         Universität Bremen TZI
-                                                            13 June 2022
+Expires: 17 December 2022                         Universität Bremen TZI
+                                                            15 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 December 2022.
+   This Internet-Draft will expire on 17 December 2022.
 
 Copyright Notice
 
@@ -101,11 +101,11 @@ Table of Contents
    enough information about an error to be helpful.  This specification
    defines a simple and extensible framework to define CBOR [STD94] data
    items to suit this purpose.  It is designed to be reused by REST
-   APIs, which can identify distinct shapes of these data items specific
-   to their needs.  Thus, API clients can be informed of both the high-
-   level error class (using the response code) and the finer-grained
-   details of the problem (using the vocabulary defined here).  This
-   pattern of communication is illustrated in Figure 1.
+   APIs, which can identify distinct "shapes" of these data items
+   specific to their needs.  Thus, API clients can be informed of both
+   the high-level error class (using the response code) and the finer-
+   grained details of the problem (using the vocabulary defined here).
+   This pattern of communication is illustrated in Figure 1.
 
                     .--------.          .--------.
                     |  CoAP  |          |  CoAP  |
@@ -175,6 +175,9 @@ Table of Contents
    oltext = text / tag38
 
           Figure 2: Structure of Concise Problem Details Data Item
+
+   (Examples of elaborated Concise Problem Details data items can be
+   found later in the document, e.g., Figure 3.)
 
    A number of problem detail entries, the Standard Problem Detail
    entries, are predefined (more predefined details can be registered,
