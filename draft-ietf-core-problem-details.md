@@ -592,7 +592,7 @@ Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}},
 with the policy "expert review" ({{Section 4.5 of -ianacons}}).
 
 The expert is instructed to attempt making the registration experience
-as close to first-come-first-served as reasonable achievable, but
+as close to first-come-first-served as reasonably achievable, but
 checking that the reference document does provide a description as set
 out below.
 (This requirement is a relaxed version of "specification required" as
