@@ -217,13 +217,13 @@ Table of Contents
 
    The base-lang (key -6):
       The language-tag (tag38-ltag) that applies to the presentation of
-      unadorned text strings in this Concise Problem Details data item,
-      see Appendix A.
+      unadorned text strings (not using tag 38) in this Concise Problem
+      Details data item, see Appendix A.
 
    The base-rtl (key -7):
       The writing-direction (tag38-direction) that applies to the
-      presentation of unadorned text strings in this Concise Problem
-      Details data item, see Appendix A.
+      presentation of unadorned text strings (not using tag 38) in this
+      Concise Problem Details data item, see Appendix A.
 
    Both "title" and "detail" can use either an unadorned CBOR text
    string (text) or a language-tagged text string (tag38); see
@@ -240,14 +240,13 @@ Table of Contents
    shorthand for the category (problem shape) of the error encountered.
 
    The "detail" member, if present, ought to focus on helping the client
-   correct the problem, rather than giving debugging information.
-   Consumers SHOULD NOT parse the "detail" member for information;
-   extensions (see Section 3) are more suitable and less error-prone
-   ways to obtain such information.
-
-   Note that the "instance" URI reference may be relative; this means
-   that it must be resolved relative to the representation's base URI,
-   as per Section 5 of [STD66].
+   correct the problem, rather than giving extensive server-side
+   debugging information.  Consumers SHOULD NOT parse the "detail"
+   member for information; extensions (see Section 3) are more suitable
+   and less error-prone ways to obtain such information.  Note that the
+   "instance" URI reference may be relative; this means that it must be
+   resolved relative to the representation's base URI, as per Section 5
+   of [STD66].
 
    The "response-code" member, if present, is only advisory; it conveys
    the CoAP response code used for the convenience of the consumer.
@@ -480,6 +479,16 @@ Table of Contents
    and forward compatible.
 
 4.  Security Considerations
+
+   Concise Problem Details can contain URIs that are not intended to be
+   dereferenced (Section 3.2, Paragraph 5).  One reason is that
+   dereferencing these can lead to information disclosure (tracking).
+   Information disclosure can also be caused by URIs in problem details
+   that _are_ intended for dereferencing, e.g., the "instance" URI.
+   Implementations need to consider which component of a client should
+   perform the dereferencing, and which servers are trusted with serving
+   them.  In any case, the security considerations of Section 7 of
+   [STD66] apply.
 
    The security and privacy considerations outlined in Section 5 of
    [RFC7807] apply in full.
