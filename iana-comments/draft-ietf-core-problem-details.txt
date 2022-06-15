@@ -608,7 +608,7 @@ Table of Contents
    with the policy "expert review" (Section 4.5 of [RFC8126]).
 
    The expert is instructed to attempt making the registration
-   experience as close to first-come-first-served as reasonable
+   experience as close to first-come-first-served as reasonably
    achievable, but checking that the reference document does provide a
    description as set out below.  (This requirement is a relaxed version
    of "specification required" as defined in Section 4.6 of [RFC8126].)
