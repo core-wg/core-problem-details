@@ -75,16 +75,17 @@ Table of Contents
      3.1.  Standard Problem Detail Entries
        3.1.1.  Standard Problem Detail Entry: Unprocessed CoAP Option
      3.2.  Custom Problem Detail Entries
-   4.  Security Considerations
-   5.  IANA Considerations
-     5.1.  Standard Problem Detail Key registry
-     5.2.  Custom Problem Detail Key registry
-     5.3.  Media Type
-     5.4.  Content-Format
-     5.5.  CBOR Tag 38
-   6.  References
-     6.1.  Normative References
-     6.2.  Informative References
+   4.  Privacy Considerations
+   5.  Security Considerations
+   6.  IANA Considerations
+     6.1.  Standard Problem Detail Key registry
+     6.2.  Custom Problem Detail Key registry
+     6.3.  Media Type
+     6.4.  Content-Format
+     6.5.  CBOR Tag 38
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
    Appendix A.  Language-Tagged Strings
      A.1.  Introduction
      A.2.  Detailed Semantics
@@ -308,7 +309,7 @@ Table of Contents
 
    Beyond the Standard Problem Detail keys defined in Figure 2,
    additional Standard Problem Detail keys can be registered for use in
-   the standard-problem-detail-entries slot (see Section 5.1).
+   the standard-problem-detail-entries slot (see Section 6.1).
 
    Standard Problem Detail keys are negative integers, so they can never
    conflict with Custom Problem Detail keys defined for a specific
@@ -380,7 +381,7 @@ Table of Contents
    slot, and carry a nested map specific to that application.  The map
    key can either be an (absolute!)  URI (under control of the entity
    defining this extension), or an unsigned integer.  Only the latter
-   needs to be registered (Section 5.2).
+   needs to be registered (Section 6.2).
 
    Within the nested map, any number of attributes can be given for a
    single extension.  The semantics of each custom attribute MUST be
@@ -478,7 +479,15 @@ Table of Contents
    can simply be registered for this case, keeping the old key backward
    and forward compatible.
 
-4.  Security Considerations
+4.  Privacy Considerations
+
+   Problem details may unintentionally disclose information.  This can
+   lead to both privacy and security problems.  See Section 5 for more
+   details that apply to both domains; particular attention needs to be
+   given to unintentionally disclosing Personally Identifiable
+   Information (PII).
+
+5.  Security Considerations
 
    Concise Problem Details can contain URIs that are not intended to be
    dereferenced (Section 3.2, Paragraph 5).  One reason is that
@@ -491,15 +500,27 @@ Table of Contents
    [STD66] apply.
 
    The security and privacy considerations outlined in Section 5 of
-   [RFC7807] apply in full.
+   [RFC7807] apply in full.  While these are phrased in terms of
+   security considerations for new RFC 7807 problem types, they equally
+   apply to the problem detail entry definitions used here Section 3; in
+   summary: both when defining new detail entries, and when actually
+   generating a Concise Problem Details data item, care needs to be
+   taken that they do not leak sensitive information.  Entities storing
+   or forwarding Concise Problem Details data items need to consider
+   whether this leads to information being transferred out of the
+   context within which access to sensitive information was acceptable.
+   See also Section 3, Paragraph 6 (the last paragraph of the
+   introduction to that section).  Privacy-sensitive information in the
+   problem details SHOULD NOT be obscured in ways that might lead to
+   misclassification as non-sensitive (e.g., by base64-encoding).
 
-5.  IANA Considerations
+6.  IANA Considerations
 
 
    // RFC Editor: please replace RFC XXXX with this RFC number and
    // remove this note.
 
-5.1.  Standard Problem Detail Key registry
+6.1.  Standard Problem Detail Key registry
 
    This specification defines a new sub-registry for Standard Problem
    Detail Keys in the CoRE Parameters registry [IANA.core-parameters],
@@ -580,7 +601,7 @@ Table of Contents
 
    Table 1: Initial Entries in the Standard Problem Detail Key registry
 
-5.2.  Custom Problem Detail Key registry
+6.2.  Custom Problem Detail Key registry
 
    This specification defines a new sub-registry for Custom Problem
    Detail Keys in the CoRE Parameters registry [IANA.core-parameters],
@@ -616,7 +637,7 @@ Table of Contents
          Table 2: Initial Entries in the Custom Problem Detail Key
                                   registry
 
-5.3.  Media Type
+6.3.  Media Type
 
    IANA is requested to add the following Media-Type to the "Media
    Types" registry [IANA.media-types].
@@ -626,7 +647,7 @@ Table of Contents
    +============================+============================+=========+
    |concise-problem-details+cbor|application/concise-problem-|RFC XXXX,|
    |                            |details+cbor                |Section  |
-   |                            |                            |5.3      |
+   |                            |                            |6.3      |
    +----------------------------+----------------------------+---------+
 
       Table 3: New Media Type application/concise-problem-details+cbor
@@ -636,9 +657,9 @@ Table of Contents
    Required parameters:  none
    Optional parameters:  none
    Encoding considerations:  binary (CBOR data item)
-   Security considerations:  Section 4 of RFC XXXX
+   Security considerations:  Section 5 of RFC XXXX
    Interoperability considerations:  none
-   Published specification:  Section 5.3 of RFC XXXX
+   Published specification:  Section 6.3 of RFC XXXX
    Applications that use this media type:  Clients and servers in the
       Internet of Things
    Fragment identifier considerations:  The syntax and semantics of
@@ -653,7 +674,7 @@ Table of Contents
    Author/Change controller:  IETF
    Provisional registration:  no
 
-5.4.  Content-Format
+6.4.  Content-Format
 
    IANA is requested to register a Content-Format number in the "CoAP
    Content-Formats" sub-registry, within the "Constrained RESTful
@@ -676,15 +697,15 @@ Table of Contents
    column "Content Coding" is called "Encoding".
    // This paragraph to be removed by RFC editor.
 
-5.5.  CBOR Tag 38
+6.5.  CBOR Tag 38
 
    In the registry "CBOR Tags" [IANA.cbor-tags], IANA has registered
    CBOR Tag 38.  IANA is requested to replace the reference for this
    registration with Appendix A, RFC XXXX.
 
-6.  References
+7.  References
 
-6.1.  Normative References
+7.1.  Normative References
 
    [IANA.cbor-tags]
               IANA, "Concise Binary Object Representation (CBOR) Tags",
@@ -751,7 +772,7 @@ Table of Contents
               DOI 10.17487/RFC8949, December 2020,
               <https://www.rfc-editor.org/rfc/rfc8949>.
 
-6.2.  Informative References
+7.2.  Informative References
 
    [I-D.ietf-httpapi-rfc7807bis]
               Nottingham, M., Wilde, E., and S. Dalal, "Problem Details
@@ -955,7 +976,7 @@ Appendix B.  Interworking with RFC 7807
 
    This appendix defines a Custom Problem Details entry for that
    purpose.  This is assigned Custom Problem Detail key 7807 in
-   Section 5.2.  Its structure is:
+   Section 6.2.  Its structure is:
 
    tunnel-7807 = {
      ? &(type: 0) => ~uri
