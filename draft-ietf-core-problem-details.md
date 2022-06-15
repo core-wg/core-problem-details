@@ -218,13 +218,13 @@ The base-uri (key -5):
 
 The base-lang (key -6):
 : The language-tag (tag38-ltag) that applies to the presentation of
-  unadorned text strings in this Concise Problem Details data item,
-  see {{tag38}}.
+  unadorned text strings (not using tag 38) in this Concise Problem
+  Details data item, see {{tag38}}.
 
 The base-rtl (key -7):
 : The writing-direction (tag38-direction) that applies to the
-  presentation of unadorned text strings in this Concise Problem
-  Details data item, see {{tag38}}.
+  presentation of unadorned text strings (not using tag 38) in this
+  Concise Problem Details data item, see {{tag38}}.
 
 Both "title" and "detail" can use either an unadorned CBOR text string
 (`text`) or a language-tagged text string (`tag38`); see {{tag38}} for
@@ -240,8 +240,12 @@ writing-direction "false" (ltr).
 The "title" string is advisory and included to give
 consumers a shorthand for the category (problem shape) of the error encountered.
 
-The "detail" member, if present, ought to focus on helping the client correct the problem, rather than giving debugging information.  Consumers SHOULD NOT parse the "detail" member for information; extensions (see {{sec-new-attributes}}) are more suitable and less error-prone ways to obtain such information.
-
+The "detail" member, if present, ought to focus on helping the client
+correct the problem, rather than giving extensive server-side
+debugging information.
+Consumers SHOULD NOT parse the "detail" member for information;
+extensions (see {{sec-new-attributes}}) are more suitable and less
+error-prone ways to obtain such information.
 Note that the "instance" URI reference may be relative; this means
 that it must be resolved relative to the representation's base URI, as
 per {{Section 5 of -uri}}.
@@ -406,6 +410,7 @@ cycle and for applications deployed in environments where producers and
 consumers of Concise Problem Details are more tightly integrated.
 (The URI form thus covers the potential need we might otherwise have for a "private use" range for the unsigned integers.)
 
+{: #no-dereference}
 Note that the URI given for the extension is for identification
 purposes only and, even if dereferenceable in principle, it MUST NOT be
 dereferenced in the normal course of handling problem details (i.e., outside
@@ -492,6 +497,16 @@ registered for this case, keeping the old key backward and
 forward compatible.
 
 # Security Considerations {#seccons}
+
+Concise Problem Details can contain URIs that are not intended to be
+dereferenced ({{no-dereference}}).  One reason is that dereferencing
+these can lead to information disclosure (tracking).
+Information disclosure can also be caused by URIs in problem details
+that *are* intended for dereferencing, e.g., the "instance" URI.
+Implementations need to consider which component of a client should
+perform the dereferencing, and which servers are trusted with serving
+them.
+In any case, the security considerations of {{Section 7 of -uri}} apply.
 
 The security and privacy considerations outlined in Section 5 of {{RFC7807}} apply in full.
 
@@ -840,3 +855,6 @@ Working Group.
 The authors would like to acknowledge that cross-organization
 cooperation and particular contributions from John Klensin and
 Addison Phillips.
+
+<!--  LocalWords:  dereferencing dereferenced dereferenceable
+ -->
