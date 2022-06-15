@@ -297,6 +297,7 @@ Application-specific attributes will be allocated in the
 `custom-problem-detail-entries` slot according to the procedure described in
 {{new-cpdk}}.
 
+{: #ignore-unknown}
 Consumers of a Concise Problem Details data item MUST ignore any
 Standard or Custom Problem Detail entries, or keys inside the Custom
 Problem Detail entries, that they do not recognize ("ignore-unknown
@@ -494,9 +495,31 @@ In this case, a new Custom Problem Detail key can simply be
 registered for this case, keeping the old key backward and
 forward compatible.
 
+# Privacy Considerations {#privcons}
+
+Problem details may unintentionally disclose information.
+This can lead to both privacy and security problems.
+See {{seccons}} for more details that apply to both domains; particular
+attention needs to be given to unintentionally disclosing Personally
+Identifiable Information (PII).
+
 # Security Considerations {#seccons}
 
 The security and privacy considerations outlined in Section 5 of {{RFC7807}} apply in full.
+While these are phrased in terms of security considerations for new
+RFC 7807 problem types, they equally apply to the problem detail
+entry definitions used here {{sec-new-attributes}}; in summary: both
+when defining new detail entries, and when actually generating a
+Concise Problem Details data item, care needs to be taken that they do
+not leak sensitive information.
+Entities storing or forwarding Concise Problem Details data items need
+to consider whether this leads to information being transferred out of
+the context within which access to sensitive information was acceptable.
+See also {{ignore-unknown}} (the last paragraph of the introduction to
+that section).
+If privacy-sensitive information is obscured in some way in the
+problem details (e.g., by base64-encoding), this might lead to
+misclassification as non-sensitive.
 
 # IANA Considerations
 
