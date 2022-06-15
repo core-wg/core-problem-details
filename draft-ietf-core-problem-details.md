@@ -517,9 +517,9 @@ to consider whether this leads to information being transferred out of
 the context within which access to sensitive information was acceptable.
 See also {{ignore-unknown}} (the last paragraph of the introduction to
 that section).
-If privacy-sensitive information is obscured in some way in the
-problem details (e.g., by base64-encoding), this might lead to
-misclassification as non-sensitive.
+Privacy-sensitive information in the problem details SHOULD
+NOT be obscured in ways that might lead to misclassification as
+non-sensitive (e.g., by base64-encoding).
 
 # IANA Considerations
 
