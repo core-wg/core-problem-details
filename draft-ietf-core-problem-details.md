@@ -56,6 +56,7 @@ normative:
   RFC4647: bcp-47-4
   RFC8610: cddl
   RFC9165: cddlplus
+  RFC8126: ianacons
 informative:
 #  W3C.REC-rdf-concepts-20040210: rdf
   RFC4648: base
@@ -551,7 +552,7 @@ non-sensitive (e.g., by base64-encoding).
 
 This specification defines a new sub-registry for Standard Problem
 Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}},
-with the policy "specification required" {{!RFC8126}}.
+with the policy "specification required" ({{Section 4.6 of -ianacons}}).
 
 Each entry in the registry must include:
 
@@ -588,7 +589,14 @@ Initial entries in this sub-registry are as follows:
 
 This specification defines a new sub-registry for Custom Problem
 Detail Keys in the CoRE Parameters registry {{!IANA.core-parameters}},
-with the policy "first come first served" {{!RFC8126}}.
+with the policy "expert review" ({{Section 4.5 of -ianacons}}).
+
+The expert is instructed to attempt making the registration experience
+as close to first-come-first-served as reasonable achievable, but
+checking that the reference document does provide a description as set
+out below.
+(This requirement is a relaxed version of "specification required" as
+defined in {{Section 4.6 of -ianacons}}.)
 
 Each entry in the registry must include:
 
