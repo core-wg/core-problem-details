@@ -111,7 +111,7 @@ codes ({{Section 5.9 of -coap}}) is sometimes not sufficient to convey enough in
 an error to be helpful.  This specification defines a simple and extensible
 framework to define CBOR {{-cbor}} data items to suit this purpose.
 It is designed to be reused by REST APIs, which can identify distinct
-shapes of these data items specific to their needs.
+"shapes" of these data items specific to their needs.
 Thus, API clients can be informed of both the high-level error class
 (using the response code) and the finer-grained details of the problem
 (using the vocabulary defined here).
@@ -182,6 +182,9 @@ oltext = text / tag38
 
 ~~~
 {: #cddl title="Structure of Concise Problem Details Data Item"}
+
+(Examples of elaborated Concise Problem Details data items can
+be found later in the document, e.g., {{fig-example-custom-with-uri}}.)
 
 A number of problem detail entries, the Standard Problem Detail
 entries, are predefined (more predefined details can be registered,
