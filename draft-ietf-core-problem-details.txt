@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 17 December 2022                         Universität Bremen TZI
-                                                            15 June 2022
+Expires: 18 December 2022                         Universität Bremen TZI
+                                                            16 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 December 2022.
+   This Internet-Draft will expire on 18 December 2022.
 
 Copyright Notice
 
@@ -524,7 +524,7 @@ Table of Contents
 
    This specification defines a new sub-registry for Standard Problem
    Detail Keys in the CoRE Parameters registry [IANA.core-parameters],
-   with the policy "specification required" [RFC8126].
+   with the policy "specification required" (Section 4.6 of [RFC8126]).
 
    Each entry in the registry must include:
 
@@ -605,7 +605,13 @@ Table of Contents
 
    This specification defines a new sub-registry for Custom Problem
    Detail Keys in the CoRE Parameters registry [IANA.core-parameters],
-   with the policy "first come first served" [RFC8126].
+   with the policy "expert review" (Section 4.5 of [RFC8126]).
+
+   The expert is instructed to attempt making the registration
+   experience as close to first-come-first-served as reasonably
+   achievable, but checking that the reference document does provide a
+   description as set out below.  (This requirement is a relaxed version
+   of "specification required" as defined in Section 4.6 of [RFC8126].)
 
    Each entry in the registry must include:
 
