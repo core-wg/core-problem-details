@@ -570,7 +570,7 @@ Brief description:
 : a brief description
 
 Change Controller:
-: (see Section 2.3 of {{-ianacons}})
+: (see {{Section 2.3 of -ianacons}})
 
 Reference:
 : a reference document
@@ -629,7 +629,7 @@ Brief description:
 : a brief description
 
 Change Controller:
-: (see Section 2.3 of {{-ianacons}})
+: (see {{Section 2.3 of -ianacons}})
 
 Reference:
 : a reference document that provides a description of the map,
