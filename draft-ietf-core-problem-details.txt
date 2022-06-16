@@ -414,7 +414,7 @@ Table of Contents
         / response-code / -4: 128, / 4.00 /
 
         "tag:3gpp.org,2022-03:TS29112": {
-          / cause /  0: "machine readable error cause",
+          / cause /  0: "machine-readable error cause",
           / invalidParams / 1: [
             [
               / param / "first parameter name",
@@ -444,7 +444,7 @@ Table of Contents
 
        /4711 is made-up example key that is not actually registered:/
        4711: {
-         / cause /  0: "machine readable error cause",
+         / cause /  0: "machine-readable error cause",
          / invalidParams / 1: [
            [
              / param / "first parameter name",
