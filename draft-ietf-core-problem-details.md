@@ -569,7 +569,10 @@ CDDL type:
 Brief description:
 : a brief description
 
-reference:
+Change Controller:
+: (see Section 2.3 of {{-ianacons}})
+
+Reference:
 : a reference document
 
 The expert is requested to assign the shortest key values (1+0 and
@@ -579,8 +582,13 @@ can benefit from short encodings.
 To be immediately useful in CDDL and programming language contexts, a
 name consists of a lower-case ASCII letter (a-z) and zero or more
 additional ASCII characters that are either lower-case letters,
-digits, or a hyphen-minus, i.e., it matches [a-z][-a-z0-9]*.
+digits, or a hyphen-minus, i.e., it matches `[a-z][-a-z0-9]*`.
 As with the key values, names need to be unique.
+
+The specification in the reference document needs to provide a
+description of the Standard Problem Detail entry, replicating the CDDL
+description in "CDDL type", and describing the semantics of the
+presence of this entry and the semantics of the value given with it.
 
 Initial entries in this sub-registry are as follows:
 
@@ -620,6 +628,9 @@ Name:
 Brief description:
 : a brief description
 
+Change Controller:
+: (see Section 2.3 of {{-ianacons}})
+
 Reference:
 : a reference document that provides a description of the map,
   including a CDDL description, that describes all inside keys and
@@ -632,7 +643,7 @@ can benefit from short encodings.
 To be immediately useful in CDDL and programming language contexts, a
 name consists of a lower-case ASCII letter (a-z) and zero or more
 additional ASCII characters that are either lower-case letters,
-digits, or a hyphen-minus, i.e., it matches [a-z][-a-z0-9]*.
+digits, or a hyphen-minus, i.e., it matches `[a-z][-a-z0-9]*`.
 As with the key values, names need to be unique.
 
 
@@ -660,10 +671,10 @@ Subtype name:
 : concise-problem-details+cbor
 
 Required parameters:
-: none
+: N/A
 
 Optional parameters:
-: none
+: N/A
 
 Encoding considerations:
 : binary (CBOR data item)
