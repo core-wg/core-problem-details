@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-14T01:44:22.052447+00:00",
+  "timestamp": "2022-06-16T01:21:24.638111+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -2582,6 +2582,260 @@
           "createdAt": "2022-06-13T07:41:20Z",
           "updatedAt": "2022-06-13T07:41:20Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "id": "PR_kwDOD7eoo845sSy1",
+      "title": "Address both Yoav's concerns about the security considerations...",
+      "url": "https://github.com/core-wg/core-problem-details/pull/34",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "... section and Harald's observations about privacy considerations.",
+      "createdAt": "2022-06-15T09:22:18Z",
+      "updatedAt": "2022-06-15T20:24:56Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "2d2f2168fc4ba13e6db7ba1c961a237370a51d21",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "privcons-seccons",
+      "headRefOid": "8ada5c51504d4ef907b812c5fc0fdb4659d01ae8",
+      "closedAt": "2022-06-15T20:24:55Z",
+      "mergedAt": "2022-06-15T20:24:55Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "82d8b1f82fbd98826c5fca7cb4d3147b74bd1526"
+      },
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "\ud83d\udea2 it!",
+          "createdAt": "2022-06-15T15:47:19Z",
+          "updatedAt": "2022-06-15T15:47:19Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo848CHB0",
+          "commit": {
+            "abbreviatedOid": "4a56387"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Great stuff.  Minor editorial comment that you may ignore.",
+          "createdAt": "2022-06-15T09:34:38Z",
+          "updatedAt": "2022-06-15T09:35:52Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "I would rephrase this as an actual recommendation:\r\n```suggestion\r\nPrivacy-sensitive information in the problem details SHOULD\r\nNOT be obscured in ways that might lead to misclassification as\r\nnon-sensitive (e.g., by base64-encoding).\r\n```",
+              "createdAt": "2022-06-15T09:34:38Z",
+              "updatedAt": "2022-06-15T10:40:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo848CY5h",
+          "commit": {
+            "abbreviatedOid": "4a56387"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-15T10:30:06Z",
+          "updatedAt": "2022-06-15T10:30:07Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "redacted is not quite the word I'd use here... This is more about the original inclusion of information that is obscured.  Redacting should be done by removing, not by obscuring, but that is a different consideration.",
+              "createdAt": "2022-06-15T10:30:06Z",
+              "updatedAt": "2022-06-15T10:30:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo848CcJm",
+          "commit": {
+            "abbreviatedOid": "4a56387"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-15T10:40:09Z",
+          "updatedAt": "2022-06-15T10:40:09Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "\ud83d\udc40 at the dictionary: redacted can mean \"obscured\" but also \"censored\".  We only want to talk about the former here, so you are right \"obscured\" is the right term. (Suggested text modified accordingly).",
+              "createdAt": "2022-06-15T10:40:09Z",
+              "updatedAt": "2022-06-15T10:41:53Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "id": "PR_kwDOD7eoo845uPqw",
+      "title": "Address Roman's comments",
+      "url": "https://github.com/core-wg/core-problem-details/pull/35",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-15T17:07:35Z",
+      "updatedAt": "2022-06-15T20:24:33Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "2d2f2168fc4ba13e6db7ba1c961a237370a51d21",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "rd-comments",
+      "headRefOid": "2621f9816c9169fb820de4c0109a3b85f82bfe1e",
+      "closedAt": "2022-06-15T20:24:32Z",
+      "mergedAt": "2022-06-15T20:24:32Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "dc2e92b9a2c8293d0034e63a267257bfe609f73a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo848Eq4J",
+          "commit": {
+            "abbreviatedOid": "2621f98"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2022-06-15T17:11:56Z",
+          "updatedAt": "2022-06-15T17:11:56Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "id": "PR_kwDOD7eoo845utLD",
+      "title": "Address Warren's comments",
+      "url": "https://github.com/core-wg/core-problem-details/pull/36",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-15T19:33:40Z",
+      "updatedAt": "2022-06-15T20:22:31Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "2d2f2168fc4ba13e6db7ba1c961a237370a51d21",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "wk-comments",
+      "headRefOid": "40332935cfbd48efbf461e443e86cd6654ab5690",
+      "closedAt": "2022-06-15T20:22:31Z",
+      "mergedAt": "2022-06-15T20:22:31Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "d991ba44d260fced924aa5eeeb7cced586fefcec"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo848Fg85",
+          "commit": {
+            "abbreviatedOid": "4033293"
+          },
+          "author": "wkumari",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "LGTM, thank you!",
+          "createdAt": "2022-06-15T20:18:39Z",
+          "updatedAt": "2022-06-15T20:18:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "id": "PR_kwDOD7eoo845u6WI",
+      "title": "Address IANA comment on Section 5.2 (now Section 6.2).",
+      "url": "https://github.com/core-wg/core-problem-details/pull/37",
+      "state": "OPEN",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This is a minimal change to address the observation in the IANA comments.",
+      "createdAt": "2022-06-15T20:40:04Z",
+      "updatedAt": "2022-06-15T21:40:05Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "82d8b1f82fbd98826c5fca7cb4d3147b74bd1526",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "iana-comments",
+      "headRefOid": "a112ed3c544b3fc118ba95020496680d6a617177",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo848FoC6",
+          "commit": {
+            "abbreviatedOid": "21ea8c8"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "couple of small comments",
+          "createdAt": "2022-06-15T20:46:42Z",
+          "updatedAt": "2022-06-15T20:50:01Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\nas close to first-come-first-served as reasonably achievable, but\r\n```",
+              "createdAt": "2022-06-15T20:46:42Z",
+              "updatedAt": "2022-06-15T20:50:01Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "Not sure this is necessary",
+              "createdAt": "2022-06-15T20:49:48Z",
+              "updatedAt": "2022-06-15T20:50:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo848F78r",
+          "commit": {
+            "abbreviatedOid": "21ea8c8"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-15T21:40:04Z",
+          "updatedAt": "2022-06-15T21:40:05Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "I wrote this mainly to fend of the knee-jerk \"but this is like specification required, why don't you use that?\".",
+              "createdAt": "2022-06-15T21:40:05Z",
+              "updatedAt": "2022-06-15T21:40:05Z"
+            }
+          ]
         }
       ]
     }
