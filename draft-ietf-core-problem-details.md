@@ -435,7 +435,7 @@ of a custom extension using a (made-up) URI as `custom-problem-detail-entries` k
   / response-code / -4: 128, / 4.00 /
 
   "tag:3gpp.org,2022-03:TS29112": {
-    / cause /  0: "machine readable error cause",
+    / cause /  0: "machine-readable error cause",
     / invalidParams / 1: [
       [
         / param / "first parameter name",
@@ -467,7 +467,7 @@ the same example would look like using a (made-up) registered unsigned int as
 
   /4711 is made-up example key that is not actually registered:/
   4711: {
-    / cause /  0: "machine readable error cause",
+    / cause /  0: "machine-readable error cause",
     / invalidParams / 1: [
       [
         / param / "first parameter name",
