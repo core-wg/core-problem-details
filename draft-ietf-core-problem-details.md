@@ -524,7 +524,7 @@ perform the dereferencing, and which servers are trusted with serving
 them.
 In any case, the security considerations of {{Section 7 of -uri}} apply.
 
-The security and privacy considerations outlined in Section 5 of {{RFC7807}} apply in full.
+The security and privacy considerations outlined in {{Section 5 of RFC7807}} apply in full.
 While these are phrased in terms of security considerations for new
 RFC 7807 problem types, they equally apply to the problem detail
 entry definitions used here {{sec-new-attributes}}; in summary: both
