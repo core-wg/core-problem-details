@@ -543,6 +543,16 @@ Table of Contents
    reference:
       a reference document
 
+   The expert is requested to assign the shortest key values (1+0 and
+   1+1 encoding) to registrations that are likely to enjoy wide use and
+   can benefit from short encodings.
+
+   To be immediately useful in CDDL and programming language contexts, a
+   name consists of a lower-case ASCII letter (a-z) and zero or more
+   additional ASCII characters that are either lower-case letters,
+   digits, or a hyphen-minus, i.e., it matches [a-z][-a-z0-9]*. As with
+   the key values, names need to be unique.
+
    Initial entries in this sub-registry are as follows:
 
    +=======+==============+=================+=============+===========+
@@ -628,6 +638,16 @@ Table of Contents
       a reference document that provides a description of the map,
       including a CDDL description, that describes all inside keys and
       values
+
+   The expert is requested to assign the shortest key values (1+0 and
+   1+1 encoding) to registrations that are likely to enjoy wide use and
+   can benefit from short encodings.
+
+   To be immediately useful in CDDL and programming language contexts, a
+   name consists of a lower-case ASCII letter (a-z) and zero or more
+   additional ASCII characters that are either lower-case letters,
+   digits, or a hyphen-minus, i.e., it matches [a-z][-a-z0-9]*. As with
+   the key values, names need to be unique.
 
    Initial entries in this sub-registry are as follows:
 
