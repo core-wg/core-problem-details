@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-16T01:21:24.638111+00:00",
+  "timestamp": "2022-06-19T01:26:21.291261+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -2771,24 +2771,26 @@
       "id": "PR_kwDOD7eoo845u6WI",
       "title": "Address IANA comment on Section 5.2 (now Section 6.2).",
       "url": "https://github.com/core-wg/core-problem-details/pull/37",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "This is a minimal change to address the observation in the IANA comments.",
       "createdAt": "2022-06-15T20:40:04Z",
-      "updatedAt": "2022-06-15T21:40:05Z",
+      "updatedAt": "2022-06-16T07:16:51Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "82d8b1f82fbd98826c5fca7cb4d3147b74bd1526",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "iana-comments",
       "headRefOid": "a112ed3c544b3fc118ba95020496680d6a617177",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-06-16T07:16:51Z",
+      "mergedAt": "2022-06-16T07:16:51Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "5bdf0421e059259f22618a1b5b7608968c69eef0"
+      },
       "comments": [],
       "reviews": [
         {
@@ -2836,6 +2838,123 @@
               "updatedAt": "2022-06-15T21:40:05Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo848HYdl",
+          "commit": {
+            "abbreviatedOid": "21ea8c8"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-16T06:43:41Z",
+          "updatedAt": "2022-06-16T06:43:41Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "mmm, reminds me of St Jerome's letter 4: _\"[...] dum excusare credis, accusas\"_, but OK :-)",
+              "createdAt": "2022-06-16T06:43:41Z",
+              "updatedAt": "2022-06-16T06:43:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo848HYgt",
+          "commit": {
+            "abbreviatedOid": "a112ed3"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-06-16T06:43:53Z",
+          "updatedAt": "2022-06-16T06:43:53Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "id": "PR_kwDOD7eoo845wWJU",
+      "title": "Expand expert instructions for key values and names.",
+      "url": "https://github.com/core-wg/core-problem-details/pull/38",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-16T07:22:32Z",
+      "updatedAt": "2022-06-16T08:09:42Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "5bdf0421e059259f22618a1b5b7608968c69eef0",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "iana-expert-instructions",
+      "headRefOid": "edc00688a72e6b57b900e5415a639f68bfbf2276",
+      "closedAt": "2022-06-16T08:09:38Z",
+      "mergedAt": "2022-06-16T08:09:38Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "330bdd7d3090d1604b505094cb03907c58a2774b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo848Hvg7",
+          "commit": {
+            "abbreviatedOid": "edc0068"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "awesome",
+          "createdAt": "2022-06-16T08:09:29Z",
+          "updatedAt": "2022-06-16T08:09:29Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "id": "PR_kwDOD7eoo845xCPo",
+      "title": "Address Murray's discuss/comments",
+      "url": "https://github.com/core-wg/core-problem-details/pull/39",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-16T10:27:39Z",
+      "updatedAt": "2022-06-16T10:31:59Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "330bdd7d3090d1604b505094cb03907c58a2774b",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "mk-comments",
+      "headRefOid": "a9a1f35576bbc89ecab508010acc54410cb94267",
+      "closedAt": "2022-06-16T10:31:55Z",
+      "mergedAt": "2022-06-16T10:31:55Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "4f9420c54d2e1204bdf248844c8311ab44b29eed"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo848IakU",
+          "commit": {
+            "abbreviatedOid": "a9a1f35"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-06-16T10:31:46Z",
+          "updatedAt": "2022-06-16T10:31:46Z",
+          "comments": []
         }
       ]
     }
