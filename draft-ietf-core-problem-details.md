@@ -808,7 +808,9 @@ processing the information represented in this tag.
 In CDDL:
 
 ~~~ cddl
-{::include tag38.cddl}
+tag38 = #6.38([tag38-ltag, text, ?tag38-direction])
+tag38-ltag = text .regexp "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*"
+tag38-direction = &(ltr: false, rtl: true, auto: null)
 ~~~
 
 <!-- RUBY_THREAD_VM_STACK_SIZE=5000000 cddl ... -->
