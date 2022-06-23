@@ -818,10 +818,10 @@ tag38-direction = &(ltr: false, rtl: true, auto: null)
 
 NOTE: Language tags of any combination of case are allowed. But
 section 2.1.1 of {{-bcp-47-3}}, part of Best Current Practice 47,
-recommends a case combination for language tags, that encoders that
+recommends a case combination for language tags that encoders that
 support tag 38 may wish to follow when generating language tags.
 
-Data items with tag 38 that do not meet the criteria above are invalid
+Data items with tag 38 that do not meet the criteria above are not valid
 (see {{Section 5.3.2 of -cbor}}).
 
 NOTE: The Unicode Standard {{-unicode}} includes a set of characters
@@ -941,7 +941,7 @@ and {{{Michael Richardson}}} for review and comments on this document.
 and {{{Joel Jaeggli}}} for his OPSDIR review, both of which brought
 significant additional considerations to this document.
 
-For {{tag38}}, John Cowan and Doug Ewell are also to be acknowledged.
+For {{tag38}}, {{{John Cowan}}} and {{{Doug Ewell}}} are also to be acknowledged.
 The content of an earlier version of this appendix was also discussed
 in the "apps-discuss at ietf.org" and "ltru at ietf.org" mailing
 lists.
@@ -950,8 +950,8 @@ of writing direction information in conjunction with language tags.
 That led to discussions within the W3C Internationalization Core
 Working Group.
 The authors would like to acknowledge that cross-organization
-cooperation and particular contributions from John Klensin and
-Addison Phillips.
+cooperation and particular contributions from {{{John Klensin}}} and
+{{{Addison Phillips}}}, and specific text proposals by {{{Martin Dürst}}}.
 
 <!--  LocalWords:  dereferencing dereferenced dereferenceable
  -->
