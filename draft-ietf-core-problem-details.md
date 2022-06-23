@@ -71,6 +71,7 @@ informative:
     title: RDF 1.1 Concepts and Abstract Syntax
     rc: W3C Recommendation
     date: 2014-02-25
+  RFC6082:
   STRING-META:
     title: >
       Strings on the Web: Language and Direction Metadata
@@ -829,7 +830,7 @@ U+E0000 to U+E007F. Although many applications, including RDF,
 do not disallow these characters in text strings, the Unicode Consortium
 has deprecated these characters and recommends annotating language via a
 higher-level protocol instead. See the section "Deprecated Tag
-Characters" in Section 23.9 of {{-unicode}}.
+Characters" in Section 23.9 of {{-unicode}}, as well as {{RFC6082}}.
 
 Examples
 --------
