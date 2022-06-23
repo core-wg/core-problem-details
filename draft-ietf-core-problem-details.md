@@ -92,6 +92,14 @@ informative:
       Note that while this document references a version that was recent
       at the time of writing, the statements made based on this
       version are expected to remain valid for future versions.
+  Unicode-14.0.0-bidi:
+    -: bidi
+    target: https://www.unicode.org/reports/tr9/#Markup_And_Formatting
+    title: >
+      Unicode® Standard Annex #9 --- Unicode Bidirectional Algorithm
+    author:
+    - org: The Unicode Consortium
+    date: 2021-08-27
 
 --- abstract
 
@@ -772,12 +780,26 @@ The second element is an arbitrary UTF-8 text string (major type
 3). Both the language tag and the arbitrary string can optionally be
 annotated with CBOR tags; this is not shown in the CDDL below.
 
-The optional third element, if present, is a Boolean value that
-indicates a direction: `false` for "ltr" direction, `true` for "rtl"
-direction.  If the third element is absent, no indication is made
-about the direction; it can be explicitly given as `null` to express
-the same while overriding any context that might be considered
-applying to this element.
+The optional third element, if present, represents a Boolean value that
+indicates a direction, as follows:
+
+- `false`: left-to-right direction ("ltr").
+  The text is expected to be displayed with left-to-right base
+  direction if standalone, and isolated with left-to-right direction
+  (as if enclosed in LRI ... PDI or equivalent, see {{-bidi}}) in the
+  context of a longer string or text.
+- `true`: right-to-left direction ("rtl").
+  The text is expected to be displayed with right-to-left base
+  direction if standalone, and isolated with right-to-left direction
+  (as if enclosed in RLI ... PDI or equivalent, see {{-bidi}}) in the context
+  of a longer string or text.
+- absent: no indication is made about the direction ("auto").
+  An (explicit) value of `null` can be given to indicate that no
+  indication is made about the direction, and that any directionality
+  context applying to this element (e.g., base directionality
+  information for an entire CBOR message or part thereof) is to be
+  ignored.
+
 Note that the proper processing of Language and Direction Metadata is
 an active area of investigation; the reader is advised to consult
 ongoing standardization activities such as {{STRING-META}} when
