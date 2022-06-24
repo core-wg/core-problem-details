@@ -71,6 +71,7 @@ informative:
     title: RDF 1.1 Concepts and Abstract Syntax
     rc: W3C Recommendation
     date: 2014-02-25
+  RFC6082:
   STRING-META:
     title: >
       Strings on the Web: Language and Direction Metadata
@@ -92,6 +93,14 @@ informative:
       Note that while this document references a version that was recent
       at the time of writing, the statements made based on this
       version are expected to remain valid for future versions.
+  Unicode-14.0.0-bidi:
+    -: bidi
+    target: https://www.unicode.org/reports/tr9/#Markup_And_Formatting
+    title: >
+      Unicode® Standard Annex #9 --- Unicode Bidirectional Algorithm
+    author:
+    - org: The Unicode Consortium
+    date: 2021-08-27
 
 --- abstract
 
@@ -772,12 +781,26 @@ The second element is an arbitrary UTF-8 text string (major type
 3). Both the language tag and the arbitrary string can optionally be
 annotated with CBOR tags; this is not shown in the CDDL below.
 
-The optional third element, if present, is a Boolean value that
-indicates a direction: `false` for "ltr" direction, `true` for "rtl"
-direction.  If the third element is absent, no indication is made
-about the direction; it can be explicitly given as `null` to express
-the same while overriding any context that might be considered
-applying to this element.
+The optional third element, if present, represents a Boolean value that
+indicates a direction, as follows:
+
+- `false`: left-to-right direction ("ltr").
+  The text is expected to be displayed with left-to-right base
+  direction if standalone, and isolated with left-to-right direction
+  (as if enclosed in LRI ... PDI or equivalent, see {{-bidi}}) in the
+  context of a longer string or text.
+- `true`: right-to-left direction ("rtl").
+  The text is expected to be displayed with right-to-left base
+  direction if standalone, and isolated with right-to-left direction
+  (as if enclosed in RLI ... PDI or equivalent, see {{-bidi}}) in the context
+  of a longer string or text.
+- absent: no indication is made about the direction ("auto").
+  An (explicit) value of `null` can be given to indicate that no
+  indication is made about the direction, and that any directionality
+  context applying to this element (e.g., base directionality
+  information for an entire CBOR message or part thereof) is to be
+  ignored.
+
 Note that the proper processing of Language and Direction Metadata is
 an active area of investigation; the reader is advised to consult
 ongoing standardization activities such as {{STRING-META}} when
@@ -786,17 +809,19 @@ processing the information represented in this tag.
 In CDDL:
 
 ~~~ cddl
-{::include tag38.cddl}
+tag38 = #6.38([tag38-ltag, text, ?tag38-direction])
+tag38-ltag = text .regexp "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*"
+tag38-direction = &(ltr: false, rtl: true, auto: null)
 ~~~
 
 <!-- RUBY_THREAD_VM_STACK_SIZE=5000000 cddl ... -->
 
 NOTE: Language tags of any combination of case are allowed. But
 section 2.1.1 of {{-bcp-47-3}}, part of Best Current Practice 47,
-recommends a case combination for language tags, that encoders that
+recommends a case combination for language tags that encoders that
 support tag 38 may wish to follow when generating language tags.
 
-Data items with tag 38 that do not meet the criteria above are invalid
+Data items with tag 38 that do not meet the criteria above are not valid
 (see {{Section 5.3.2 of -cbor}}).
 
 NOTE: The Unicode Standard {{-unicode}} includes a set of characters
@@ -805,7 +830,7 @@ U+E0000 to U+E007F. Although many applications, including RDF,
 do not disallow these characters in text strings, the Unicode Consortium
 has deprecated these characters and recommends annotating language via a
 higher-level protocol instead. See the section "Deprecated Tag
-Characters" in Section 23.9 of {{-unicode}}.
+Characters" in Section 23.9 of {{-unicode}}, as well as {{RFC6082}}.
 
 Examples
 --------
@@ -916,7 +941,7 @@ and {{{Michael Richardson}}} for review and comments on this document.
 and {{{Joel Jaeggli}}} for his OPSDIR review, both of which brought
 significant additional considerations to this document.
 
-For {{tag38}}, John Cowan and Doug Ewell are also to be acknowledged.
+For {{tag38}}, {{{John Cowan}}} and {{{Doug Ewell}}} are also to be acknowledged.
 The content of an earlier version of this appendix was also discussed
 in the "apps-discuss at ietf.org" and "ltru at ietf.org" mailing
 lists.
@@ -925,8 +950,8 @@ of writing direction information in conjunction with language tags.
 That led to discussions within the W3C Internationalization Core
 Working Group.
 The authors would like to acknowledge that cross-organization
-cooperation and particular contributions from John Klensin and
-Addison Phillips.
+cooperation and particular contributions from {{{John Klensin}}} and
+{{{Addison Phillips}}}, and specific text proposals by {{{Martin Dürst}}}.
 
 <!--  LocalWords:  dereferencing dereferenced dereferenceable
  -->
