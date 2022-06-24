@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 18 December 2022                         Universität Bremen TZI
-                                                            16 June 2022
+Expires: 26 December 2022                         Universität Bremen TZI
+                                                            24 June 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 December 2022.
+   This Internet-Draft will expire on 26 December 2022.
 
 Copyright Notice
 
@@ -827,6 +827,11 @@ Table of Contents
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
               <https://www.rfc-editor.org/rfc/rfc4648>.
 
+   [RFC6082]  Whistler, K., Adams, G., Duerst, M., Presuhn, R., Ed., and
+              J. Klensin, "Deprecating Unicode Language Tag Characters:
+              RFC 2482 is Historic", RFC 6082, DOI 10.17487/RFC6082,
+              November 2010, <https://www.rfc-editor.org/rfc/rfc6082>.
+
    [STRING-META]
               "Strings on the Web: Language and Direction Metadata", W3C
               group draft note, <https://www.w3.org/TR/string-meta/>.
@@ -840,6 +845,12 @@ Table of Contents
               recent at the time of writing, the statements made based
               on this version are expected to remain valid for future
               versions.
+
+   [Unicode-14.0.0-bidi]
+              The Unicode Consortium, "Unicode® Standard Annex #9 ---
+              Unicode Bidirectional Algorithm", 27 August 2021,
+              <https://www.unicode.org/reports/
+              tr9/#Markup_And_Formatting>.
 
 Appendix A.  Language-Tagged Strings
 
@@ -869,88 +880,46 @@ A.2.  Detailed Semantics
    Both the language tag and the arbitrary string can optionally be
    annotated with CBOR tags; this is not shown in the CDDL below.
 
-   The optional third element, if present, is a Boolean value that
-   indicates a direction: false for "ltr" direction, true for "rtl"
-   direction.  If the third element is absent, no indication is made
-   about the direction; it can be explicitly given as null to express
-   the same while overriding any context that might be considered
-   applying to this element.  Note that the proper processing of
-   Language and Direction Metadata is an active area of investigation;
-   the reader is advised to consult ongoing standardization activities
-   such as [STRING-META] when processing the information represented in
-   this tag.
+   The optional third element, if present, represents a Boolean value
+   that indicates a direction, as follows:
+
+   *  false: left-to-right direction ("ltr").  The text is expected to
+      be displayed with left-to-right base direction if standalone, and
+      isolated with left-to-right direction (as if enclosed in LRI ...
+      PDI or equivalent, see [Unicode-14.0.0-bidi]) in the context of a
+      longer string or text.
+
+   *  true: right-to-left direction ("rtl").  The text is expected to be
+      displayed with right-to-left base direction if standalone, and
+      isolated with right-to-left direction (as if enclosed in RLI ...
+      PDI or equivalent, see [Unicode-14.0.0-bidi]) in the context of a
+      longer string or text.
+
+   *  absent: no indication is made about the direction ("auto").  An
+      (explicit) value of null can be given to indicate that no
+      indication is made about the direction, and that any
+      directionality context applying to this element (e.g., base
+      directionality information for an entire CBOR message or part
+      thereof) is to be ignored.
+
+   Note that the proper processing of Language and Direction Metadata is
+   an active area of investigation; the reader is advised to consult
+   ongoing standardization activities such as [STRING-META] when
+   processing the information represented in this tag.
 
    In CDDL:
 
    tag38 = #6.38([tag38-ltag, text, ?tag38-direction])
-   tag38-ltag = text  .abnf ("Language-Tag" .det RFC5646)
+   tag38-ltag = text .regexp "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*"
    tag38-direction = &(ltr: false, rtl: true, auto: null)
-
-   RFC5646 = '
-    Language-Tag  = langtag             ; normal language tags
-                  / privateuse          ; private use tag
-                  / legacy              ; legacy tags
-
-    langtag       = language
-                    ["-" script]
-                    ["-" region]
-                    *("-" variant)
-                    *("-" extension)
-                    ["-" privateuse]
-
-    language      = 2*3ALPHA            ; shortest ISO 639 code
-                    ["-" extlang]       ; sometimes followed by
-                                        ; extended language subtags
-                  / 4ALPHA              ; or reserved for future use
-                  / 5*8ALPHA            ; or registered language subtag
-
-    extlang       = 3ALPHA              ; selected ISO 639 codes
-                    *2("-" 3ALPHA)      ; permanently reserved
-
-    script        = 4ALPHA              ; ISO 15924 code
-
-    region        = 2ALPHA              ; ISO 3166-1 code
-                  / 3DIGIT              ; UN M.49 code
-
-    variant       = 5*8alphanum         ; registered variants
-                  / (DIGIT 3alphanum)
-
-    extension     = singleton 1*("-" (2*8alphanum))
-
-                                        ; Single alphanumerics
-                                        ; "x" reserved for private use
-    singleton     = DIGIT               ; 0 - 9
-                  / %x41-57             ; A - W
-                  / %x59-5A             ; Y - Z
-                  / %x61-77             ; a - w
-                  / %x79-7A             ; y - z
-
-    privateuse    = "x" 1*("-" (1*8alphanum))
-
-    legacy        = irregular / regular ; different word in RFC
-
-    irregular     = "en-GB-oed" / "i-ami" / "i-bnn" / "i-default" /
-                  "i-enochian" / "i-hak" / "i-klingon" / "i-lux" /
-                  "i-mingo" / "i-navajo" / "i-pwn" / "i-tao" / "i-tay" /
-                  "i-tsu" / "sgn-BE-FR" / "sgn-BE-NL" / "sgn-CH-DE"
-
-    regular       = "art-lojban" / "cel-gaulish" / "no-bok" / "no-nyn" /
-                  "zh-guoyu" / "zh-hakka" / "zh-min" / "zh-min-nan" /
-                  "zh-xiang"
-
-    alphanum      = (ALPHA / DIGIT)     ; letters and numbers
-
-    ALPHA         =  %x41-5A / %x61-7A  ; A-Z / a-z
-    DIGIT         =  %x30-39            ; 0-9
-   '
 
    NOTE: Language tags of any combination of case are allowed.  But
    section 2.1.1 of [RFC5646], part of Best Current Practice 47,
-   recommends a case combination for language tags, that encoders that
+   recommends a case combination for language tags that encoders that
    support tag 38 may wish to follow when generating language tags.
 
-   Data items with tag 38 that do not meet the criteria above are
-   invalid (see Section 5.3.2 of [STD94]).
+   Data items with tag 38 that do not meet the criteria above are not
+   valid (see Section 5.3.2 of [STD94]).
 
    NOTE: The Unicode Standard [Unicode-14.0.0] includes a set of
    characters designed for tagging text (including language tagging), in
@@ -958,7 +927,8 @@ A.2.  Detailed Semantics
    RDF, do not disallow these characters in text strings, the Unicode
    Consortium has deprecated these characters and recommends annotating
    language via a higher-level protocol instead.  See the section
-   "Deprecated Tag Characters" in Section 23.9 of [Unicode-14.0.0].
+   "Deprecated Tag Characters" in Section 23.9 of [Unicode-14.0.0], as
+   well as [RFC6082].
 
 A.3.  Examples
 
@@ -1064,7 +1034,8 @@ Acknowledgments
    conjunction with language tags.  That led to discussions within the
    W3C Internationalization Core Working Group.  The authors would like
    to acknowledge that cross-organization cooperation and particular
-   contributions from John Klensin and Addison Phillips.
+   contributions from John Klensin and Addison Phillips, and specific
+   text proposals by Martin Dürst.
 
 Contributors
 
