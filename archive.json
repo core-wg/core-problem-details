@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-19T01:26:21.291261+00:00",
+  "timestamp": "2022-06-26T01:40:04.516364+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -2954,6 +2954,48 @@
           "body": "",
           "createdAt": "2022-06-16T10:31:46Z",
           "updatedAt": "2022-06-16T10:31:46Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "id": "PR_kwDOD7eoo846QzpU",
+      "title": "Martin D\u00fcrst review",
+      "url": "https://github.com/core-wg/core-problem-details/pull/40",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-23T18:12:35Z",
+      "updatedAt": "2022-06-24T15:54:28Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "0753e489f191f19d8ca38e215333d06b03eabf7c",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "martin-duerst-review",
+      "headRefOid": "5d5241a5613d8fc50e885e9dd39ea143dc9f7dae",
+      "closedAt": "2022-06-24T15:54:28Z",
+      "mergedAt": "2022-06-24T15:54:28Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "2f0512f0eec1917d535b647b5034ac5182c9c1a9"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo848puOC",
+          "commit": {
+            "abbreviatedOid": "5d5241a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM.  Thank you, and Martin too.",
+          "createdAt": "2022-06-23T19:59:52Z",
+          "updatedAt": "2022-06-23T19:59:52Z",
           "comments": []
         }
       ]
