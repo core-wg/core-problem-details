@@ -73,12 +73,6 @@ informative:
     rc: W3C Recommendation
     date: 2014-02-25
   RFC6082:
-  STRING-META:
-    title: >
-      Strings on the Web: Language and Direction Metadata
-    target: https://www.w3.org/TR/string-meta/
-    rc: W3C group draft note
-    date: false
   Unicode-14.0.0:
     -: unicode
     target: https://www.unicode.org/versions/Unicode14.0.0/
@@ -808,11 +802,6 @@ If the third element is absent, directionality context may be applying
 (e.g., base directionality information for an entire CBOR message or
 part thereof).  If there is no directionality context applying, the
 default interpretation is the same as for `null` ("auto").
-
-Readers interested in further details of the proper processing of
-Language and Direction Metadata may want to consult {{-bidi}} as well as
-ongoing standardization activities such as {{STRING-META}} as background
-material.
 
 In CDDL:
 
