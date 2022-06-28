@@ -366,6 +366,8 @@ that would be ready for registration.
 > Specification reference:
 > : {{uco}} of RFC XXXX
 
+[^to-be-removed]
+
 The specification of the Standard Problem Detail entry referenced by
 the above registration template follows:
 
@@ -552,7 +554,8 @@ non-sensitive (e.g., by base64-encoding).
 
 [^to-be-removed]
 
-[^to-be-removed]: RFC Editor: please replace RFC XXXX with this RFC number and remove this note.
+[^to-be-removed]: RFC Editor: please replace RFC XXXX with the RFC
+    number of this RFC and remove this note.
 
 ## Standard Problem Detail Key registry {#iana-spdk}
 
