@@ -101,6 +101,10 @@ informative:
     author:
     - org: The Unicode Consortium
     date: 2021-08-27
+    ann: >
+      Note that while this document references a version that was recent
+      at the time of writing, the statements made based on this
+      version are expected to remain valid for future versions.
 
 --- abstract
 
@@ -781,7 +785,7 @@ The second element is an arbitrary UTF-8 text string (major type
 3). Both the language tag and the arbitrary string can optionally be
 annotated with CBOR tags; this is not shown in the CDDL below.
 
-The optional third element, if present, represents a Boolean value that
+The optional third element, if present, represents a ternary value that
 indicates a direction, as follows:
 
 - `false`: left-to-right direction ("ltr").
@@ -794,17 +798,20 @@ indicates a direction, as follows:
   direction if standalone, and isolated with right-to-left direction
   (as if enclosed in RLI ... PDI or equivalent, see {{-bidi}}) in the context
   of a longer string or text.
-- absent: no indication is made about the direction ("auto").
-  An (explicit) value of `null` can be given to indicate that no
-  indication is made about the direction, and that any directionality
-  context applying to this element (e.g., base directionality
-  information for an entire CBOR message or part thereof) is to be
-  ignored.
+- `null` indicates that that no indication is made about the direction
+  ("auto"), enabling an internationalization library to make a
+  decision such as treating the string as if enclosed in FSI ... PDI
+  or equivalent, see {{-bidi}}.
 
-Note that the proper processing of Language and Direction Metadata is
-an active area of investigation; the reader is advised to consult
-ongoing standardization activities such as {{STRING-META}} when
-processing the information represented in this tag.
+If the third element is absent, directionality context may be applying
+(e.g., base directionality information for an entire CBOR message or
+part thereof).  If there is no directionality context applying, the
+default interpretation is the same as for `null` ("auto").
+
+Readers interested in further details of the proper processing of
+Language and Direction Metadata may want to consult {{-bidi}} as well as
+ongoing standardization activities such as {{STRING-META}} as background
+material.
 
 In CDDL:
 
@@ -817,7 +824,7 @@ tag38-direction = &(ltr: false, rtl: true, auto: null)
 <!-- RUBY_THREAD_VM_STACK_SIZE=5000000 cddl ... -->
 
 NOTE: Language tags of any combination of case are allowed. But
-section 2.1.1 of {{-bcp-47-3}}, part of Best Current Practice 47,
+{{Section 2.1.1 of -bcp-47-3}}, part of Best Current Practice 47,
 recommends a case combination for language tags that encoders that
 support tag 38 may wish to follow when generating language tags.
 
