@@ -11,7 +11,8 @@ submissiontype: IETF
 ipr: trust200902
 area: ART
 workgroup: CoRE Working Group
-keyword: CoAP, API, Problem Details
+keyword: [CoAP, API, Problem Details,
+          CBOR Tag, Language Tag, Bidi]
 
 stand_alone: yes
 pi: [toc, sortrefs, symrefs]
