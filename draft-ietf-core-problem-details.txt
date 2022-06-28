@@ -340,6 +340,10 @@ Table of Contents
    |  
    |  Specification reference:  Section 3.1.1 of RFC XXXX
 
+
+   // RFC Editor: please replace RFC XXXX with the RFC number of this
+   // RFC and remove this note.
+
    The specification of the Standard Problem Detail entry referenced by
    the above registration template follows:
 
@@ -517,8 +521,8 @@ Table of Contents
 6.  IANA Considerations
 
 
-   // RFC Editor: please replace RFC XXXX with this RFC number and
-   // remove this note.
+   // RFC Editor: please replace RFC XXXX with the RFC number of this
+   // RFC and remove this note.
 
 6.1.  Standard Problem Detail Key registry
 
@@ -894,7 +898,7 @@ A.2.  Detailed Semantics
       PDI or equivalent, see [Unicode-14.0.0-bidi]) in the context of a
       longer string or text.
 
-   *  null indicates that that no indication is made about the direction
+   *  null indicates that no indication is made about the direction
       ("auto"), enabling an internationalization library to make an
       auto-detection decision such as treating the string as if enclosed
       in FSI ... PDI or equivalent, see [Unicode-14.0.0-bidi].

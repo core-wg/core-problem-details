@@ -1559,31 +1559,33 @@ one-or-more&lt;T&gt; = T / [ 2* T ]
             <dd class="break"></dd>
 </dl>
 </blockquote>
-<p id="section-3.1.1-3">The specification of the Standard Problem Detail entry referenced by
-the above registration template follows:<a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-4">The Standard Problem Detail entry <code>unprocessed-coap-option</code> provides
+<p id="section-3.1.1-3"><span class="cref" id="to-be-removed">RFC Editor: please replace RFC XXXX with the RFC
+number of this RFC and remove this note.</span><a href="#section-3.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-4">The specification of the Standard Problem Detail entry referenced by
+the above registration template follows:<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-5">The Standard Problem Detail entry <code>unprocessed-coap-option</code> provides
 the option number(s) of CoAP option(s) present in the request that
-could not be processed by the server.<a href="#section-3.1.1-4" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-5">This may be a critical option that the server is unaware of, or an
+could not be processed by the server.<a href="#section-3.1.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-6">This may be a critical option that the server is unaware of, or an
 option the server is aware of but could not process (and chose not
-to, or was not allowed to, ignore it).<a href="#section-3.1.1-5" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-6">The Concise Problem Details data item including this Standard
+to, or was not allowed to, ignore it).<a href="#section-3.1.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-7">The Concise Problem Details data item including this Standard
 Problem Detail Entry can be used in fulfillment of the "<span class="bcp14">SHOULD</span>"
-requirement in <span><a href="https://rfc-editor.org/rfc/rfc7252#section-5.4.1" class="relref">Section 5.4.1</a> of [<a href="#RFC7252" class="xref">RFC7252</a>]</span>.<a href="#section-3.1.1-6" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-7">Several option numbers may be given in a list (in no particular order),
+requirement in <span><a href="https://rfc-editor.org/rfc/rfc7252#section-5.4.1" class="relref">Section 5.4.1</a> of [<a href="#RFC7252" class="xref">RFC7252</a>]</span>.<a href="#section-3.1.1-7" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-8">Several option numbers may be given in a list (in no particular order),
 without any guarantee that the list is a complete representation of
 all the problems in the request (as the server might
 have stopped processing already at one of the problematic options).
 If an option with the given number was repeated, there is no
-indication which of the values caused the error.<a href="#section-3.1.1-7" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-8">Clients need to expect seeing options in the list they did not send
+indication which of the values caused the error.<a href="#section-3.1.1-8" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-9">Clients need to expect seeing options in the list they did not send
 in the request; this can happen if the request traversed a proxy
 that added the option but did not act on the problem details
-response being returned by the origin server.<a href="#section-3.1.1-8" class="pilcrow">¶</a></p>
-<p id="section-3.1.1-9">Note that for a few special values of unprocessed CoAP
+response being returned by the origin server.<a href="#section-3.1.1-9" class="pilcrow">¶</a></p>
+<p id="section-3.1.1-10">Note that for a few special values of unprocessed CoAP
 options (such as Accept or Proxy-Uri), there are special response
 codes (4.06 Not Acceptable, 5.05 Proxying Not Supported,
-respectively) to be sent instead of 4.02 Bad Option.<a href="#section-3.1.1-9" class="pilcrow">¶</a></p>
+respectively) to be sent instead of 4.02 Bad Option.<a href="#section-3.1.1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1758,7 +1760,8 @@ non-sensitive (e.g., by base64-encoding).<a href="#section-5-2" class="pilcrow">
       <h2 id="name-iana-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-6-1"><span class="cref" id="to-be-removed">RFC Editor: please replace RFC XXXX with this RFC number and remove this note.</span><a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1"><span class="cref" id="to-be-removed_1">RFC Editor: please replace RFC XXXX with the RFC
+number of this RFC and remove this note.</span><a href="#section-6-1" class="pilcrow">¶</a></p>
 <div id="iana-spdk">
 <section id="section-6.1">
         <h3 id="name-standard-problem-detail-key">
@@ -2303,7 +2306,7 @@ direction if standalone, and isolated with right-to-left direction
 of a longer string or text.<a href="#appendix-A.2-5.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-5.3">
-            <code>null</code> indicates that that no indication is made about the direction
+            <code>null</code> indicates that no indication is made about the direction
 ("auto"), enabling an internationalization library to make an auto-detection
 decision such as treating the string as if enclosed in FSI ... PDI
 or equivalent, see <span>[<a href="#Unicode-14.0.0-bidi" class="xref">Unicode-14.0.0-bidi</a>]</span>.<a href="#appendix-A.2-5.3" class="pilcrow">¶</a>
