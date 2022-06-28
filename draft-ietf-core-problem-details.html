@@ -17,7 +17,12 @@ is inspired by, but intended to be more concise than, the Problem
 Details for HTTP APIs defined in RFC 7807. 
     ' name="description">
 <meta content="xml2rfc 3.12.10" name="generator">
-<meta content="CoAP, API, Problem Details" name="keyword">
+<meta content="CoAP" name="keyword">
+<meta content="API" name="keyword">
+<meta content="Problem Details" name="keyword">
+<meta content="CBOR Tag" name="keyword">
+<meta content="Language Tag" name="keyword">
+<meta content="Bidi" name="keyword">
 <meta content="draft-ietf-core-problem-details-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.12.10
@@ -2232,10 +2237,6 @@ IANA is requested to replace the reference for this registration with
         <dd>
 <span class="refAuthor">Whistler, K.</span>, <span class="refAuthor">Adams, G.</span>, <span class="refAuthor">Duerst, M.</span>, <span class="refAuthor">Presuhn, R., Ed.</span>, and <span class="refAuthor">J. Klensin</span>, <span class="refTitle">"Deprecating Unicode Language Tag Characters: RFC 2482 is Historic"</span>, <span class="seriesInfo">RFC 6082</span>, <span class="seriesInfo">DOI 10.17487/RFC6082</span>, <time datetime="2010-11" class="refDate">November 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6082">https://www.rfc-editor.org/rfc/rfc6082</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="STRING-META">[STRING-META]</dt>
-        <dd>
-<span class="refTitle">"Strings on the Web: Language and Direction Metadata"</span>, <span class="refContent">W3C group draft note</span>, <span>&lt;<a href="https://www.w3.org/TR/string-meta/">https://www.w3.org/TR/string-meta/</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="Unicode-14.0.0">[Unicode-14.0.0]</dt>
         <dd>
 <span class="refAuthor">The Unicode Consortium</span>, <span class="refTitle">"The Unicode Standard, Version 14.0.0"</span>, <span class="refContent">Mountain View: The Unicode Consortium</span>, <span class="seriesInfo">ISBN 978-1-936213-29-0</span>, <time datetime="2021-09" class="refDate">September 2021</time>, <span>&lt;<a href="https://www.unicode.org/versions/Unicode14.0.0/">https://www.unicode.org/versions/Unicode14.0.0/</a>&gt;</span>. <span class="annotation">Note that while this document references a version that was recent at the time of writing, the statements made based on this version are expected to remain valid for future versions.</span>
@@ -2303,7 +2304,7 @@ of a longer string or text.<a href="#appendix-A.2-5.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.2-5.3">
             <code>null</code> indicates that that no indication is made about the direction
-("auto"), enabling an internationalization library to make a
+("auto"), enabling an internationalization library to make an auto-detection
 decision such as treating the string as if enclosed in FSI ... PDI
 or equivalent, see <span>[<a href="#Unicode-14.0.0-bidi" class="xref">Unicode-14.0.0-bidi</a>]</span>.<a href="#appendix-A.2-5.3" class="pilcrow">¶</a>
 </li>
@@ -2312,31 +2313,27 @@ or equivalent, see <span>[<a href="#Unicode-14.0.0-bidi" class="xref">Unicode-14
 (e.g., base directionality information for an entire CBOR message or
 part thereof).  If there is no directionality context applying, the
 default interpretation is the same as for <code>null</code> ("auto").<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-7">Readers interested in further details of the proper processing of
-Language and Direction Metadata may want to consult <span>[<a href="#Unicode-14.0.0-bidi" class="xref">Unicode-14.0.0-bidi</a>]</span> as well as
-ongoing standardization activities such as <span>[<a href="#STRING-META" class="xref">STRING-META</a>]</span> as background
-material.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-8">In CDDL:<a href="#appendix-A.2-8" class="pilcrow">¶</a></p>
-<div id="appendix-A.2-9">
+<p id="appendix-A.2-7">In CDDL:<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
+<div id="appendix-A.2-8">
 <pre class="lang-cddl sourcecode">
 tag38 = #6.38([tag38-ltag, text, ?tag38-direction])
 tag38-ltag = text .regexp "[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*"
 tag38-direction = &amp;(ltr: false, rtl: true, auto: null)
-</pre><a href="#appendix-A.2-9" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.2-8" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.2-10">NOTE: Language tags of any combination of case are allowed. But
+<p id="appendix-A.2-9">NOTE: Language tags of any combination of case are allowed. But
 <span><a href="https://rfc-editor.org/rfc/rfc5646#section-2.1.1" class="relref">Section 2.1.1</a> of [<a href="#RFC5646" class="xref">RFC5646</a>]</span>, part of Best Current Practice 47,
 recommends a case combination for language tags that encoders that
-support tag 38 may wish to follow when generating language tags.<a href="#appendix-A.2-10" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-11">Data items with tag 38 that do not meet the criteria above are not valid
-(see <span><a href="https://rfc-editor.org/rfc/rfc8949#section-5.3.2" class="relref">Section 5.3.2</a> of [<a href="#STD94" class="xref">STD94</a>]</span>).<a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-12">NOTE: The Unicode Standard <span>[<a href="#Unicode-14.0.0" class="xref">Unicode-14.0.0</a>]</span> includes a set of characters
+support tag 38 may wish to follow when generating language tags.<a href="#appendix-A.2-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-10">Data items with tag 38 that do not meet the criteria above are not valid
+(see <span><a href="https://rfc-editor.org/rfc/rfc8949#section-5.3.2" class="relref">Section 5.3.2</a> of [<a href="#STD94" class="xref">STD94</a>]</span>).<a href="#appendix-A.2-10" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-11">NOTE: The Unicode Standard <span>[<a href="#Unicode-14.0.0" class="xref">Unicode-14.0.0</a>]</span> includes a set of characters
 designed for tagging text (including language tagging), in the range
 U+E0000 to U+E007F. Although many applications, including RDF,
 do not disallow these characters in text strings, the Unicode Consortium
 has deprecated these characters and recommends annotating language via a
 higher-level protocol instead. See the section "Deprecated Tag
-Characters" in Section 23.9 of <span>[<a href="#Unicode-14.0.0" class="xref">Unicode-14.0.0</a>]</span>, as well as <span>[<a href="#RFC6082" class="xref">RFC6082</a>]</span>.<a href="#appendix-A.2-12" class="pilcrow">¶</a></p>
+Characters" in Section 23.9 of <span>[<a href="#Unicode-14.0.0" class="xref">Unicode-14.0.0</a>]</span>, as well as <span>[<a href="#RFC6082" class="xref">RFC6082</a>]</span>.<a href="#appendix-A.2-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="examples">
