@@ -794,7 +794,7 @@ indicates a direction, as follows:
   (as if enclosed in RLI ... PDI or equivalent, see {{-bidi}}) in the context
   of a longer string or text.
 - `null` indicates that that no indication is made about the direction
-  ("auto"), enabling an internationalization library to make a
+  ("auto"), enabling an internationalization library to make an auto-detection
   decision such as treating the string as if enclosed in FSI ... PDI
   or equivalent, see {{-bidi}}.
 
