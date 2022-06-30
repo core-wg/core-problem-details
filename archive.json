@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-28T01:38:05.587427+00:00",
+  "timestamp": "2022-06-30T01:24:50.451916+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -3005,24 +3005,26 @@
       "id": "PR_kwDOD7eoo846YCpK",
       "title": "Further clarifications based in Martin D\u00fcrst's review",
       "url": "https://github.com/core-wg/core-problem-details/pull/41",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "cabo",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2022-06-26T19:57:06Z",
-      "updatedAt": "2022-06-27T08:48:51Z",
+      "updatedAt": "2022-06-28T09:23:07Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "2f0512f0eec1917d535b647b5034ac5182c9c1a9",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "martin-duerst-review-2",
       "headRefOid": "e69ddd7002437400651f1117580de9a509341d25",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-06-28T09:23:07Z",
+      "mergedAt": "2022-06-28T09:23:06Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "063319593ec9c4cd95dfff981bb03bb5c3eed893"
+      },
       "comments": [],
       "reviews": [
         {
@@ -3036,6 +3038,48 @@
           "body": "",
           "createdAt": "2022-06-27T08:48:51Z",
           "updatedAt": "2022-06-27T08:48:51Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "id": "PR_kwDOD7eoo846e5ql",
+      "title": "Martin D\u00fcrst review 3",
+      "url": "https://github.com/core-wg/core-problem-details/pull/42",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-28T09:49:08Z",
+      "updatedAt": "2022-06-28T14:51:51Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "063319593ec9c4cd95dfff981bb03bb5c3eed893",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "martin-duerst-review-3",
+      "headRefOid": "36c921b0451704c2dbe3df9dca73399106c90b61",
+      "closedAt": "2022-06-28T14:51:51Z",
+      "mergedAt": "2022-06-28T14:51:51Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "00464cb9f5fdfe94c21b37283a709db344194c40"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo8484h__",
+          "commit": {
+            "abbreviatedOid": "36c921b"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-06-28T09:52:05Z",
+          "updatedAt": "2022-06-28T09:52:05Z",
           "comments": []
         }
       ]
