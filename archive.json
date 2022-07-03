@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-30T01:24:50.451916+00:00",
+  "timestamp": "2022-07-03T01:44:13.485031+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -3080,6 +3080,46 @@
           "body": "",
           "createdAt": "2022-06-28T09:52:05Z",
           "updatedAt": "2022-06-28T09:52:05Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "id": "PR_kwDOD7eoo846tpWD",
+      "title": "Add note on future updates of tag38",
+      "url": "https://github.com/core-wg/core-problem-details/pull/43",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Signed-off-by: Thomas Fossati <thomas.fossati@arm.com>",
+      "createdAt": "2022-07-01T14:41:19Z",
+      "updatedAt": "2022-07-01T15:23:32Z",
+      "baseRepository": "core-wg/core-problem-details",
+      "baseRefName": "master",
+      "baseRefOid": "8de65897ae67214bf7ea8a2b501fdd23aeaa1603",
+      "headRepository": "core-wg/core-problem-details",
+      "headRefName": "notes",
+      "headRefOid": "0f354b525b70f920542f46bd0ade98c126245879",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOD7eoo849LQ0L",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-07-01T15:23:32Z",
+          "updatedAt": "2022-07-01T15:23:32Z",
           "comments": []
         }
       ]
