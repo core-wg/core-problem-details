@@ -5,8 +5,8 @@
 CoRE Working Group                                            T. Fossati
 Internet-Draft                                                       arm
 Intended status: Standards Track                              C. Bormann
-Expires: 2 January 2023                           Universität Bremen TZI
-                                                             1 July 2022
+Expires: 6 January 2023                           Universität Bremen TZI
+                                                             5 July 2022
 
 
                  Concise Problem Details For CoAP APIs
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2023.
+   This Internet-Draft will expire on 6 January 2023.
 
 Copyright Notice
 
@@ -866,8 +866,11 @@ Appendix A.  Language-Tagged Strings
    As with any IANA-registered item, a specification that further
    updates this registration needs to update the reference column of the
    IANA registry (see Section 6.5).  Future specifications may update
-   this appendix, other parts of this document, or both.  Please consult
-   the registry to obtain the most recent update for this appendix.
+   this appendix, other parts of this document, or both.  (When updating
+   this appendix, keep in mind that applications beyond concise problem
+   details may adopt the tag defined here.)  Users of this tag are
+   advised to consult the registry to obtain the most recent update for
+   this appendix.
 
 A.1.  Introduction
 
