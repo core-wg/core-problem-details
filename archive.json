@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-07-03T01:44:13.485031+00:00",
+  "timestamp": "2022-07-05T01:27:38.063232+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -3096,7 +3096,7 @@
       "labels": [],
       "body": "Signed-off-by: Thomas Fossati <thomas.fossati@arm.com>",
       "createdAt": "2022-07-01T14:41:19Z",
-      "updatedAt": "2022-07-01T15:23:32Z",
+      "updatedAt": "2022-07-04T16:39:06Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "8de65897ae67214bf7ea8a2b501fdd23aeaa1603",
@@ -3121,6 +3121,106 @@
           "createdAt": "2022-07-01T15:23:32Z",
           "updatedAt": "2022-07-01T15:23:32Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOD7eoo849QZ9o",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "fpalombini",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T15:43:20Z",
+          "updatedAt": "2022-07-04T15:43:38Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "To cover all comments I saw on the mailing list, can we add something about future updates not dropping part of the current text? (for example leaving the appendix out)\r\n\r\nsuggestion: \r\nor both. Updates to this document need to be clear about what is being altered, and ought not discard this appendix without publishing it as a separate document.",
+              "createdAt": "2022-07-04T15:43:20Z",
+              "updatedAt": "2022-07-04T15:43:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849Qb5b",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T15:52:44Z",
+          "updatedAt": "2022-07-04T15:52:45Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I understand why we may want to add the first part of the sentence, but the second is a bit unclear: if the Tag38 part is not altered by the update, the reference in the CBOR tag registry just stays where it is and we should be OK, no?",
+              "createdAt": "2022-07-04T15:52:44Z",
+              "updatedAt": "2022-07-04T15:52:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849QenL",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "fpalombini",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T16:06:57Z",
+          "updatedAt": "2022-07-04T16:06:58Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "the second part is about getting into the situation where the main body is updated, and the appendix is discarded, with the reference for the IANA registry pointing to the old document... there were [comments](https://mailarchive.ietf.org/arch/msg/last-call/N3pk_H_z8XyQkx7K0aHrdSb1o9Y/) about that creating document evolution problems. Just trying to cover all basis here.",
+              "createdAt": "2022-07-04T16:06:58Z",
+              "updatedAt": "2022-07-04T16:06:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849QjXG",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T16:36:22Z",
+          "updatedAt": "2022-07-04T16:36:23Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "> the second part is about getting into the situation where the main body is updated, and the appendix is discarded, with the reference for the IANA registry pointing to the old document... there were [comments](https://mailarchive.ietf.org/arch/msg/last-call/N3pk_H_z8XyQkx7K0aHrdSb1o9Y/) about that creating document evolution problems. Just trying to cover all basis here.\r\n\r\nSure, and thank you very much for the extreme care you are using in treating this matter!\r\n\r\nMy point about the second half of your suggestion is that if a future RFC drops the Tag38 appendix and updates PD-specific content, as long as we add the first half of your edit we should be covered because the future RFC will say exactly and clearly what has been updated (which can't be tag38 if the appendix is dropped).  In this case the pointer in the CBOR tags registry will not move.\r\n\r\nWhat we'd be saying if we also added your second half (at least as I read it) is: when/as-soon-as the PD RFC is updated and the appendix is dropped, the Tag38 appendix needs to be split out into its own RFC.  Which seems unnecessary because if nothing has changed the existing reference is still valid.\r\n\r\nWhat am I missing?\r\n",
+              "createdAt": "2022-07-04T16:36:22Z",
+              "updatedAt": "2022-07-04T16:36:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849QjxG",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T16:39:06Z",
+          "updatedAt": "2022-07-04T16:39:06Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "> the second part is about getting into the situation where the main body is updated, and the appendix is discarded, with the reference for the IANA registry pointing to the old document... there were [comments](https://mailarchive.ietf.org/arch/msg/last-call/N3pk_H_z8XyQkx7K0aHrdSb1o9Y/) about that creating document evolution problems. Just trying to cover all basis here.\r\n\r\nWe did this already with Tag 35. There is nothing wrong with this situation.",
+              "createdAt": "2022-07-04T16:39:06Z",
+              "updatedAt": "2022-07-04T16:39:06Z"
+            }
+          ]
         }
       ]
     }
