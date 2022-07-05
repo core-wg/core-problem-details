@@ -766,9 +766,10 @@ registration needs to update the reference column of the IANA registry (see
 {{iana-tag38}}).
 Future specifications may update this appendix, other parts of this document,
 or both.
-Please consult the registry to obtain the most recent update for this
-appendix.
-
+(When updating this appendix, keep in mind that applications beyond
+concise problem details may adopt the tag defined here.)
+Users of this tag are advised to consult the registry to obtain the
+most recent update for this appendix.
 
 Introduction
 ------------
