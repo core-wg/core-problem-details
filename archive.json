@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-07-05T01:27:38.063232+00:00",
+  "timestamp": "2022-07-07T01:41:33.034186+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -3089,25 +3089,42 @@
       "id": "PR_kwDOD7eoo846tpWD",
       "title": "Add note on future updates of tag38",
       "url": "https://github.com/core-wg/core-problem-details/pull/43",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "thomas-fossati",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Signed-off-by: Thomas Fossati <thomas.fossati@arm.com>",
       "createdAt": "2022-07-01T14:41:19Z",
-      "updatedAt": "2022-07-04T16:39:06Z",
+      "updatedAt": "2022-07-06T15:02:39Z",
       "baseRepository": "core-wg/core-problem-details",
       "baseRefName": "master",
       "baseRefOid": "8de65897ae67214bf7ea8a2b501fdd23aeaa1603",
       "headRepository": "core-wg/core-problem-details",
       "headRefName": "notes",
-      "headRefOid": "0f354b525b70f920542f46bd0ade98c126245879",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
+      "headRefOid": "9c8e25ac8df358b8cfd9ef3268fefad9fefb33d2",
+      "closedAt": "2022-07-06T15:02:39Z",
+      "mergedAt": "2022-07-06T15:02:39Z",
+      "mergedBy": "cabo",
+      "mergeCommit": {
+        "oid": "e099d63767051d6dca3c86026bf66064a41b4b2e"
+      },
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Francesca's deadline is passed:\r\n\r\n> _\"If anybody has significant objections to the summary above, or substantive unresolved issues with draft-ietf-core-problem-details-07 that would benefit from more discussion, please raise them by July 6th.\"_\r\n\r\nWe seem to agree that the text in this PR is good to go.\r\n\r\nISMT that we can merge this and ship -08 to the Datatracker.\r\n\r\n@fpalombini WDYT?",
+          "createdAt": "2022-07-06T08:18:58Z",
+          "updatedAt": "2022-07-06T08:18:58Z"
+        },
+        {
+          "author": "fpalombini",
+          "authorAssociation": "NONE",
+          "body": "Thanks all for the work! @thomas-fossati please keep it open until we confirm it today at the [CoRE interim](https://datatracker.ietf.org/meeting/interim-2022-core-10/session/core) , and then if no other comments come in we can move forward. Thanks!",
+          "createdAt": "2022-07-06T09:40:49Z",
+          "updatedAt": "2022-07-06T09:40:49Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOD7eoo849LQ0L",
@@ -3219,6 +3236,86 @@
               "body": "> the second part is about getting into the situation where the main body is updated, and the appendix is discarded, with the reference for the IANA registry pointing to the old document... there were [comments](https://mailarchive.ietf.org/arch/msg/last-call/N3pk_H_z8XyQkx7K0aHrdSb1o9Y/) about that creating document evolution problems. Just trying to cover all basis here.\r\n\r\nWe did this already with Tag 35. There is nothing wrong with this situation.",
               "createdAt": "2022-07-04T16:39:06Z",
               "updatedAt": "2022-07-04T16:39:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849ScsS",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "duerst",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-05T08:26:27Z",
+          "updatedAt": "2022-07-05T08:26:28Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "> > the second part is about getting into the situation where the main body is updated, and the appendix is discarded, with the reference for the IANA registry pointing to the old document... there were [comments](https://mailarchive.ietf.org/arch/msg/last-call/N3pk_H_z8XyQkx7K0aHrdSb1o9Y/) about that creating document evolution problems. Just trying to cover all basis here.\r\n> \r\n> We did this already with Tag 35. There is nothing wrong with this situation.\r\n\r\nThere's quite a bit wrong regarding the situation around Tag 35. For details, please see https://mailarchive.ietf.org/arch/msg/art/QaUNS5z4PR_-MDAywpcMDgTvnZ8. If the newer document is just an *update* to the older one, things should be fine, but not if it claims to *obsolete* the older one.",
+              "createdAt": "2022-07-05T08:26:27Z",
+              "updatedAt": "2022-07-05T08:26:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849SwO3",
+          "commit": {
+            "abbreviatedOid": "9c8e25a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-05T09:24:39Z",
+          "updatedAt": "2022-07-05T09:24:39Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "LGTM",
+              "createdAt": "2022-07-05T09:24:39Z",
+              "updatedAt": "2022-07-05T09:24:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849XURP",
+          "commit": {
+            "abbreviatedOid": "0f354b5"
+          },
+          "author": "duerst",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-06T05:44:21Z",
+          "updatedAt": "2022-07-06T05:44:22Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I wrote:\r\n> There's quite a bit wrong regarding the situation around Tag 35. For details, please see https://mailarchive.ietf.org/arch/msg/art/QaUNS5z4PR_-MDAywpcMDgTvnZ8. If the newer document is just an _update_ to the older one, things should be fine, but not if it claims to _obsolete_ the older one.\r\n\r\nbut it turned out I was wrong. Very sorry for the misunderstanding. Please ignore that comment.\r\n",
+              "createdAt": "2022-07-06T05:44:22Z",
+              "updatedAt": "2022-07-06T08:11:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOD7eoo849XUVW",
+          "commit": {
+            "abbreviatedOid": "9c8e25a"
+          },
+          "author": "duerst",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-06T05:44:45Z",
+          "updatedAt": "2022-07-06T05:44:45Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "LGTM, too.",
+              "createdAt": "2022-07-06T05:44:45Z",
+              "updatedAt": "2022-07-06T05:44:45Z"
             }
           ]
         }
