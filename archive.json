@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-07-07T01:41:33.034186+00:00",
+  "timestamp": "2022-07-28T01:39:35.341689+00:00",
   "repo": "core-wg/core-problem-details",
   "labels": [
     {
@@ -655,6 +655,30 @@
           "body": "This case appears to be the only one where RFC 7252 explicitly recommends a diagnostic payload.\r\n\r\nThe policy is specification required, so we could simply write this up as a document in this repo and register from there.  Of course, including it in the RFC provides more visibility.",
           "createdAt": "2022-06-12T20:18:48Z",
           "updatedAt": "2022-06-12T20:18:48Z"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "id": "I_kwDOD7eoo85Opyel",
+      "title": "Needless reference into 9165",
+      "url": "https://github.com/core-wg/core-problem-details/issues/44",
+      "state": "OPEN",
+      "author": "chrysn",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "The document references RFC9165 (cddl-control, as cddlplus), but I found none of the new controls used.\r\n\r\nIf really nothing of 9165 is used (maybe I missed something), I suggest that the reference be removed.",
+      "createdAt": "2022-07-27T13:35:36Z",
+      "updatedAt": "2022-07-27T13:48:35Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "cabo",
+          "authorAssociation": "MEMBER",
+          "body": "The IANA Considerations have a column \"CDDL type\".  This should be able to use all of CDDL.\r\n\r\nOf course, RFC 9090 has registered control operators, and others will, so singling out RFC 9165 is maybe not needed.\r\nI still find it useful as a reminder that CDDL is no longer just RFC 8610.\r\n\r\nIf we don't want to have that reminder, we can fix it in AUTH48.",
+          "createdAt": "2022-07-27T13:48:35Z",
+          "updatedAt": "2022-07-27T13:48:35Z"
         }
       ]
     }
